@@ -1,4 +1,4 @@
-package com.proyectoProgramacion3.controlador;
+package com.proyectoProgramacion3.controller;
 
 
 import org.springframework.stereotype.Controller;
