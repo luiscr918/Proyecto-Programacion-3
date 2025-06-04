@@ -15,6 +15,19 @@
      box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
  }
 
+.error-text {
+    color: #dc2626;
+    font-size: 0.875rem;
+    padding-top: 4px;
+    display: block;
+}
+.seccion2 {
+    padding: 30px;
+    margin-top: 45px;
+    background-color: #3E5879;
+}
+
+
  .color1{
     background-color:#922b21;
  }
