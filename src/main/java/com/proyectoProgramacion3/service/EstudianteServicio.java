@@ -22,7 +22,7 @@ public class EstudianteServicio {
         if (buscarEstudiante==null||buscarEstudiante.isEmpty()){
             return estudianteRepository.findAll();
         }else{
-            return estudianteRepository.finByCedulaContainingIgnoreCase(buscarEstudiante);
+            return estudianteRepository.findByCedulaContainingIgnoreCase(buscarEstudiante);
         }
     }
     //Buscar por id

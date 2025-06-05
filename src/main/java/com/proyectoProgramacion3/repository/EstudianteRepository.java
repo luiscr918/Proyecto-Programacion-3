@@ -9,7 +9,7 @@ import java.util.List;
 @Repository
 public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
     //Buscar por Cedula
-    List<Estudiante> finByCedulaContainingIgnoreCase(String cedula);
+    List<Estudiante> findByCedulaContainingIgnoreCase(String cedula);
 
     //Buscar por Email
    // List<Estudiante> findByEmailContiningIgnoreCase(String correo);

@@ -46,11 +46,11 @@ public class EstudianteController {
         model.addAttribute("estudiante",estudiante);
         return "pages/registroEstudiante";
     }
-    //eliminar LIBRO
-    @GetMapping("eliminar-libro/{id}")
+    //eliminar estudiante
+    @GetMapping("/eliminar-estudiante/{id}")
     public String eliminarEstudiante(@PathVariable long id){
         estudianteServicio.eliminarEstudiante(id);
-        return "redirect/estudiantes";
+        return "redirect:/estudiantes";
     }
 
 }
