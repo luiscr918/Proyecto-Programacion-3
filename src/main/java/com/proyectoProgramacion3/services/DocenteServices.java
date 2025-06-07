@@ -14,6 +14,27 @@ public class DocenteServices {
     @Autowired
     private DocenteRepositorio docenteRepositorio;
 
+    //mostrar los docentes
+    public List<Docente> mostrarLibros(){
+
+        return docenteRepositorio.findAll();
+    }
+
+
+    // Mostrar todos los docentes o buscar por cédula
+    public List<Docente> buscarDocentePorCedula(String cedula) {
+        if (cedula == null || cedula.isEmpty()) {
+            return docenteRepositorio.findAll();
+        } else {
+            return docenteRepositorio.findByCedulaContainingIgnoreCase(cedula);
+        }
+    }
+
+    // Buscar por ID
+    public Optional<Docente> buscarDocentePorId(Long id) {
+        return docenteRepositorio.findById(id);
+    }
+
     // Guardar docente
     public Docente guardarDocente(Docente docente) {
         return docenteRepositorio.save(docente);
@@ -23,5 +44,4 @@ public class DocenteServices {
     public void eliminarDocente(Long id) {
         docenteRepositorio.deleteById(id);
     }
-
 }

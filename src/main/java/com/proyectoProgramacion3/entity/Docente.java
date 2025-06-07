@@ -1,9 +1,6 @@
 package com.proyectoProgramacion3.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
@@ -24,6 +21,7 @@ public class Docente {
     private String nombreCompleto;
 
     @NotBlank(message = "La cédula es obligatoria")
+    @Column(unique = true)
     @Pattern(regexp = "\\d{7,10}", message = "La cédula debe tener entre 7 y 10 dígitos numéricos")
     private String cedula;
 
@@ -31,11 +29,8 @@ public class Docente {
     @Pattern(regexp = "\\d{10}", message = "El teléfono debe tener exactamente 10 dígitos")
     private String telefono;
 
-    @NotBlank(message = "El rol es obligatorio")
-    @Pattern(regexp = "Administrador|Docente|Estudiante", message = "Rol debe ser Administrador, Docente o Estudiante")
-    private String rol;
-
     @NotBlank(message = "El email es obligatorio")
+    @Column(unique = true)
     @Email(message = "Debe ingresar un correo electrónico válido")
     @Pattern(
             regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,}$",

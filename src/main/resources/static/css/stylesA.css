@@ -1,5 +1,5 @@
 .seccion1Docente {
-  padding-top: 100px !important;
+  padding-top: 50px !important;
 }
 
 .seccionPreguntasFrrecuentes {
@@ -17,14 +17,11 @@
 
 .error-text {
     color: #dc2626;
-    font-size: 0.875rem;
-    padding-top: 4px;
+    font-size: 10px;
+    padding-top: 2px;
     display: block;
 }
 .seccion2 {
-    padding: 30px;
-    margin-top: 45px;
-    background-color: #3E5879;
 }
 
 
@@ -49,7 +46,7 @@
  }
 
  .color7{
-   background-color: #45b39d;
+   background-color: #0b5345;
  }
 
  .color8{
@@ -59,3 +56,32 @@
   .color9{
      background-color: #f39c12;
   }
+
+  .color10{
+         background-color: #283747;
+  }
+
+.campo-hover {
+   transition: transform 0.2s ease-in-out;
+}
+
+.campo-hover:hover {
+   transform: scale(1.03);
+   box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+}
+
+
+.card-hover {
+   transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card-hover:hover {
+     transform: scale(1.05);
+     box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+ }
+
+.seccion3 {
+    padding: 100px;
+    background-color: #bb8fce;
+ }
+

@@ -8,4 +8,5 @@ import java.util.Optional;
 
 public interface DocenteRepositorio extends JpaRepository<Docente,Long> {
 
+    List<Docente> findByCedulaContainingIgnoreCase(String cedula);
 }

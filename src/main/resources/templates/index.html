@@ -5,13 +5,12 @@
 
 
     <!--Tailwind-->
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 
     <link rel="stylesheet" th:href="@{/css/stylesA.css}">
 
-    <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}" />
-
+    <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}"/>
 
 
     <title>TaskFlow</title>
@@ -20,44 +19,62 @@
 
 <!--Barra de navegacion-->
 
+<!-- Navbar versión 2 con dos botones separados -->
 <nav class="bg-white border-gray-200 dark:bg-gray-900">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a th:href="@{/}" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="/imagenes/img001-logo.png" class="h-8 card-hover" width="30px" height="30px" alt="Flowbite Logo" />
+        <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="/imagenes/img001-logo.png" class="h-8 card-hover" width="30" height="30" alt="Flowbite Logo"/>
             <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">TaskFlow</span>
         </a>
-        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+
+        <div class="flex md:order-2 space-x-3 rtl:space-x-reverse">
+            <a th:href="@{/}">
+                <button type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                    Registro Estudiante
+                </button>
+            </a>
             <a th:href="@{/registroDocente}">
-            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Iniciar sesión</button>
-            <button data-collapse-toggle="navbar-cta" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-cta" aria-expanded="false">
+                <button type="button"
+                        class="text-white bg-green-600 hover:bg-green-700 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-green-500 dark:hover:bg-green-600 dark:focus:ring-green-700">
+                    Registro Docente
+                </button>
+            </a>
+            <!-- Botón hamburguesa para móvil -->
+            <button data-collapse-toggle="navbar-cta" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
                 <span class="sr-only">Open main menu</span>
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M1 1h15M1 7h15M1 13h15"/>
                 </svg>
             </button>
-            </a>
         </div>
+
         <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-cta">
             <ul class="flex flex-col font-medium p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                    <a href="@{/}" class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:dark:text-blue-500" aria-current="page">Inicio</a>
+                <li><a href="/"
+                       class="block py-2 px-3 md:p-0 text-white bg-blue-700 rounded-sm md:bg-transparent md:text-blue-700 md:dark:text-blue-500"
+                       aria-current="page">Inicio</a></li>
+                <li><a href="#funcionalidades"
+                       class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Funcionalidades</a>
                 </li>
-                <li>
-                    <a href="#funcionalidades" class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Funcionalidades</a>
+                <li><a href="#car"
+                       class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Conoce
+                    la app</a></li>
+                <li><a href="#beneficios"
+                       class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Beneficios</a>
                 </li>
-                <li>
-                    <a href="#car" class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Conoce la app</a>
-                </li>
-                <li>
-                    <a href="#beneficios" class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Beneficios</a>
-                </li>
-                <li>
-                    <a href="#faq" class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Preguntas frecuentes</a>
-                </li>
+                <li><a href="#faq"
+                       class="block py-2 px-3 md:p-0 text-gray-900 rounded-sm hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Preguntas
+                    frecuentes</a></li>
             </ul>
         </div>
     </div>
 </nav>
+
+<!--Seccion hero-->
 
 <!--Seccion hero-->
 
@@ -67,17 +84,24 @@
         <div class="flex items-center py-5 w-full md:w-1/2 md:pb-20 md:pt-10 md:pr-10">
             <div class="text-left w-full">
                 <h2 class="text-4xl font-extrabold leading-10 tracking-tight text-gray-800 sm:text-5xl sm:leading-none md:text-6xl">
-                    Gestiona tus tareas
-                    <span class="font-bold text-blue-500">de forma inteligente</span>
+                    TaskFlow: la mejor forma de
+                    <span class="font-bold text-blue-500">gestionar las tareas</span>
                 </h2>
                 <p class="mt-3 text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl">
-                    Parece que te refieres a Git Bash (no "gitcash", probablemente fue un error de escritura). Si estás usando IntelliJ IDEA y quieres configurar Git para que use Git Bash como terminal, aquí te explico cómo encontrar la ruta y configurarla:
+                    Simplifica y optimiza la organización de tus actividades escolares, colaborando fácilmente con tu
+                    equipo docente y manteniendo todo bajo control.
                 </p>
-                <div class="mt-5 sm:flex md:mt-8">
+                <div class="mt-5 sm:flex md:mt-8 space-x-4">
                     <div class="rounded-md shadow">
-                        <a th:href="@{/registroTarea}"
-                           class=" card-hover flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-blue-500 rounded-md hover:bg-blue-600 md:py-4 md:text-lg md:px-10">
-                            Empieza a administrar tus tareas
+                        <a th:href="@{/registroEstudiante}"
+                           class="card-hover flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-blue-600 rounded-md hover:bg-blue-700 md:py-4 md:text-lg md:px-10">
+                            Empezar como Estudiante
+                        </a>
+                    </div>
+                    <div class="rounded-md shadow">
+                        <a th:href="@{/registroDocente}"
+                           class="card-hover flex items-center justify-center px-8 py-3 text-base font-medium text-green-700 bg-green-100 rounded-md hover:bg-green-200 md:py-4 md:text-lg md:px-10">
+                            Empezar como Docente
                         </a>
                     </div>
                 </div>
@@ -90,7 +114,7 @@
                 <div class="rounded-lg bg-white text-black w-full max-w-[600px] max-h-[1000px]">
                     <img src="/imagenes/img002-hero.png"
                          class="w-full h-full object-cover rounded-lg shadow-md card-hover"
-                         alt="Organización de tareas" />
+                         alt="Organización de tareas"/>
                 </div>
             </div>
         </div>
@@ -110,14 +134,16 @@
             <!-- Tarjeta 1 -->
             <div class="card-hover color1 rounded-lg shadow-sm flex flex-col text-center">
                 <div class="  w-full h-48 overflow-hidden">
-                    <img class="w-full h-full object-cover" src="/imagenes/img003-funcion1.png" alt="Asignación de tareas" />
+                    <img class="w-full h-full object-cover" src="/imagenes/img003-funcion1.png"
+                         alt="Asignación de tareas"/>
                 </div>
                 <div class="p-5 flex flex-col justify-between grow">
                     <h5 class="text-3xl font-bold text-white max-h-20 flex items-center justify-center overflow-hidden">
                         Asignación de Tareas
                     </h5>
                     <p class="text-white text-base max-h-24 mt-2 flex items-center justify-center overflow-hidden">
-                        Asigna tareas de forma eficiente, establece prioridades y responsabilidades para cada miembro del equipo.
+                        Asigna tareas de forma eficiente, establece prioridades y responsabilidades para cada miembro
+                        del equipo.
                     </p>
                 </div>
             </div>
@@ -125,14 +151,16 @@
             <!-- Tarjeta 2 -->
             <div class="card-hover color2 rounded-lg shadow-sm flex flex-col text-center">
                 <div class="w-full h-48 overflow-hidden">
-                    <img class="w-full h-full object-cover" src="/imagenes/img004-funcion.png" alt="Revisión de tareas" />
+                    <img class="w-full h-full object-cover" src="/imagenes/img004-funcion.png"
+                         alt="Revisión de tareas"/>
                 </div>
                 <div class="p-6 flex flex-col justify-between grow">
                     <h5 class="text-3xl font-bold text-white max-h-20 flex items-center justify-center overflow-hidden">
                         Revisión de Tareas
                     </h5>
                     <p class="text-white text-base max-h-24 mt-2 flex items-center justify-center overflow-hidden">
-                        Supervisa tareas en curso, verifica cumplimiento de requisitos y da seguimiento detallado al avance.
+                        Supervisa tareas en curso, verifica cumplimiento de requisitos y da seguimiento detallado al
+                        avance.
                     </p>
                 </div>
             </div>
@@ -140,14 +168,16 @@
             <!-- Tarjeta 3 -->
             <div class="card-hover color3 rounded-lg shadow-sm flex flex-col text-center">
                 <div class="w-full h-48 overflow-hidden">
-                    <img class="w-full h-full object-cover" src="/imagenes/img005-funcion.png" alt="Calificación de tareas" />
+                    <img class="w-full h-full object-cover" src="/imagenes/img005-funcion.png"
+                         alt="Calificación de tareas"/>
                 </div>
                 <div class="p-5 flex flex-col justify-between grow">
                     <h5 class="text-3xl font-bold text-white max-h-20 flex items-center justify-center overflow-hidden">
                         Calificación de Tareas
                     </h5>
                     <p class="text-white text-base max-h-24 mt-2 flex items-center justify-center overflow-hidden">
-                        Evalúa el rendimiento de los usuarios mediante calificaciones personalizadas y comentarios constructivos.
+                        Evalúa el rendimiento de los usuarios mediante calificaciones personalizadas y comentarios
+                        constructivos.
                     </p>
                 </div>
             </div>
@@ -155,14 +185,16 @@
             <!-- Tarjeta 4 -->
             <div class="card-hover color4 rounded-lg shadow-sm flex flex-col text-center">
                 <div class="w-full h-48 overflow-hidden">
-                    <img class="w-full h-full object-cover" src="/imagenes/img006-funcion.png" alt="Seguimiento del progreso" />
+                    <img class="w-full h-full object-cover" src="/imagenes/img006-funcion.png"
+                         alt="Seguimiento del progreso"/>
                 </div>
                 <div class="p-5 flex flex-col justify-between grow">
                     <h5 class="text-3xl font-bold text-white max-h-20 flex items-center justify-center overflow-hidden">
                         Seguimiento del Progreso
                     </h5>
                     <p class="text-white text-base max-h-24 mt-2 flex items-center justify-center overflow-hidden">
-                        Monitorea visualmente el estado de cada proyecto con paneles dinámicos y estadísticas en tiempo real.
+                        Monitorea visualmente el estado de cada proyecto con paneles dinámicos y estadísticas en tiempo
+                        real.
                     </p>
                 </div>
             </div>
@@ -172,10 +204,9 @@
     </div>
 </section>
 
-
 <!--Carrousel-->
-<section class="bg-gray-900 py-12" id="car">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mb-8">
+<section class="bg-gray-800 py-12" id="car">
+    <div class="w-full px-4 sm:px-6 lg:px-8 text-center mb-8">
         <h2 class="text-3xl md:text-4xl font-bold text-white">
             Descubre cómo <span class="text-blue-400">TaskFlow</span> transforma la gestión de tareas
         </h2>
@@ -184,37 +215,42 @@
         </p>
     </div>
 
-    <div id="default-carousel" class="relative w-full" data-carousel="slide">
+    <div id="default-carousel" class="relative w-full max-w-full px-4 sm:px-6 lg:px-8" data-carousel="slide">
         <!-- Carousel wrapper -->
-        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
+        <div class="relative h-56 overflow-hidden rounded-lg md:h-96 max-w-full">
             <!-- Item 1 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/imagenes/img011-car.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Gestión de equipo">
+                <img src="/imagenes/img011-car.png"
+                     class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                     alt="Gestión de equipo">
             </div>
             <!-- Item 2 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/imagenes/img012-car.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Dashboard interactivo">
+                <img src="/imagenes/img012-car.png"
+                     class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                     alt="Dashboard interactivo">
             </div>
             <!-- Item 3 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/imagenes/img013-car.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Seguimiento visual">
+                <img src="/imagenes/img013-car.png"
+                     class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                     alt="Seguimiento visual">
             </div>
             <!-- Item 4 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/imagenes/img014-car.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Evaluación de tareas">
+                <img src="/imagenes/img014-car.png"
+                     class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                     alt="Evaluación de tareas">
             </div>
             <!-- Item 5 -->
             <div class="hidden duration-700 ease-in-out" data-carousel-item>
-                <img src="/imagenes/img015-car.png" class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2" alt="Colaboración eficiente">
+                <img src="/imagenes/img015-car.png"
+                     class="absolute block w-full -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                     alt="Colaboración eficiente">
             </div>
         </div>
-        <!-- ... (controles e indicadores como ya los tienes) ... -->
     </div>
 </section>
-
-
-
-
 
 
 <!--Ventajas-->
@@ -229,14 +265,16 @@
             <!-- Beneficio 1 -->
             <div class="card-hover color8 rounded-lg shadow-sm flex flex-col text-center">
                 <div class="w-full h-48 overflow-hidden">
-                    <img class="w-full h-full object-cover" src="/imagenes/img007-beneficio.png" alt="Asignación de tareas" />
+                    <img class="w-full h-full object-cover" src="/imagenes/img007-beneficio.png"
+                         alt="Asignación de tareas"/>
                 </div>
                 <div class="p-5 flex flex-col justify-between grow">
                     <h5 class="text-3xl font-bold text-white max-h-20 flex items-center justify-center overflow-hidden">
                         Organización Eficiente
                     </h5>
                     <p class="text-white text-base max-h-24 mt-2 flex items-center justify-center overflow-hidden px-4">
-                        Gestiona tareas con claridad, asigna responsabilidades y optimiza el flujo de trabajo de tu equipo.
+                        Gestiona tareas con claridad, asigna responsabilidades y optimiza el flujo de trabajo de tu
+                        equipo.
                     </p>
                 </div>
             </div>
@@ -244,14 +282,16 @@
             <!-- Beneficio 2 -->
             <div class="card-hover color3 rounded-lg shadow-sm flex flex-col text-center">
                 <div class="w-full h-48 overflow-hidden">
-                    <img class="w-full h-full object-cover" src="/imagenes/img008-beneficio.png" alt="Revisión de tareas" />
+                    <img class="w-full h-full object-cover" src="/imagenes/img008-beneficio.png"
+                         alt="Revisión de tareas"/>
                 </div>
                 <div class="p-5 flex flex-col justify-between grow">
                     <h5 class="text-3xl font-bold text-white max-h-20 flex items-center justify-center overflow-hidden">
                         Control y Seguimiento
                     </h5>
                     <p class="text-white text-base max-h-24 mt-2 flex items-center justify-center overflow-hidden px-4">
-                        Supervisa el progreso en tiempo real, asegúrate del cumplimiento y mejora la calidad de los entregables.
+                        Supervisa el progreso en tiempo real, asegúrate del cumplimiento y mejora la calidad de los
+                        entregables.
                     </p>
                 </div>
             </div>
@@ -259,7 +299,8 @@
             <!-- Beneficio 3 -->
             <div class="card-hover color4 rounded-lg shadow-sm flex flex-col text-center">
                 <div class="w-full h-48 overflow-hidden">
-                    <img class="w-full h-full object-cover" src="/imagenes/img009-beneficio.png" alt="Calificación de tareas" />
+                    <img class="w-full h-full object-cover" src="/imagenes/img009-beneficio.png"
+                         alt="Calificación de tareas"/>
                 </div>
                 <div class="p-5 flex flex-col justify-between grow">
                     <h5 class="text-3xl font-bold text-white max-h-20 flex items-center justify-center overflow-hidden">
@@ -274,7 +315,8 @@
             <!-- Beneficio 4 -->
             <div class="card-hover color9 rounded-lg shadow-sm flex flex-col text-center">
                 <div class="w-full h-48 overflow-hidden">
-                    <img class="w-full h-full object-cover" src="/imagenes/img010-beneficio.png" alt="Seguimiento del progreso" />
+                    <img class="w-full h-full object-cover" src="/imagenes/img010-beneficio.png"
+                         alt="Seguimiento del progreso"/>
                 </div>
                 <div class="p-5 flex flex-col justify-between grow">
                     <h5 class="text-3xl font-bold text-white max-h-20 flex items-center justify-center overflow-hidden">
@@ -291,13 +333,7 @@
 </section>
 
 
-
-
-
-
-
 <!--Seccion clientes que usan la aplicaicon-->
-
 
 
 <div class="w-full bg-white border-t border-gray-200 shadow-sm dark:bg-gray-800 dark:border-gray-700 p-6">
@@ -336,7 +372,7 @@
 </div>
 
 <!--Preguntas Frecuentes-->
-<section id="faq" class="bg-gray-100 py-16 px-6 p-3 seccionPreguntasFrrecuentes" >
+<section id="faq" class="bg-gray-100 py-16 px-6 p-3 seccionPreguntasFrrecuentes">
     <div class="max-w-4xl mx-auto">
         <h2 class="text-4xl font-bold text-center text-gray-800 mb-10">Preguntas Frecuentes</h2>
 
@@ -345,16 +381,22 @@
             <!-- Pregunta 1 -->
             <div class="mb-4 bg-white border border-gray-200 rounded-xl shadow">
                 <h2 id="accordion-heading-1">
-                    <button type="button" class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 rounded-t-xl hover:bg-blue-50 focus:ring-4 focus:ring-blue-200 gap-3" data-accordion-target="#accordion-body-1" aria-expanded="true" aria-controls="accordion-body-1">
+                    <button type="button"
+                            class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 rounded-t-xl hover:bg-blue-50 focus:ring-4 focus:ring-blue-200 gap-3"
+                            data-accordion-target="#accordion-body-1" aria-expanded="true"
+                            aria-controls="accordion-body-1">
                         <span>¿Qué es TaskFlow?</span>
-                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 5 5 1 1 5"/>
                         </svg>
                     </button>
                 </h2>
                 <div id="accordion-body-1" class="hidden" aria-labelledby="accordion-heading-1">
                     <div class="p-5 text-gray-700">
-                        TaskFlow es una plataforma de gestión de tareas diseñada para equipos y profesionales que buscan organizar su trabajo de forma eficiente, colaborativa y en tiempo real.
+                        TaskFlow es una plataforma de gestión de tareas diseñada para equipos y profesionales que buscan
+                        organizar su trabajo de forma eficiente, colaborativa y en tiempo real.
                     </div>
                 </div>
             </div>
@@ -362,16 +404,23 @@
             <!-- Pregunta 2 -->
             <div class="mb-4 bg-white border border-gray-200 rounded-xl shadow">
                 <h2 id="accordion-heading-2">
-                    <button type="button" class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 hover:bg-blue-50 focus:ring-4 focus:ring-blue-200 gap-3" data-accordion-target="#accordion-body-2" aria-expanded="false" aria-controls="accordion-body-2">
+                    <button type="button"
+                            class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 hover:bg-blue-50 focus:ring-4 focus:ring-blue-200 gap-3"
+                            data-accordion-target="#accordion-body-2" aria-expanded="false"
+                            aria-controls="accordion-body-2">
                         <span>¿Puedo usar TaskFlow de forma gratuita?</span>
-                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 5 5 1 1 5"/>
                         </svg>
                     </button>
                 </h2>
                 <div id="accordion-body-2" class="hidden" aria-labelledby="accordion-heading-2">
                     <div class="p-5 text-gray-700">
-                        Sí, TaskFlow ofrece un plan gratuito con funcionalidades básicas. Para equipos más grandes o funciones avanzadas como estadísticas, permisos personalizados y más, puedes optar por un plan de pago.
+                        Sí, TaskFlow ofrece un plan gratuito con funcionalidades básicas. Para equipos más grandes o
+                        funciones avanzadas como estadísticas, permisos personalizados y más, puedes optar por un plan
+                        de pago.
                     </div>
                 </div>
             </div>
@@ -379,16 +428,22 @@
             <!-- Pregunta 3 -->
             <div class="mb-4 bg-white border border-gray-200 rounded-xl shadow">
                 <h2 id="accordion-heading-3">
-                    <button type="button" class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 hover:bg-blue-50 focus:ring-4 focus:ring-blue-200 gap-3" data-accordion-target="#accordion-body-3" aria-expanded="false" aria-controls="accordion-body-3">
+                    <button type="button"
+                            class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 hover:bg-blue-50 focus:ring-4 focus:ring-blue-200 gap-3"
+                            data-accordion-target="#accordion-body-3" aria-expanded="false"
+                            aria-controls="accordion-body-3">
                         <span>¿Puedo asignar tareas a otros usuarios?</span>
-                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 5 5 1 1 5"/>
                         </svg>
                     </button>
                 </h2>
                 <div id="accordion-body-3" class="hidden" aria-labelledby="accordion-heading-3">
                     <div class="p-5 text-gray-700">
-                        Sí, puedes asignar tareas a otros miembros del equipo, establecer fechas límite y recibir notificaciones cuando se completen o actualicen.
+                        Sí, puedes asignar tareas a otros miembros del equipo, establecer fechas límite y recibir
+                        notificaciones cuando se completen o actualicen.
                     </div>
                 </div>
             </div>
@@ -396,16 +451,22 @@
             <!-- Pregunta 4 -->
             <div class="mb-4 bg-white border border-gray-200 rounded-xl shadow">
                 <h2 id="accordion-heading-4">
-                    <button type="button" class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 hover:bg-blue-50 focus:ring-4 focus:ring-blue-200 gap-3" data-accordion-target="#accordion-body-4" aria-expanded="false" aria-controls="accordion-body-4">
+                    <button type="button"
+                            class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 hover:bg-blue-50 focus:ring-4 focus:ring-blue-200 gap-3"
+                            data-accordion-target="#accordion-body-4" aria-expanded="false"
+                            aria-controls="accordion-body-4">
                         <span>¿Cómo puedo invitar a otros usuarios a mi proyecto?</span>
-                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 5 5 1 1 5"/>
                         </svg>
                     </button>
                 </h2>
                 <div id="accordion-body-4" class="hidden" aria-labelledby="accordion-heading-4">
                     <div class="p-5 text-gray-700">
-                        Puedes invitar a otros usuarios desde el panel de administración de tu proyecto ingresando su correo electrónico. Ellos recibirán una invitación para unirse al equipo.
+                        Puedes invitar a otros usuarios desde el panel de administración de tu proyecto ingresando su
+                        correo electrónico. Ellos recibirán una invitación para unirse al equipo.
                     </div>
                 </div>
             </div>
@@ -413,10 +474,15 @@
             <!-- Pregunta 5 -->
             <div class="bg-white border border-gray-200 rounded-xl shadow">
                 <h2 id="accordion-heading-5">
-                    <button type="button" class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 hover:bg-blue-50 focus:ring-4 focus:ring-blue-200 gap-3" data-accordion-target="#accordion-body-5" aria-expanded="false" aria-controls="accordion-body-5">
+                    <button type="button"
+                            class="flex items-center justify-between w-full p-5 text-lg font-medium text-gray-700 hover:bg-blue-50 focus:ring-4 focus:ring-blue-200 gap-3"
+                            data-accordion-target="#accordion-body-5" aria-expanded="false"
+                            aria-controls="accordion-body-5">
                         <span>¿TaskFlow funciona en dispositivos móviles?</span>
-                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5 5 1 1 5"/>
+                        <svg data-accordion-icon class="w-4 h-4 rotate-180 shrink-0" xmlns="http://www.w3.org/2000/svg"
+                             fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                  d="M9 5 5 1 1 5"/>
                         </svg>
                     </button>
                 </h2>
@@ -432,13 +498,86 @@
 </section>
 
 
+<section class="w-full bg-green-100 py-12 px-4">
+    <div class="max-w-7xl mx-auto text-center mb-10">
+        <h2 class="text-3xl font-bold text-green-900 mb-4">Opiniones sobre TaskFlow</h2>
+        <p class="text-green-800 text-lg max-w-3xl mx-auto">
+            TaskFlow ha transformado la forma en que docentes y estudiantes gestionan sus tareas académicas. Gracias a
+            su interfaz intuitiva y funcionalidades enfocadas en el sector educativo, se ha convertido en una
+            herramienta imprescindible en instituciones educativas.
+        </p>
+    </div>
 
+    <div class="grid mb-8 border border-green-300 rounded-lg shadow-sm md:mb-12 md:grid-cols-2 bg-green-100">
+        <figure class="flex flex-col items-center justify-center p-5 text-center bg-white border-b border-green-200 rounded-t-lg md:rounded-t-none md:rounded-ss-lg md:border-e">
+            <blockquote class="max-w-2xl mx-auto mb-4 text-green-800 lg:mb-8">
+                <h3 class="text-lg font-semibold text-green-900">Facilita la planificación</h3>
+                <p class="my-4">TaskFlow me permite organizar tareas de mis estudiantes de manera clara y rápida. ¡Me ha
+                    ahorrado horas de trabajo!</p>
+            </blockquote>
+            <figcaption class="flex items-center justify-center">
+                <img class="rounded-full w-9 h-9"
+                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/karen-nelson.png"
+                     alt="Docente profile">
+                <div class="ms-3 text-left space-y-0.5 font-medium text-green-900">
+                    <div>María López</div>
+                    <div class="text-sm text-green-600">Docente de Matemática</div>
+                </div>
+            </figcaption>
+        </figure>
 
+        <figure class="flex flex-col items-center justify-center p-5 text-center bg-white border-b border-green-200 md:rounded-se-lg">
+            <blockquote class="max-w-2xl mx-auto mb-4 text-green-800 lg:mb-8">
+                <h3 class="text-lg font-semibold text-green-900">Ideal para educación</h3>
+                <p class="my-4">Una herramienta muy útil para colegios y universidades. El seguimiento de tareas nunca
+                    fue tan sencillo.</p>
+            </blockquote>
+            <figcaption class="flex items-center justify-center">
+                <img class="rounded-full w-9 h-9"
+                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/roberta-casas.png"
+                     alt="profile">
+                <div class="ms-3 text-left space-y-0.5 font-medium text-green-900">
+                    <div>Carlos Rivera</div>
+                    <div class="text-sm text-green-600">Coordinador Académico</div>
+                </div>
+            </figcaption>
+        </figure>
 
+        <figure class="flex flex-col items-center justify-center p-5 text-center bg-white border-b border-green-200 md:rounded-es-lg md:border-b-0 md:border-e">
+            <blockquote class="max-w-2xl mx-auto mb-4 text-green-800 lg:mb-8">
+                <h3 class="text-lg font-semibold text-green-900">Práctico para estudiantes</h3>
+                <p class="my-4">Con TaskFlow nunca olvido mis tareas. Me avisa de los pendientes y puedo entregar a
+                    tiempo.</p>
+            </blockquote>
+            <figcaption class="flex items-center justify-center">
+                <img class="rounded-full w-9 h-9"
+                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/jese-leos.png"
+                     alt="student profile">
+                <div class="ms-3 text-left space-y-0.5 font-medium text-green-900">
+                    <div>Daniela Pérez</div>
+                    <div class="text-sm text-green-600">Estudiante de Ingeniería</div>
+                </div>
+            </figcaption>
+        </figure>
 
-
-
-
+        <figure class="flex flex-col items-center justify-center p-5 text-center bg-white border-green-200 rounded-b-lg md:rounded-se-lg">
+            <blockquote class="max-w-2xl mx-auto mb-4 text-green-800 lg:mb-8">
+                <h3 class="text-lg font-semibold text-green-900">Colaboración eficiente</h3>
+                <p class="my-4">Permite que docentes y estudiantes estén en la misma página. ¡Muy recomendable para
+                    instituciones educativas!</p>
+            </blockquote>
+            <figcaption class="flex items-center justify-center">
+                <img class="rounded-full w-9 h-9"
+                     src="https://flowbite.s3.amazonaws.com/blocks/marketing-ui/avatars/joseph-mcfall.png"
+                     alt="profile picture">
+                <div class="ms-3 text-left space-y-0.5 font-medium text-green-900">
+                    <div>Sofía Hernández</div>
+                    <div class="text-sm text-green-600">Directora de escuela</div>
+                </div>
+            </figcaption>
+        </figure>
+    </div>
+</section>
 
 
 <!--Footer-->
@@ -449,12 +588,12 @@
             <!-- Logo y contacto -->
             <div class="mb-6 md:mb-0">
                 <a href="/" class="flex items-center">
-                    <img src="/imagenes/img001-logo.png" class="h-8 me-3" alt="TaskFlow Logo" />
+                    <img src="/imagenes/img001-logo.png" class="h-8 me-3" alt="TaskFlow Logo"/>
                     <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
                 </a>
                 <p class="mt-4 text-gray-400 text-sm">
-                    Av. Innovación 123, Ciudad Creativa, CA 94000<br />
-                    Teléfono: +1 (800) 123-4567<br />
+                    Av. Innovación 123, Ciudad Creativa, CA 94000<br/>
+                    Teléfono: +1 (800) 123-4567<br/>
                     Email: soporte@taskflow.com
                 </p>
             </div>
@@ -466,7 +605,8 @@
                     <h2 class="mb-6 text-sm font-semibold text-white uppercase">Menú</h2>
                     <ul class="text-gray-400 font-medium space-y-2">
                         <li><a href="/" class="hover:text-blue-400 transition-colors">Inicio</a></li>
-                        <li><a href="#funcionalidades" class="hover:text-blue-400 transition-colors">Funcionalidades</a></li>
+                        <li><a href="#funcionalidades" class="hover:text-blue-400 transition-colors">Funcionalidades</a>
+                        </li>
                         <li><a href="#car" class="hover:text-blue-400 transition-colors">Conoce la App</a></li>
                         <li><a href="#beneficios" class="hover:text-blue-400 transition-colors">Beneficios</a></li>
                         <li><a href="#faq" class="hover:text-blue-400 transition-colors">Preguntas Frecuentes</a></li>
@@ -479,7 +619,8 @@
                     <ul class="text-gray-400 font-medium space-y-2">
                         <li><a href="https://www.facebook.com" target="_blank" class="hover:underline">Facebook</a></li>
                         <li><a href="https://twitter.com" target="_blank" class="hover:underline">Twitter</a></li>
-                        <li><a href="https://www.instagram.com" target="_blank" class="hover:underline">Instagram</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank" class="hover:underline">Instagram</a>
+                        </li>
                         <li><a href="https://www.linkedin.com" target="_blank" class="hover:underline">LinkedIn</a></li>
                     </ul>
                 </div>
@@ -495,7 +636,7 @@
             </div>
         </div>
 
-        <hr class="my-6 border-gray-600 sm:mx-auto lg:my-8" />
+        <hr class="my-6 border-gray-600 sm:mx-auto lg:my-8"/>
 
         <!-- Pie -->
         <div class="sm:flex sm:items-center sm:justify-between">
@@ -505,10 +646,6 @@
         </div>
     </div>
 </footer>
-
-
-
-
 
 
 </body>

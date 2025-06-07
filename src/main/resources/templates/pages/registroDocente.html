@@ -11,9 +11,9 @@
     <link rel="stylesheet" th:href="@{/css/stylesA.css}">
 
     <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}" />
-    <title>Registro</title>
+    <title>Registro de docente</title>
 </head>
-<body>
+<body class="color10">
 <!--Seccion1: Barra de naveagacion-->
 
 <nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
@@ -43,129 +43,185 @@
     </div>
 </nav>
 
+<!-- Sección principal: Formulario + Imagen -->
+<div class="flex min-h-screen pt-10 bg-gray-100">
 
+    <!-- Contenedor del formulario -->
+    <div class="w-1/2 flex items-center justify-center pt-10 pb-8 color10">
+        <form class="w-full max-w-md border-2 border-blue-500 p-2 rounded-xl shadow-md bg-gray-700"
+              th:action="@{/guardarDocente}"
+              method="post"
+              th:object="${docente}">
 
+            <h1 class="text-2xl font-bold text-center text-white 0 mb-6">
+                Registro de Docente
+            </h1>
 
+            <input type="hidden" th:field="*{id}" />
 
-<!-- Seccion2 -->
-<div class="seccion2">
-    <form class="max-w-4xl mx-auto border-2 border-blue-500 p-6 rounded-xl shadow-md bg-white dark:bg-gray-800"
-          th:action="@{/guardarDocente}"
-          method="post"
-          th:object="${docente}">
+            <!-- Nombre Completo -->
+            <div class="mb-5">
+                <label for="nombreCompleto" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Ingrese su nombre completo:
+                </label>
+                <input type="text" id="nombreCompleto"
+                       th:field="*{nombreCompleto}"
+                       oninput="this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/g, '')"
+                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
+                       placeholder="Ej: Juan Pérez" />
+                <span class="error-text" th:if="${#fields.hasErrors('nombreCompleto')}" th:errors="*{nombreCompleto}"></span>
+            </div>
 
-        <h1 class="text-2xl font-bold text-center text-blue-700 dark:text-blue-300 mb-6">
-            Registro de Usuario
-        </h1>
+            <!-- Cédula -->
+            <div class="mb-5">
+                <label for="cedula" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Ingrese su número de cédula:
+                </label>
+                <input type="text" id="cedula"
+                       th:field="*{cedula}"
+                       oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="10"
+                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
+                       placeholder="Ej: 0102030405" />
+                <span class="error-text" th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}"></span>
+            </div>
 
-        <!-- Nombre Completo -->
-        <div class="mb-5">
-            <label for="nombreCompleto" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Ingrese su nombre completo:
-            </label>
-            <input type="text" id="nombreCompleto"
-                   th:field="*{nombreCompleto}"
-                   oninput="this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/g, '')"
-                   class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                   placeholder="Ej: Juan Pérez" />
-            <span class="error-text" th:if="${#fields.hasErrors('nombreCompleto')}" th:errors="*{nombreCompleto}"></span>
-        </div>
+            <!-- Teléfono -->
+            <div class="mb-5">
+                <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Ingrese su número de teléfono:
+                </label>
+                <input type="text" id="telefono"
+                       th:field="*{telefono}"
+                       oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="10"
+                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
+                       placeholder="Ej: 0991234567" />
+                <span class="error-text" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></span>
+            </div>
 
-        <!-- Cédula -->
-        <div class="mb-5">
-            <label for="cedula" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Ingrese su número de cédula:
-            </label>
-            <input type="text" id="cedula"
-                   th:field="*{cedula}"
-                   oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="10"
-                   class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                   placeholder="Ej: 0102030405" />
-            <span class="error-text" th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}"></span>
-        </div>
+            <!-- Email -->
+            <div class="mb-5">
+                <label for="email" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
+                    Ingrese su correo electrónico:
+                </label>
+                <input type="email" id="email"
+                       th:field="*{email}"
+                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
+                       placeholder="ejemplo@correo.com" />
+                <span class="error-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+            </div>
 
-        <!-- Teléfono -->
-        <div class="mb-5">
-            <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Ingrese su número de teléfono:
-            </label>
-            <input type="text" id="telefono"
-                   th:field="*{telefono}"
-                   oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="10"
-                   class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                   placeholder="Ej: 0991234567" />
-            <span class="error-text" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></span>
-        </div>
+            <!-- Contraseña -->
+            <!--sepues toca cambiar a passowr-->
+            <div class="mb-5">
+                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Ingrese su contraseña:
+                </label>
+                <input type="text" id="password"
+                       th:field="*{password}"
+                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
+                       placeholder="Ingrese una contraseña segura" />
+                <span class="error-text" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+            </div>
 
-        <!-- Rol -->
-        <div class="mb-5">
-            <label for="rol" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Seleccione su rol:
-            </label>
-            <select id="rol" th:field="*{rol}"
-                    class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5">
-                <option value="" disabled selected>Seleccione un rol</option>
-                <option value="Administrador">Administrador</option>
-                <option value="Docente">Docente</option>
-                <option value="Estudiante">Estudiante</option>
-            </select>
-            <span class="error-text" th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"></span>
-        </div>
+            <!-- Dirección -->
+            <div class="mb-5">
+                <label for="direccion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Ingrese su dirección:
+                </label>
+                <input type="text" id="direccion" th:field="*{direccion}"
+                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
+                       placeholder="Ej: Av. Siempre Viva 123" />
+                <span class="error-text" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></span>
+            </div>
 
-        <!-- Email -->
-        <div class="mb-5">
-            <label for="email" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Ingrese su correo electrónico:
-            </label>
-            <input type="email" id="email"
-                   th:field="*{email}"
-                   class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                   placeholder="ejemplo@correo.com" />
-            <span class="error-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-        </div>
+            <!-- Título -->
+            <div class="mb-5">
+                <label for="titulo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Ingrese su título:
+                </label>
+                <input type="text" id="titulo"
+                       th:field="*{titulo}"
+                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
+                       placeholder="Ej: Licenciado en Matemáticas" />
+                <span class="error-text" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+            </div>
 
-        <!-- Contraseña -->
-        <div class="mb-5">
-            <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Ingrese su contraseña:
-            </label>
-            <input type="password" id="password"
-                   th:field="*{password}"
-                   class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                   placeholder="Ingrese una contraseña segura" />
-            <span class="error-text" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-        </div>
+            <!-- Botón -->
+            <button type="submit"
+                    class="campo-hover w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-semibold rounded-lg text-sm px-5 py-2.5 text-center">
+                Registrar Docente
+            </button>
+        </form>
+    </div>
 
-        <!-- Dirección -->
-        <div class="mb-5">
-            <label for="direccion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Ingrese su dirección:
-            </label>
-            <input type="text" id="direccion" th:field="*{direccion}"
-                   class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                   placeholder="Ej: Av. Siempre Viva 123" />
-            <span class="error-text" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></span>
-        </div>
+    <!-- Contenedor de la imagen -->
+    <div class="w-1/2 hidden md:flex items-center justify-center bg-blue-100">
+        <img src="/imagenes/img016-reDoce.png" alt="Imagen decorativa" class="object-contain max-h-[100%] max-w-[80%]">
+    </div>
 
-        <!-- Título -->
-        <div class="mb-5">
-            <label for="titulo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                Ingrese su título:
-            </label>
-            <input type="text" id="titulo"
-                   th:field="*{titulo}"
-                   class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-                   placeholder="Ej: Licenciado en Matemáticas" />
-            <span class="error-text" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
-        </div>
-
-        <!-- Botón -->
-        <button type="submit"
-                class="campo-hover w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-semibold rounded-lg text-sm px-5 py-2.5 text-center">
-            Registrar Usuario
-        </button>
-    </form>
 </div>
+
+<!--Footer-->
+
+<footer class="bg-gray-800">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+            <!-- Logo y contacto -->
+            <div class="mb-6 md:mb-0">
+                <a href="/" class="flex items-center">
+                    <img src="/imagenes/img001-logo.png" class="h-8 me-3" alt="TaskFlow Logo" />
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
+                </a>
+                <p class="mt-4 text-gray-400 text-sm">
+                    Av. Innovación 123, Ciudad Creativa, CA 94000<br />
+                    Teléfono: +1 (800) 123-4567<br />
+                    Email: soporte@taskflow.com
+                </p>
+            </div>
+
+            <!-- Navegación -->
+            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <!-- Menú -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold text-white uppercase">Menú</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="/" class="hover:text-blue-400 transition-colors">Inicio</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold text-white uppercase">Síguenos</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="https://www.facebook.com" target="_blank" class="hover:underline">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank" class="hover:underline">Twitter</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank" class="hover:underline">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com" target="_blank" class="hover:underline">LinkedIn</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold text-white uppercase">Legal</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="#" class="hover:underline">Política de privacidad</a></li>
+                        <li><a href="#" class="hover:underline">Términos de servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-6 border-gray-600 sm:mx-auto lg:my-8" />
+
+        <!-- Pie -->
+        <div class="sm:flex sm:items-center sm:justify-between">
+      <span class="text-sm text-gray-400 sm:text-center">
+        © 2025 <a href="/" class="hover:underline">TaskFlow™</a>. Todos los derechos reservados.
+      </span>
+        </div>
+    </div>
+</footer>
+
 
 
 </body>
