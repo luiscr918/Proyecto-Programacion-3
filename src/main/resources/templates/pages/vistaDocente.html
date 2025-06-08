@@ -1,25 +1,24 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <!--tailwind-->
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- CDN Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <!--estilos-->
-    <link rel="stylesheet" th:href="@{/css/styleA.css}">
 
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
     <title>Docente</title>
+    <!-- Tailwind, Font Awesome y estilos -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" th:href="@{/css/stylesA.css}"/>
 </head>
 <body>
 
-<!--Seccion1: Barra de naveagacion-->
-
+<!--barra de navegacion-->
 <nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="" class="flex items-center space-x-3">
-            <img src="" class="h-8" alt="Flowbite Logo">
-            <span class="self-center text-3xl font-semibold whitespace-nowrap text-white">Bienvenido</span>
+        <a href="#" class="flex items-center space-x-3">
+            <img src="/imagenes/img001-logo.png" alt="Logo" class="h-8"/>
+            <span class="self-center text-3xl font-semibold whitespace-nowrap text-white">Bienvenido:</span>
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-blue-500"
+            ></span>
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0">
             <a href="/">
@@ -32,11 +31,13 @@
     </div>
 </nav>
 
-<!--2 Seccion de datos del maestro-->
 
-<!-- Sección de Datos del Usuario en Tailwind -->
-<div class="seccion1Docente pt-16">
-    <div class="bg-gray-100 p-6 rounded-xl shadow-md">
+<!--Datos del docente-->
+
+<!--
+<div class="seccion1Docente">
+
+    <div class="bg-gray-300 p-6 rounded-xl shadow-md">
 
         <section class="bg-white p-6 rounded-xl shadow-inner">
             <div class="mb-6 border-b border-blue-200 pb-4">
@@ -48,59 +49,42 @@
 
             <table class="w-full text-sm text-left text-gray-700">
                 <tbody class="divide-y divide-gray-200">
+
                 <tr class="hover:bg-gray-50">
                     <td class="font-semibold text-blue-700 py-2 px-4 w-1/3">
                         <i class="fas fa-id-card mr-2 text-blue-500"></i>ID del docente:
                     </td>
-                    <td class="py-2 px-4 bg-blue-50 rounded" id="idCuentaValue">
-                        <%= datos.idCuentaLogin %>
-                    </td>
+                    <td class="py-2 px-4 bg-blue-50 rounded" th:text="${docente.id}">ID aquí</td>
                 </tr>
 
                 <tr class="hover:bg-gray-50">
                     <td class="font-semibold text-blue-700 py-2 px-4">
                         <i class="fas fa-user mr-2 text-blue-500"></i>Nombre:
                     </td>
-                    <td class="py-2 px-4 bg-blue-50 rounded" id="nombreCompletoValue">
-                        <%= datos.nombreCompletoLogin %>
-                    </td>
+                    <td class="py-2 px-4 bg-blue-50 rounded" th:text="${docente.nombreCompleto}">Nombre aquí</td>
                 </tr>
 
                 <tr class="hover:bg-gray-50">
                     <td class="font-semibold text-blue-700 py-2 px-4">
                         <i class="fas fa-passport mr-2 text-blue-500"></i>Cédula:
                     </td>
-                    <td class="py-2 px-4 bg-blue-50 rounded" id="cedulaValue">
-                        <%= datos.cedulaLogin %>
-                    </td>
+                    <td class="py-2 px-4 bg-blue-50 rounded" th:text="${docente.cedula}">Cédula aquí</td>
                 </tr>
 
                 <tr class="hover:bg-gray-50">
                     <td class="font-semibold text-blue-700 py-2 px-4">
                         <i class="fas fa-envelope mr-2 text-blue-500"></i>Correo Electrónico:
                     </td>
-                    <td class="py-2 px-4 bg-blue-50 rounded" id="correoValue">
-                        <%= datos.correoElectronicoLogin %>
-                    </td>
+                    <td class="py-2 px-4 bg-blue-50 rounded" th:text="${docente.email}">Email aquí</td>
                 </tr>
 
                 <tr class="hover:bg-gray-50">
                     <td class="font-semibold text-blue-700 py-2 px-4">
-                        <i class="fas fa-phone mr-2 text-blue-500"></i>Año lectivo:
+                        <i class="fas fa-phone mr-2 text-blue-500"></i>Teléfono:
                     </td>
-                    <td class="py-2 px-4 bg-blue-50 rounded" id="telefonoValue">
-                        <%= datos.aniolectivo%>
-                    </td>
+                    <td class="py-2 px-4 bg-blue-50 rounded" th:text="${docente.telefono}">Teléfono aquí</td>
                 </tr>
 
-                <tr class="hover:bg-gray-50">
-                    <td class="font-semibold text-blue-700 py-2 px-4">
-                        <i class="fas fa-user-tag mr-2 text-blue-500"></i>Usuario:
-                    </td>
-                    <td class="py-2 px-4 bg-blue-50 rounded" id="usuarioValue">
-                        <%= datos.usuarioLogin %>
-                    </td>
-                </tr>
 
                 </tbody>
             </table>
@@ -108,130 +92,313 @@
 
     </div>
 </div>
+-->
 
-<!--3 Seccion para filtrar--->
-<div class="mb-6 px-4 pt-10">
-    <!-- Título de la sección -->
-    <h2 class="text-xl font-semibold text-blue-700 mb-4 flex items-center gap-2">
-        <i class="fas fa-filter text-blue-500"></i> Filtrar curso por:
+
+
+<!--Tabla para mostrar las tareas-->
+<!-- Sección centrada y estilizada -->
+<div class="flex flex-col items-center justify-center mt-8 pt-20 bg-gray-100">
+
+    <!-- Título -->
+    <h2 class="text-3xl font-bold text-blue-700 mb-4">
+        <i class="fas fa-users text-blue-500 mr-2 pb-6"></i>Perfil de Docente
     </h2>
 
-    <!-- Filtros -->
-    <div class="bg-white shadow-md rounded-xl p-2 flex flex-col md:flex-row items-center gap-4">
+    <!-- Formulario de búsqueda -->
+    <form th:action="@{/docentes}" method="get" class="mb-6 w-full max-w-xl flex flex-col gap-6">
 
-        <!-- Filtro por Curso -->
-        <div class="flex-1 w-full md:w-auto">
-            <label class="block text-sm text-gray-600 mb-1" for="filtroCurso">
-                Curso:
-            </label>
-            <select id="filtroCurso" class="w-full md:w-40 border border-blue-300 rounded-lg px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                <option value="">Todos</option>
-                <option value="1ro">1ro</option>
-                <option value="2do">2do</option>
-                <option value="3ro">3ro</option>
-                <option value="4to">4to</option>
-            </select>
+        <!-- Buscar docente por cédula -->
+        <div>
+            <label for="buscarDocente" class="block mb-1 font-medium text-gray-700">Buscar docente por cédula:</label>
+            <div class="flex rounded shadow overflow-hidden h-14">
+                <input id="buscarDocente" type="text" name="buscarDocente"
+                       class="w-full px-4 py-4 border border-gray-300 rounded-l focus:outline-none text-base"
+                       placeholder="Ingrese la cédula del docente" th:value="${buscarDocente}">
+                <button class="bg-blue-600 text-white px-6 py-4 hover:bg-blue-700 rounded-r h-full text-base">Buscar</button>
+            </div>
         </div>
 
-        <!-- Filtro por Año Lectivo -->
-        <div class="flex-1 w-full md:w-auto">
-            <label class="block text-sm text-gray-600 mb-1" for="filtroAnio">
-                Año lectivo:
-            </label>
-            <select id="filtroAnio" class="w-full md:w-44 border border-blue-300 rounded-lg px-3 py-2 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-400">
-                <option value="">Todos</option>
-                <option value="2023-2024">2023-2024</option>
-                <option value="2024-2025">2024-2025</option>
-                <option value="2025-2026">2025-2026</option>
-            </select>
+        <!-- Buscar estudiante por cédula -->
+        <div>
+            <label for="buscarEstudianteCedulaName" class="block mb-1 font-medium text-gray-700">Buscar estudiante por cédula:</label>
+            <div class="flex rounded shadow overflow-hidden h-14">
+                <input id="buscarEstudianteCedulaName" type="text" name="buscarEstudianteCedulaName"
+                       class="w-full px-4 py-4 border border-gray-300 rounded-l focus:outline-none text-base"
+                       placeholder="Ingrese la cédula del estudiante" th:value="${buscarCedEstu}">
+                <button class="bg-green-600 text-white px-6 py-4 hover:bg-green-700 rounded-r h-full text-base">Buscar</button>
+            </div>
         </div>
 
-        <!-- Botón Filtrar -->
-        <div class="w-full md:w-auto">
-            <button class="mt-2 md:mt-6 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-5 py-2 rounded-lg shadow">
-                <i class="fas fa-search mr-2"></i>Filtrar
-            </button>
+        <!-- Buscar por curso -->
+        <div>
+            <label for="buscarCursoName" class="block mb-1 font-medium text-gray-700">Buscar por curso:</label>
+            <div class="flex rounded shadow overflow-hidden h-14">
+                <input id="buscarCursoName" type="text" name="buscarCursoName"
+                       class="w-full px-4 py-4 border border-gray-300 rounded-l focus:outline-none text-base"
+                       placeholder="Ingrese el nombre o código del curso" th:value="${buscarCurso}">
+                <button class="bg-purple-600 text-white px-6 py-4 hover:bg-purple-700 rounded-r h-full text-base">Buscar</button>
+            </div>
         </div>
 
+        <!-- Buscar por período lectivo -->
+        <div>
+            <label for="buscarLectivoName" class="block mb-1 font-medium text-gray-700">Buscar por período lectivo:</label>
+            <div class="flex rounded shadow overflow-hidden h-14">
+                <input id="buscarLectivoName" type="text" name="buscarLectivoName"
+                       class="w-full px-4 py-4 border border-gray-300 rounded-l focus:outline-none text-base"
+                       placeholder="Ejemplo: 2024-2025" th:value="${buscarLectivo}">
+                <button class="bg-red-600 text-white px-6 py-4 hover:bg-red-700 rounded-r h-full text-base">Buscar</button>
+            </div>
+        </div>
+
+    </form>
+
+
+    <!-- Contenedor de tabla con scroll -->
+    <div class="w-full max-w-6xl bg-gray-200 p-6 rounded-xl shadow-md">
+
+        <!-- Contenedor con altura máxima y scroll -->
+        <div class="overflow-y-auto max-h-[400px] rounded-lg">
+            <table class="min-w-full divide-y divide-gray-300 shadow rounded-lg">
+                <thead class="bg-blue-600 text-white sticky top-0 z-10">
+                <tr>
+                    <th class="px-4 py-2 text-left">ID</th>
+                    <th class="px-4 py-2 text-left">Nombre Completo</th>
+                    <th class="px-4 py-2 text-left">Cédula</th>
+                    <th class="px-4 py-2 text-left">Teléfono</th>
+                    <th class="px-4 py-2 text-left">Email</th>
+                    <th class="px-4 py-2 text-left">Título</th>
+                    <th class="px-4 py-2 text-left">Opciones</th>
+                </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                <tr th:each="doc : ${docentes}" class="hover:bg-gray-50">
+                    <td class="px-4 py-2" th:text="${doc.id}"></td>
+                    <td class="px-4 py-2" th:text="${doc.nombreCompleto}"></td>
+                    <td class="px-4 py-2" th:text="${doc.cedula}"></td>
+                    <td class="px-4 py-2" th:text="${doc.telefono}"></td>
+                    <td class="px-4 py-2" th:text="${doc.email}"></td>
+                    <td class="px-4 py-2" th:text="${doc.titulo}"></td>
+                    <td class="px-4 py-2 flex space-x-2">
+                        <a th:href="@{/editarDocente/{id}(id=${doc.id})}" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Actualizar</a>
+                        <a th:href="@{/eliminarDocente/{id}(id=${doc.id})}" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Eliminar</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="flex justify-end gap-4 mt-6 bg-gray-300 p-4 rounded-lg shadow-inner">
+            <a th:href="@{/registroDocente}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+                <i class="fas fa-plus-circle mr-1"></i>Nuevo Docente
+            </a>
+            <a th:href="@{/docentes/pdf}" class="bg-purple-600 text-white px-4 py-2 rounded hover:bg-purple-700">
+                <i class="fas fa-file-pdf mr-1"></i>Lista de Docentes
+            </a>
+        </div>
     </div>
 </div>
 
 
 
 
-<!--3 Seccion del progreso de los estudaintes-->
 
-<div class="p-4 bg-white rounded-xl shadow-md max-w-5xl mx-auto">
 
-    <h2 class="text-xl font-semibold text-blue-700 mb-4 flex items-center gap-2">
-        <i class="fas fa-tasks text-blue-500"></i> Progreso del proyecto del curso
-    </h2>
 
-    <table class="w-full table-fixed border-collapse border border-gray-300">
-        <thead class="bg-blue-100 text-gray-700 font-semibold">
-        <tr>
-            <th class="w-1/4 border border-gray-300 p-2">Comentario</th>
-            <th class="w-1/2 border border-gray-300 p-2">Asignar tarea</th>
-            <th class="w-1/4 border border-gray-300 p-2">Acciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="border border-gray-300 align-top">
-            <!-- Comentario -->
-            <td class="border border-gray-300 p-2">
-                <textarea placeholder="Comentario del docente..." class="w-full h-28 p-2 border rounded resize-none"></textarea>
-            </td>
+<div class="pt-20 pb-20 bg-gray-200 mt-20">
 
-            <!-- Asignar tarea -->
-            <td class="border border-gray-300 p-2">
-                <!-- ID y tarea por realizar -->
-                <div class="bg-blue-50 p-3 rounded mb-3">
-                    <label class="block mb-1 font-medium text-gray-700">Ingrese el ID del estudiante</label>
-                    <input type="text" placeholder="ID estudiante" class="w-full mb-3 p-2 border rounded" />
+    <!--Form para crear tareas-->
+    <form class="w-full max-w-4xl mx-auto border-2 border-blue-500 p-4 rounded-xl shadow-md bg-gray-700"
+          method="post" th:action="@{/guardarTarea}" th:object="${tarea}">
 
-                    <label class="block mb-1 font-medium text-gray-700">Tarea por realizar</label>
-                    <input type="text" placeholder="Nombre de la tarea" class="w-full p-2 border rounded" />
-                </div>
+        <h1 class="text-3xl font-bold text-center text-white mb-6">
+            Generar Tarea
+        </h1>
 
-                <!-- Tareas por completar -->
-                <div class="bg-gray-50 p-3 rounded">
-                    <p class="font-medium text-gray-800 mb-2">Tareas por completar</p>
-                    <input type="text" placeholder="Título" class="w-full mb-2 p-2 border rounded bg-white" />
-                    <textarea placeholder="Texto" class="w-full mb-2 p-2 border rounded resize-none h-20 bg-white"></textarea>
-                    <input type="text" placeholder="Bibliografía" class="w-full p-2 border rounded bg-white" />
-                </div>
-            </td>
+        <!-- Sección Curso -->
+        <section class="bg-blue-100 p-4 rounded-xl mb-6">
+            <h2 class="text-xl font-semibold mb-4 text-blue-900">Ingrese el ID del curso</h2>
 
-            <!-- Acciones -->
-            <td class="border border-gray-300 p-2 flex flex-col justify-between gap-3">
-                <button class="bg-blue-600 hover:bg-blue-700 text-white py-2 rounded shadow text-sm">
-                    Añadir comentario
+            <div class="flex gap-2 mb-4">
+                <input type="text" placeholder="Buscar curso" class="campo-hover flex-1 p-2 rounded-lg border"/>
+                <button type="button" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Buscar
                 </button>
+            </div>
 
-                <select class="border border-gray-300 rounded py-2 px-3 text-sm focus:outline-none focus:ring-1 focus:ring-blue-500">
-                    <option value="pendiente">Pendiente</option>
-                    <option value="aprobado">Aprobado</option>
-                    <option value="desaprobado">Desaprobado</option>
+            <div class="mb-4">
+                <label class="block mb-1 text-sm font-medium text-blue-900">Año lectivo:</label>
+                <input type="text" class="campo-hover w-full p-2 rounded-lg border" readonly/>
+            </div>
+
+            <div>
+                <label class="block mb-1 text-sm font-medium text-blue-900">Nombre del curso:</label>
+                <input type="text" class="campo-hover w-full p-2 rounded-lg border" readonly/>
+            </div>
+        </section>
+
+        <!-- Sección Materia -->
+        <section class="bg-green-200 p-4 rounded-xl mb-6">
+            <h2 class="text-xl font-semibold mb-4 text-green-900">Ingrese el ID de la materia</h2>
+
+            <div class="flex gap-2 mb-4">
+                <input type="text" placeholder="Buscar materia" class="campo-hover flex-1 p-2 rounded-lg border"/>
+                <button type="button" class="bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600">Buscar
+                </button>
+            </div>
+
+            <div class="mb-4">
+                <label class="block mb-1 text-sm font-medium text-green-900">Nombre de la materia:</label>
+                <input type="text" class="campo-hover w-full p-2 rounded-lg border" readonly/>
+            </div>
+
+            <div>
+                <label class="block mb-1 text-sm font-medium text-green-900">Docente:</label>
+                <input type="text" class="campo-hover w-full p-2 rounded-lg border" readonly/>
+            </div>
+        </section>
+
+        <!-- Sección Estudiante -->
+        <section class="bg-yellow-100 p-4 rounded-xl mb-6">
+            <h2 class="text-xl font-semibold mb-4 text-yellow-900">Ingrese el ID del estudiante</h2>
+
+            <div class="flex gap-2 mb-4">
+                <input type="text" placeholder="Buscar estudiante" class="campo-hover flex-1 p-2 rounded-lg border"/>
+                <button type="button" class="bg-yellow-500 text-white px-4 py-2 rounded-lg hover:bg-yellow-600">Buscar
+                </button>
+            </div>
+
+            <div class="mb-4">
+                <label class="block mb-1 text-sm font-medium text-yellow-900">Nombre del estudiante:</label>
+                <input type="text" class="campo-hover w-full p-2 rounded-lg border" readonly/>
+            </div>
+
+            <div>
+                <label class="block mb-1 text-sm font-medium text-yellow-900">Materia:</label>
+                <input type="text" class="campo-hover w-full p-2 rounded-lg border" readonly/>
+            </div>
+        </section>
+
+        <!-- Sección Tarea -->
+        <section class="bg-purple-100 p-4 rounded-xl mb-6">
+            <h2 class="text-xl font-semibold mb-4 text-purple-900">Asignar Tarea</h2>
+
+            <div class="mb-4">
+                <label class="block mb-1 text-sm font-medium text-purple-900">Tipo de entrega:</label>
+                <select class="campo-hover w-full p-2 rounded-lg border" name="tipoEntrega" required>
+                    <option value="" disabled selected>Seleccione tipo de entrega</option>
+                    <option value="tarea">Tarea</option>
+                    <option value="proyecto">Proyecto</option>
+                    <option value="recuperacion">Recuperación</option>
+                    <option value="prueba_parcial">Prueba Parcial</option>
+                    <option value="prueba">Prueba</option>
                 </select>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+            </div>
 
-    <button
-            id="btn-add-row"
-            class="mt-4 w-full bg-green-600 hover:bg-green-700 text-white py-3 rounded shadow text-lg font-semibold"
-    >
-        Añadir nueva tarea
-    </button>
+            <div class="mb-4">
+                <label class="block mb-1 text-sm font-medium text-purple-900">Tarea por realizar:</label>
+                <input type="text" placeholder="Ingrese la tarea que debe realizar el estudiante" class="campo-hover w-full p-2 rounded-lg border"/>
+            </div>
+
+            <div>
+                <label class="block mb-1 text-sm font-medium text-purple-900">Tarea entregada por el estudiante:</label>
+                <input type="text" readonly class="campo-hover w-full p-2 rounded-lg border"/>
+            </div>
+        </section>
+
+        <!-- Calficaicona -->
+        <section class="bg-purple-100 p-4 rounded-xl mb-6">
+            <h2 class="text-xl font-semibold mb-4 text-purple-900">Calificación de la tarea</h2>
+
+            <label for="estadoTarea" class="block mb-1 text-sm font-medium text-purple-900">Estado de la tarea:</label>
+            <select id="estadoTarea" name="estadoTarea" class="w-full p-2 rounded-lg border campo-hover">
+                <option value="entregado">Entregado</option>
+                <option value="no_entregado">No entregado</option>
+                <option value="calificado">Calificado</option>
+                <option value="no_calificado">No calificado</option>
+            </select>
+
+            <div class="mt-4">
+                <label for="nota" class="block mb-1 text-sm font-medium text-purple-900">Nota:</label>
+                <input type="number" step="0.1" min="0" max="10" id="nota" name="nota"
+                       class="w-full p-2 rounded-lg border campo-hover" placeholder="Ingrese la nota"/>
+            </div>
+        </section>
+
+        <!-- Botón final -->
+        <div class="text-center">
+            <button type="submit"
+                    class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-semibold rounded-lg text-sm px-5 py-2.5">
+                Enviar Tarea
+            </button>
+        </div>
+
+    </form>
 
 </div>
 
+<!--Footer-->
+
+<footer class="bg-gray-800">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+            <!-- Logo y contacto -->
+            <div class="mb-6 md:mb-0">
+                <a href="/" class="flex items-center">
+                    <img src="/imagenes/img001-logo.png" class="h-8 me-3" alt="TaskFlow Logo"/>
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
+                </a>
+                <p class="mt-4 text-gray-400 text-sm">
+                    Av. Innovación 123, Ciudad Creativa, CA 94000<br/>
+                    Teléfono: +1 (800) 123-4567<br/>
+                    Email: soporte@taskflow.com
+                </p>
+            </div>
+
+            <!-- Navegación -->
+            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <!-- Menú -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold text-white uppercase">Menú</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="/" class="hover:text-blue-400 transition-colors">Inicio</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold text-white uppercase">Síguenos</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="https://www.facebook.com" target="_blank" class="hover:underline">Facebook</a></li>
+                        <li><a href="https://twitter.com" target="_blank" class="hover:underline">Twitter</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank" class="hover:underline">Instagram</a>
+                        </li>
+                        <li><a href="https://www.linkedin.com" target="_blank" class="hover:underline">LinkedIn</a></li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold text-white uppercase">Legal</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="#" class="hover:underline">Política de privacidad</a></li>
+                        <li><a href="#" class="hover:underline">Términos de servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-6 border-gray-600 sm:mx-auto lg:my-8"/>
+
+        <!-- Pie -->
+        <div class="sm:flex sm:items-center sm:justify-between">
+      <span class="text-sm text-gray-400 sm:text-center">
+        © 2025 <a href="/" class="hover:underline">TaskFlow™</a>. Todos los derechos reservados.
+      </span>
+        </div>
+    </div>
+</footer>
 
 
-
-
-<!--4 Seccion para cambios directos por parte del docente-->
-<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 </html>
