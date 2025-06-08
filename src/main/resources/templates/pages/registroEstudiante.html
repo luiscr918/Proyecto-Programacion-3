@@ -145,6 +145,7 @@
                                             th:field="*{nombreCompleto}"
                                     >
                                 </div>
+                                <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block" th:if="${#fields.hasErrors('nombreCompleto')}" th:errors="*{nombreCompleto}"></span>
                             </div>
                             <div class="w-1/2 px-3 mb-5">
                                 <label for="cedula" class="text-xs font-semibold px-1">Cedula</label>
@@ -158,6 +159,7 @@
                                            th:field="*{cedula}"
                                     >
                                 </div>
+                                <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block" th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}"></span>
                             </div>
                         </div>
                         <div class="flex -mx-3">
@@ -173,6 +175,7 @@
                                            th:field="*{correo}"
                                     >
                                 </div>
+                                <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></span>
                             </div>
                         </div>
                         <div class="flex -mx-3">
@@ -181,13 +184,14 @@
                                 <div class="flex">
                                     <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
                                         <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
-                                    <input type="password"
+                                    <input type="text"
                                            id="password"
                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                                           placeholder="************"
+                                           placeholder="Ingrese una Contraseña"
                                            th:field="*{password}"
                                     >
                                 </div>
+                                <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                             </div>
                         </div>
                         <div class="flex -mx-3">
@@ -203,6 +207,7 @@
                                            th:field="*{telefono}"
                                     >
                                 </div>
+                                <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></span>
                             </div>
                         </div>
                         <div class="flex -mx-3">
@@ -218,6 +223,7 @@
                                            th:field="*{direccion}"
                                     >
                                 </div>
+                                <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></span>
                             </div>
                         </div>
                         <div class="flex -mx-3">

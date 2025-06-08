@@ -2,13 +2,12 @@ package com.proyectoProgramacion3.controller;
 
 import com.proyectoProgramacion3.entity.Estudiante;
 import com.proyectoProgramacion3.service.EstudianteServicio;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -35,9 +34,15 @@ public class EstudianteController {
         return "pages/registroEstudiante";
     }
     @PostMapping("/guardar-estudiante")
-    public String guardarEstudiante(Estudiante estudiante){
-        estudianteServicio.guardarEstudiante(estudiante);
-        return "redirect:/estudiantes";
+    public String guardarEstudiante(@Valid @ModelAttribute Estudiante estudiante,
+                                    BindingResult bindingResult,Model model){
+        if (bindingResult.hasErrors()){
+            model.addAttribute("errors", bindingResult.getAllErrors());
+            return "pages/registroEstudiante";
+        }else{
+            estudianteServicio.guardarEstudiante(estudiante);
+            return "redirect:/estudiantes";
+        }
     }
     //Actualizar Estudiante
     @GetMapping("/editar-estudiante/{id}")
