@@ -36,6 +36,12 @@ public class EstudianteController {
     @PostMapping("/guardar-estudiante")
     public String guardarEstudiante(@Valid @ModelAttribute Estudiante estudiante,
                                     BindingResult bindingResult,Model model){
+        if (estudianteServicio.existePorCedula(estudiante.getCedula())){
+             bindingResult.rejectValue("cedula","error.cedula","Ya existe un estudiante con esta cedula");
+        }
+        if (estudianteServicio.existePorCorreo(estudiante.getCorreo())){
+            bindingResult.rejectValue("correo","error.correo","Ya existe un estudiante con este correo");
+        }
         if (bindingResult.hasErrors()){
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "pages/registroEstudiante";

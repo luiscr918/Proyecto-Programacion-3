@@ -37,4 +37,12 @@ public class EstudianteServicio {
     public void eliminarEstudiante(Long id){
          estudianteRepository.deleteById(id);
     }
+    //Validar si existe estudiante por cedula
+    public boolean existePorCedula(String cedula){
+        return estudianteRepository.existsByCedula(cedula);
+    }
+    //Validar si existe estudiante por correo
+    public boolean existePorCorreo(String correo){
+        return estudianteRepository.existsByCorreo(correo);
+    }
 }

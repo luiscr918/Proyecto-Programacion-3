@@ -11,6 +11,8 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
     //Buscar por Cedula
     List<Estudiante> findByCedulaContainingIgnoreCase(String cedula);
 
-    //Buscar por Email
-   // List<Estudiante> findByEmailContiningIgnoreCase(String correo);
+    //Validar si existe un estudiante por cedula
+    boolean existsByCedula(String cedula);
+    //Validar si existe un estudiante por correo
+    boolean existsByCorreo(String correo);
 }

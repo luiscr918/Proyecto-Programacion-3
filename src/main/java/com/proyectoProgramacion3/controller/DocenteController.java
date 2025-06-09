@@ -48,6 +48,12 @@ public class DocenteController {
     public String guardarDocente(@Valid @ModelAttribute("docente") Docente docente,
                                  BindingResult result,
                                  Model model) {
+        if (docenteServicio.existePorCedula(docente.getCedula())){
+            result.rejectValue("cedula","error.cedula", "Ya existe un docente con esta cédula");
+        }
+        if (docenteServicio.existePorEmail(docente.getEmail())){
+            result.rejectValue("email", "error.email", "Ya existe un docente con este email");
+        }
         if (result.hasErrors()) {
             return "pages/registroDocente";
         }

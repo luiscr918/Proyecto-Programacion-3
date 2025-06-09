@@ -44,4 +44,12 @@ public class DocenteServices {
     public void eliminarDocente(Long id) {
         docenteRepositorio.deleteById(id);
     }
+    //Validar si existe docente por cedula
+    public boolean existePorCedula(String cedula){
+        return docenteRepositorio.existsByCedula(cedula);
+    }
+    //Validar si existe docente por correo
+    public boolean existePorEmail(String email){
+        return docenteRepositorio.existsByEmail(email);
+    }
 }
