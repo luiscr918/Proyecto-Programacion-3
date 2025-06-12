@@ -1,6 +1,7 @@
 package com.proyectoProgramacion3.service;
 
 import com.proyectoProgramacion3.entity.Docente;
+import com.proyectoProgramacion3.entity.Docente;
 import com.proyectoProgramacion3.repository.DocenteRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,12 +45,12 @@ public class DocenteServices {
     public void eliminarDocente(Long id) {
         docenteRepositorio.deleteById(id);
     }
-    //Validar si existe docente por cedula
-    public boolean existePorCedula(String cedula){
-        return docenteRepositorio.existsByCedula(cedula);
+    //VALIDAR SI EXISTE POR CEDULA
+    public Optional<Docente> obtenerPorCedulaExacta(String cedula){
+        return docenteRepositorio.findByCedula(cedula);
     }
-    //Validar si existe docente por correo
-    public boolean existePorEmail(String email){
-        return docenteRepositorio.existsByEmail(email);
+    //VALIDAR SI EXISTE PRO CORREO
+    public Optional<Docente> obtenerPorCorreoExacto(String correo){
+        return docenteRepositorio.findByEmail(correo);
     }
 }

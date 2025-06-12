@@ -15,7 +15,7 @@ public class Estudiante {
     //id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
+    private Long id;
     //cedula
     @NotBlank(message = "La cédula es obligatoria")
     @Column(unique = true)

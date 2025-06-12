@@ -35,17 +35,22 @@ public class EstudianteController {
     }
     @PostMapping("/guardar-estudiante")
     public String guardarEstudiante(@Valid @ModelAttribute Estudiante estudiante,
-                                    BindingResult bindingResult,Model model){
-        if (estudianteServicio.existePorCedula(estudiante.getCedula())){
-             bindingResult.rejectValue("cedula","error.cedula","Ya existe un estudiante con esta cedula");
+                                    BindingResult bindingResult, Model model) {
+
+        Optional<Estudiante> existentePorCedula = estudianteServicio.obtenerPorCedulaExacta(estudiante.getCedula());
+        if (existentePorCedula.isPresent() && !existentePorCedula.get().getId().equals(estudiante.getId())) {
+            bindingResult.rejectValue("cedula", "error.cedula", "Ya existe un estudiante con esta cédula");
         }
-        if (estudianteServicio.existePorCorreo(estudiante.getCorreo())){
-            bindingResult.rejectValue("correo","error.correo","Ya existe un estudiante con este correo");
+
+        Optional<Estudiante> existentePorCorreo = estudianteServicio.obtenerPorCorreoExacto(estudiante.getCorreo());
+        if (existentePorCorreo.isPresent() && !existentePorCorreo.get().getId().equals(estudiante.getId())) {
+            bindingResult.rejectValue("correo", "error.correo", "Ya existe un estudiante con este correo");
         }
-        if (bindingResult.hasErrors()){
+
+        if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "pages/registroEstudiante";
-        }else{
+        } else {
             estudianteServicio.guardarEstudiante(estudiante);
             return "redirect:/estudiantes";
         }

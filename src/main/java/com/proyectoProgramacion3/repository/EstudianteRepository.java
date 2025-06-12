@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
@@ -12,7 +13,7 @@ public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
     List<Estudiante> findByCedulaContainingIgnoreCase(String cedula);
 
     //Validar si existe un estudiante por cedula
-    boolean existsByCedula(String cedula);
+    Optional<Estudiante> findByCedula(String cedula);
     //Validar si existe un estudiante por correo
-    boolean existsByCorreo(String correo);
+    Optional<Estudiante> findByCorreo(String correo);
 }
