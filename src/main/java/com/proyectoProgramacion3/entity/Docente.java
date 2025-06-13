@@ -7,6 +7,8 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
 
+import java.util.List;
+
 @Entity
 @Data
 
@@ -49,6 +51,13 @@ public class Docente {
     @NotBlank(message = "El título es obligatorio")
     @Size(min = 2, max = 100, message = "El título debe tener entre 2 y 100 caracteres")
     private String titulo;
+
+
+    //Relacion con materia
+    @OneToMany(mappedBy = "docente")
+    private List<Materia> materias;
+
+
 
 
 

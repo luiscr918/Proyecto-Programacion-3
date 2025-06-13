@@ -2,7 +2,7 @@ package com.proyectoProgramacion3.controller;
 
 
 import com.proyectoProgramacion3.entity.Docente;
-import com.proyectoProgramacion3.services.DocenteServices;
+import com.proyectoProgramacion3.service.DocenteServices;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -48,6 +48,15 @@ public class DocenteController {
     public String guardarDocente(@Valid @ModelAttribute("docente") Docente docente,
                                  BindingResult result,
                                  Model model) {
+        Optional<Docente> existentePorCedula = docenteServicio.obtenerPorCedulaExacta(docente.getCedula());
+        if (existentePorCedula.isPresent() && !existentePorCedula.get().getId().equals(docente.getId())) {
+            result.rejectValue("cedula", "error.cedula", "Ya existe un docente con esta cédula");
+        }
+
+        Optional<Docente> existentePorCorreo = docenteServicio.obtenerPorCorreoExacto(docente.getEmail());
+        if (existentePorCorreo.isPresent() && !existentePorCorreo.get().getId().equals(docente.getId())) {
+            result.rejectValue("correo", "error.correo", "Ya existe un docente con este correo");
+        }
         if (result.hasErrors()) {
             return "pages/registroDocente";
         }
@@ -82,9 +91,3 @@ public class DocenteController {
     }
 
 }
-
-
-
-
-
-

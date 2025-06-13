@@ -1,4 +1,4 @@
-package com.proyectoProgramacion3.services;
+package com.proyectoProgramacion3.service;
 
 import com.proyectoProgramacion3.entity.Docente;
 import com.proyectoProgramacion3.repository.DocenteRepositorio;
@@ -43,5 +43,13 @@ public class DocenteServices {
     // Eliminar docente por ID
     public void eliminarDocente(Long id) {
         docenteRepositorio.deleteById(id);
+    }
+    //VALIDAR SI EXISTE POR CEDULA
+    public Optional<Docente> obtenerPorCedulaExacta(String cedula){
+        return docenteRepositorio.findByCedula(cedula);
+    }
+    //VALIDAR SI EXISTE PRO CORREO
+    public Optional<Docente> obtenerPorCorreoExacto(String correo){
+        return docenteRepositorio.findByEmail(correo);
     }
 }
