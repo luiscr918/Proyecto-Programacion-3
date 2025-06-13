@@ -8,10 +8,17 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
 public class Estudiante extends Usuario{
+    //relacion de estudiante con registro de tareas
+    @OneToMany(mappedBy = "estudiante")
+    private List<RegistroTareas> resgistroTareas;
+
+
     @NotBlank(message = "La dirección es obligatoria")
     @Size(min = 5, max = 150, message = "La dirección debe tener entre 5 y 150 caracteres")
     @Column(name = "direccion")
