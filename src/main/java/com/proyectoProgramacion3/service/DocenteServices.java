@@ -45,12 +45,5 @@ public class DocenteServices {
     public void eliminarDocente(Long id) {
         docenteRepositorio.deleteById(id);
     }
-    //VALIDAR SI EXISTE POR CEDULA
-    public Optional<Docente> obtenerPorCedulaExacta(String cedula){
-        return docenteRepositorio.findByCedula(cedula);
-    }
-    //VALIDAR SI EXISTE PRO CORREO
-    public Optional<Docente> obtenerPorCorreoExacto(String correo){
-        return docenteRepositorio.findByEmail(correo);
-    }
+
 }

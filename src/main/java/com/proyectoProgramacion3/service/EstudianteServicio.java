@@ -1,5 +1,6 @@
 package com.proyectoProgramacion3.service;
 
+import com.proyectoProgramacion3.entity.Docente;
 import com.proyectoProgramacion3.entity.Estudiante;
 import com.proyectoProgramacion3.repository.EstudianteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,7 @@ public class EstudianteServicio {
     private EstudianteRepository estudianteRepository; //instancio mi repositorio
 
     //Listar los estudiantes
-    public List<Estudiante> mostrarEdudiantes(){
+    public List<Estudiante> mostrarEstudiantes(){
         return estudianteRepository.findAll();
     }
     //Mostrar por cedula
@@ -38,13 +39,6 @@ public class EstudianteServicio {
          estudianteRepository.deleteById(id);
     }
 
-//VALIDAR SI EXISTE POR CEDULA
-    public Optional<Estudiante> obtenerPorCedulaExacta(String cedula){
-        return estudianteRepository.findByCedula(cedula);
-    }
-//VALIDAR SI EXISTE PRO CORREO
-    public Optional<Estudiante> obtenerPorCorreoExacto(String correo){
-        return estudianteRepository.findByCorreo(correo);
-    }
+
 
 }

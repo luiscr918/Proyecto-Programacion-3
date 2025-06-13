@@ -123,7 +123,7 @@
                 </div>
                 <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
                     <div class="text-center mb-10">
-                        <h1 class="font-bold text-3xl text-gray-900">REGISTER</h1>
+                        <h1 class="font-bold text-3xl text-gray-900">REGISTER STUDENT</h1>
                         <p>Enter your information to register</p>
                     </div>
                     <div>
@@ -142,10 +142,10 @@
                                            id="nombre"
                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                            placeholder="Ingrese su Nombre"
-                                            th:field="*{nombreCompleto}"
+                                            th:field="*{nombre}"
                                     >
                                 </div>
-                                <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block" th:if="${#fields.hasErrors('nombreCompleto')}" th:errors="*{nombreCompleto}"></span>
+                                <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
                             </div>
                             <div class="w-1/2 px-3 mb-5">
                                 <label for="cedula" class="text-xs font-semibold px-1">Cedula</label>
@@ -172,10 +172,10 @@
                                            id="email"
                                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                                            placeholder="Ingrese su Correo"
-                                           th:field="*{correo}"
+                                           th:field="*{email}"
                                     >
                                 </div>
-                                <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block" th:if="${#fields.hasErrors('correo')}" th:errors="*{correo}"></span>
+                                <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
                             </div>
                         </div>
                         <div class="flex -mx-3">
@@ -194,6 +194,22 @@
                                 <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
                             </div>
                         </div>
+                            <div class="flex -mx-3">
+                                <div class="w-full px-3 mb-5">
+                                    <label for="rol" class="text-xs font-semibold px-1">Rol</label>
+                                    <div class="flex">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                            <i class="mdi mdi-phone-outline text-gray-400 text-lg"></i></div>
+                                        <input type="text"
+                                               id="rol"
+                                               class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                                               placeholder="Ingrese su Rol"
+                                               th:field="*{rol}"
+                                        >
+                                    </div>
+                                    <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></span>
+                                </div>
+                            </div>
                         <div class="flex -mx-3">
                             <div class="w-full px-3 mb-5">
                                 <label for="telefono" class="text-xs font-semibold px-1">Telefono</label>

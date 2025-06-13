@@ -10,9 +10,6 @@ import java.util.Optional;
 public interface DocenteRepositorio extends JpaRepository<Docente,Long> {
 
     List<Docente> findByCedulaContainingIgnoreCase(String cedula);
-    //Validar si existe un estudiante por cedula
-    Optional<Docente> findByCedula(String cedula);
-    //Validar si existe un estudiante por correo
-    Optional<Docente> findByEmail(String correo);
+
 }
 

@@ -65,11 +65,11 @@
                     Ingrese su nombre completo:
                 </label>
                 <input type="text" id="nombreCompleto"
-                       th:field="*{nombreCompleto}"
+                       th:field="*{nombre}"
                        oninput="this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/g, '')"
                        class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
                        placeholder="Ej: Juan Pérez" />
-                <span class="error-text" th:if="${#fields.hasErrors('nombreCompleto')}" th:errors="*{nombreCompleto}"></span>
+                <span class="error-text" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
             </div>
 
             <!-- Cédula -->
@@ -109,7 +109,6 @@
                        placeholder="ejemplo@correo.com" />
                 <span class="error-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
             </div>
-
             <!-- Contraseña -->
             <!--sepues toca cambiar a passowr-->
             <div class="mb-5">
@@ -144,6 +143,17 @@
                        class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
                        placeholder="Ej: Licenciado en Matemáticas" />
                 <span class="error-text" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+            </div>
+            <!-- ROL -->
+            <div class="mb-5">
+                <label for="rol" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                    Ingrese su Rol:
+                </label>
+                <input type="text" id="rol"
+                       th:field="*{rol}"
+                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
+                       placeholder="Ej: Licenciado en Matemáticas" />
+                <span class="error-text" th:if="${#fields.hasErrors('rol')}" th:errors="*{rol}"></span>
             </div>
 
             <!-- Botón -->

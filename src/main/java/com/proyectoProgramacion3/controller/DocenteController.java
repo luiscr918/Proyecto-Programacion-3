@@ -3,7 +3,9 @@ package com.proyectoProgramacion3.controller;
 
 import com.proyectoProgramacion3.entity.Docente;
 import com.proyectoProgramacion3.entity.Estudiante;
+import com.proyectoProgramacion3.entity.Usuario;
 import com.proyectoProgramacion3.service.DocenteServices;
+import com.proyectoProgramacion3.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,6 +21,8 @@ public class DocenteController {
 
     @Autowired
     private DocenteServices docenteServicio;
+@Autowired
+private UsuarioService usuarioService;
 
     // Listar docentes
     @GetMapping("/docentes")
@@ -49,14 +53,14 @@ public class DocenteController {
     public String guardarDocente(@Valid @ModelAttribute("docente") Docente docente,
                                  BindingResult result,
                                  Model model) {
-        Optional<Docente> existentePorCedula = docenteServicio.obtenerPorCedulaExacta(docente.getCedula());
+        Optional<Usuario> existentePorCedula = usuarioService.obtenerPorCedulaExacta(docente.getCedula());
         if (existentePorCedula.isPresent() && !existentePorCedula.get().getId().equals(docente.getId())) {
             result.rejectValue("cedula", "error.cedula", "Ya existe un docente con esta cédula");
         }
 
-        Optional<Docente> existentePorCorreo = docenteServicio.obtenerPorCorreoExacto(docente.getEmail());
+        Optional<Usuario> existentePorCorreo = usuarioService.obtenerPorEmailExacto(docente.getEmail());
         if (existentePorCorreo.isPresent() && !existentePorCorreo.get().getId().equals(docente.getId())) {
-            result.rejectValue("correo", "error.correo", "Ya existe un docente con este correo");
+            result.rejectValue("email", "error.email", "Ya existe un docente con este email");
         }
         if (result.hasErrors()) {
             return "pages/registroDocente";

@@ -1,7 +1,10 @@
 package com.proyectoProgramacion3.controller;
 
+import com.proyectoProgramacion3.entity.Docente;
 import com.proyectoProgramacion3.entity.Estudiante;
+import com.proyectoProgramacion3.entity.Usuario;
 import com.proyectoProgramacion3.service.EstudianteServicio;
+import com.proyectoProgramacion3.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +20,8 @@ public class EstudianteController {
     //Instancio mi servicio
     @Autowired
     private EstudianteServicio estudianteServicio;
-
+@Autowired
+private UsuarioService usuarioService;
     //Mostrar todos los estudiantes
     @GetMapping("/estudiantes")
     public String mostrarEstudiantes(@RequestParam(name = "buscarEstudiante", required = false,defaultValue = "")
@@ -36,17 +40,15 @@ public class EstudianteController {
     @PostMapping("/guardar-estudiante")
     public String guardarEstudiante(@Valid @ModelAttribute Estudiante estudiante,
                                     BindingResult bindingResult, Model model) {
-
-        Optional<Estudiante> existentePorCedula = estudianteServicio.obtenerPorCedulaExacta(estudiante.getCedula());
+        Optional<Usuario> existentePorCedula = usuarioService.obtenerPorCedulaExacta(estudiante.getCedula());
         if (existentePorCedula.isPresent() && !existentePorCedula.get().getId().equals(estudiante.getId())) {
-            bindingResult.rejectValue("cedula", "error.cedula", "Ya existe un estudiante con esta cédula");
+            bindingResult.rejectValue("cedula", "error.cedula", "Ya existe un docente con esta cédula");
         }
 
-        Optional<Estudiante> existentePorCorreo = estudianteServicio.obtenerPorCorreoExacto(estudiante.getCorreo());
+        Optional<Usuario> existentePorCorreo = usuarioService.obtenerPorEmailExacto(estudiante.getEmail());
         if (existentePorCorreo.isPresent() && !existentePorCorreo.get().getId().equals(estudiante.getId())) {
-            bindingResult.rejectValue("correo", "error.correo", "Ya existe un estudiante con este correo");
+            bindingResult.rejectValue("email", "error.email", "Ya existe un docente con este email");
         }
-
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "pages/registroEstudiante";
