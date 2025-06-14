@@ -36,4 +36,17 @@ public class CursoService {
     public void eliminarCurso(Long id) {
         cursoRepository.deleteById(id);
     }
+    //obtener numero de cursos totales:
+    public int obtenerNumeroCursos(){
+        return cursoRepository.findAll().size();
+    }
+    //buscar curso por anio lectivo
+    public List<Curso> buscarCursoAnioLectivo(String buscarCurso){
+        if (buscarCurso==null||buscarCurso.isEmpty()){
+            return cursoRepository.findAll();
+        }else{
+            return cursoRepository.findByAnioLectivoContainingIgnoreCase(buscarCurso);
+        }
+    }
+
 }

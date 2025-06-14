@@ -12,6 +12,16 @@
 <form th:action="@{/guardarMateria}" method="post" th:object="${materia}" class="bg-white p-8 rounded-xl shadow-md w-full max-w-md space-y-6">
     <h2 class="text-2xl font-bold text-gray-800 text-center">Registro de Materia</h2>
     <div hidden>
+        <label for="materiaId" class="block mb-1 text-sm font-medium text-gray-700">Id de materia</label>
+        <input
+                th:field="*{id}"
+                type="text"
+                id="materiaId"
+                placeholder="id del curso"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        />
+    </div>
+    <div hidden>
         <label for="cursoid" class="block mb-1 text-sm font-medium text-gray-700">Id Del curso a que pertenece</label>
         <input
                 th:field="*{curso.id}"

@@ -42,6 +42,10 @@ public class EstudianteServicio {
     public List<Estudiante> mostrarEstudiantesSinCurso(){
         return estudianteRepository.findByCursoIsNull();
     }
+    //Obtener numero total de estudiantes
+    public int obtenerNumeroEstudiantes(){
+        return estudianteRepository.findAll().size();
+    }
 
 
 }

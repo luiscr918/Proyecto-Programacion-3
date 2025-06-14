@@ -45,5 +45,9 @@ public class DocenteServices {
     public void eliminarDocente(Long id) {
         docenteRepositorio.deleteById(id);
     }
+    //obtener numero total de docentes
+    public int obtenerNumeroDocentes(){
+        return docenteRepositorio.findAll().size();
+    }
 
 }

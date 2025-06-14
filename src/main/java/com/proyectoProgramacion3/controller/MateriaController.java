@@ -52,12 +52,12 @@ public class MateriaController {
     }
 
     //actualizar
-    @GetMapping("editarMateria/{id}")
+    @GetMapping("/editarMateria/{id}")
     public String actualizarMateria(@PathVariable Long id, Model model){
         Optional<Materia> optionalMateria= materiaService.buscarMateriaPorId(id);
         if (optionalMateria.isPresent()) {
             model.addAttribute("materia", optionalMateria.get());
-            return "pages/Materia/registroMateria";
+            return "pages/Materia/registroActualizarMateria";
         } else {
             return "redirect:/docentes";
         }

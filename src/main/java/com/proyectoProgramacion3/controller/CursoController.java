@@ -23,12 +23,6 @@ public class CursoController {
     @Autowired
     private MateriaService materiaService;
 
-    // Listar cursos
-    @GetMapping("/cursos")
-    public String listarCursos( Model model) {
-        model.addAttribute("cursos", cursoService.mostrarCursos());
-        return "pages/vistaDocente";
-    }
 
     // Mostrar formulario de registro
     @GetMapping("/formularioCurso")
@@ -68,18 +62,18 @@ public class CursoController {
             }
         }
         model.addAttribute("curso", cursoGuardado);
-        return "redirect:/docentes";
+        return "pages/AdminPag/homeAdmin";
     }
 
     //actualizar
-    @GetMapping("editarCurso/{id}")
+    @GetMapping("/editarCurso/{id}")
     public String actualizarCurso(@PathVariable Long id, Model model){
         Optional<Curso> optionalCurso= cursoService.buscarCursoPorId(id);
         if (optionalCurso.isPresent()) {
             model.addAttribute("curso", optionalCurso.get());
-            return "pages/registroDocente";
+            return "pages/cursoPage/registroCurso";
         } else {
-            return "redirect:/docentes";
+            return "pages/AdminPag/homeAdmin";
         }
     }
 
@@ -87,6 +81,6 @@ public class CursoController {
     @GetMapping("/eliminarCurso/{id}")
     public String eliminarCurso(@PathVariable Long id) {
         cursoService.eliminarCurso(id);
-        return "redirect:/docentes";
+        return "pages/AdminPag/homeAdmin";
     }
 }
