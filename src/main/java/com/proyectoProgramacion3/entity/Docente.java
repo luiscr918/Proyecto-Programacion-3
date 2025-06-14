@@ -8,10 +8,16 @@ import jakarta.validation.constraints.Size;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
 public class Docente extends Usuario{
+    //relacion de docente con materia
+    @OneToMany(mappedBy = "docente")
+    private List<Materia> materias;
+
     @NotBlank(message = "El teléfono es obligatorio")
     @Pattern(regexp = "\\d{10}", message = "El teléfono debe tener exactamente 10 dígitos")
     @Column(name = "telefono")

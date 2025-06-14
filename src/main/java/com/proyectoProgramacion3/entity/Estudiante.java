@@ -17,7 +17,10 @@ public class Estudiante extends Usuario{
     //relacion de estudiante con registro de tareas
     @OneToMany(mappedBy = "estudiante")
     private List<RegistroTareas> resgistroTareas;
-
+    //relacion de estudiante con curso
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
 
     @NotBlank(message = "La dirección es obligatoria")
     @Size(min = 5, max = 150, message = "La dirección debe tener entre 5 y 150 caracteres")

@@ -38,7 +38,10 @@ public class EstudianteServicio {
     public void eliminarEstudiante(Long id){
          estudianteRepository.deleteById(id);
     }
-
+    //Listar estudiantes sin curso
+    public List<Estudiante> mostrarEstudiantesSinCurso(){
+        return estudianteRepository.findByCursoIsNull();
+    }
 
 
 }

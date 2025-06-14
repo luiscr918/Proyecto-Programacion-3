@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -16,6 +18,12 @@ public class Curso {
     @ManyToOne
     @JoinColumn(name = "admin_id")
     private Admin admin;
+    //relacion de curso con matera
+    @OneToMany(mappedBy = "curso")
+    private List<Materia> materias;
+    //relacion de curso con estudiante
+    @OneToMany(mappedBy = "curso")
+    private List<Estudiante> estudiantes;
 
     private String nombre;
     private String nivel;

@@ -12,5 +12,6 @@ import java.util.Optional;
 public interface EstudianteRepository extends JpaRepository<Estudiante, Long> {
     //Buscar por Cedula
     List<Estudiante> findByCedulaContainingIgnoreCase(String cedula);
-
+    //metodo para filtrar en una lista mis estudiantes que no tengan asignado un curso
+    List<Estudiante> findByCursoIsNull();
 }
