@@ -197,6 +197,7 @@
                 <tr>
                     <th class="px-4 py-2 text-left">ID</th>
                     <th class="px-4 py-2 text-left">Descripción</th>
+                    <th class="px-4 py-2 text-left">Entregado</th>
                     <th class="px-4 py-2 text-left">Estado</th>
                     <th class="px-4 py-2 text-left">Nota</th>
                     <th class="px-4 py-2 text-left">Tipo</th>
@@ -208,12 +209,13 @@
                 <tr th:each="tarea : ${tareas}" class="hover:bg-gray-50">
                     <td class="px-4 py-2" th:text="${tarea.id_tarea}"></td>
                     <td class="px-4 py-2" th:text="${tarea.comentario}"></td>
+                    <td class="px-4 py-2" th:text="${tarea.tareaEntregada}"></td>
                     <td class="px-4 py-2" th:text="${tarea.estadoTarea}"></td>
                     <td class="px-4 py-2" th:text="${tarea.nota}"></td>
                     <td class="px-4 py-2" th:text="${tarea.tipoTarea}"></td>
                     <td class="px-4 py-2" th:text="${tarea.estudiante.nombreCompleto}"></td>
                     <td class="px-4 py-2 flex space-x-2">
-                        <a th:href="@{/editarTarea/{id}(id=${tarea.id_tarea})}" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Editar</a>
+                        <a th:href="@{/editarTarea/{id}(id=${tarea.id_tarea})}" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Calificar</a>
                         <a th:href="@{/eliminarTarea/{id}(id=${tarea.id_tarea})}" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
                            onclick="return confirm('¿Estás seguro de eliminar esta tarea?');">Eliminar</a>
                     </td>

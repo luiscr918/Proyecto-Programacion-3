@@ -75,6 +75,19 @@ public class TareaController {
         return "redirect:/tareas";
     }
 
+
+    @PostMapping("/guardarTareaCalificado")
+    public String guardarTareaCalificadi(@Valid @ModelAttribute Tarea tarea, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("materias", materiaServices.mostrarMaterias());
+            model.addAttribute("estudiantes", estudianteServicio.mostrarEdudiantes());
+            return "pages/formularioCalificarTarea";
+        }
+
+        tareaService.guardarTarea(tarea);
+        return "redirect:/tareas";
+    }
+
     // Editar tarea existente
     @GetMapping("/editarTarea/{id}")
     public String editarTarea(@PathVariable Long id, Model model) {

@@ -29,7 +29,7 @@
     <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-xl border border-gray-300">
         <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Calificar tarea</h2>
 
-        <form th:action="@{/guardarTarea}" method="post" th:object="${tarea}">
+        <form th:action="@{/guardarTareaCalificado}" method="post" th:object="${tarea}">
             <input type="hidden" th:field="*{id_tarea}" />
 
             <!-- Pauta -->
@@ -43,7 +43,7 @@
             <!-- Tarea Entregada -->
             <div class="mb-4">
                 <label for="tareaEntregada" class="block text-sm font-medium text-gray-700 mb-1">Tarea Entregada</label>
-                <input type="text" id="tareaEntregada" th:field="*{tareaEntregada}" placeholder="Nombre del archivo o URL"
+                <input  readonly type="text" id="tareaEntregada" th:field="*{tareaEntregada}" placeholder="Nombre del archivo o URL"
                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring focus:ring-blue-500"/>
             </div>
 

@@ -1,9 +1,7 @@
 package com.proyectoProgramacion3.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 
 @Entity
 public class Tarea {
@@ -12,6 +10,8 @@ public class Tarea {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_tarea;
 
+    @Min(value = 0, message = "La nota mínima permitida es 0")
+    @Max(value = 10, message = "La nota máxima permitida es 10")
     private double nota;
 
     @NotNull(message = "La tarea entregada no puede estar vacía")
