@@ -1,0 +1,269 @@
+<!DOCTYPE html >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}" />
+  <title>Pagina de Admin</title>
+</head>
+<body>
+<!--Sidebar-->
+<!--Inicio pagina admin-->
+<div class="relative h-72 w-full">
+  <img src="https://www.ucatalunya.edu.co/img/blog/herramientas-de-analisis-de-datos.jpg"
+       alt="background"
+       class="absolute inset-0 w-full h-full  object-cover object-center" />
+</div>
+<div class="w-full rounded-lg border shadow-sm overflow-hidden bg-transparent border-stone-200 shadow-stone-950/5">
+  <div class="h-max rounded m-0 w-full p-6 flex items-center gap-6 flex-wrap justify-between">
+
+    <div class="flex sm:items-center gap-6 justify-evenly flex-wrap flex-col sm:flex-row w-full">
+      <div class="flex items-center gap-4">
+        <div class="space-y-1">
+          <p class="font-sans antialiased text-xl text-current font-bold">Welcome Admin</p>
+          <p class="font-sans antialiased text-base text-current font-semibold">Emma Roberts</p>
+          <small class="font-sans antialiased text-sm block text-stone-600">emma.roberts@mail.com</small>
+        </div>
+      </div>
+      <div class="text-center  ">
+        <button class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" type="button" data-drawer-target="drawer-navigation" data-drawer-show="drawer-navigation" aria-controls="drawer-navigation">
+          Menú Administrador
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<!--Cuerpo de la pagina admin-->
+<!--Contenedor general de cursos,estudiantes,docentes-->
+<section class="flex  flex-col  mx-auto bg-white rounded-lg p-6 shadow-md space-y-6 w-full">
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full min-w-0">
+    <!--Total Estudiantes -->
+    <div class="flex flex-col px-6 py-2 bg-white shadow rounded-lg overflow-hidden">
+      <div class="flex flex-col items-center space-y-2">
+        <div class="text-6xl font-bold tracking-tight leading-none text-blue-500">21</div>
+        <div class="text-lg font-medium text-blue-500">Estudiantes</div>
+      </div>
+    </div>
+    <!--Total Docentes -->
+    <div class="flex flex-col px-6 py-2 bg-white shadow rounded-lg overflow-hidden">
+      <div class="flex flex-col items-center space-y-2">
+        <div class="text-6xl font-bold tracking-tight leading-none text-amber-500">17</div>
+        <div class="text-lg font-medium text-amber-600">Docentes</div>
+      </div>
+    </div>
+    <!--Total Cursos -->
+    <div class="flex flex-col px-6 py-2 bg-white shadow rounded-lg overflow-hidden">
+      <div class="flex flex-col items-center space-y-2">
+        <div class="text-6xl font-bold tracking-tight leading-none text-red-500">24</div>
+        <div class="text-lg font-medium text-red-600">Cursos</div>
+      </div>
+    </div>
+  </div>
+</section>
+<!--Filtro año lectivo-->
+<div class="flex justify-center m-5">
+  <form class="w-full max-w-md">
+    <label for="default-search" class="mb-2 text-sm font-medium  sr-only text-white">Search</label>
+    <div class="relative">
+      <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+        <svg class="w-4 h-4 text-gray-500 " aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+        </svg>
+      </div>
+      <input type="search" id="default-search"
+             class="block w-full p-4 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-white
+                          focus:ring-blue-500 focus:border-blue-500 "
+             placeholder="Buscar por ID de curso" required />
+      <button type="submit"
+              class="text-white absolute end-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4
+                           focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2
+                            dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Search
+      </button>
+    </div>
+  </form>
+</div>
+<!--Tablas de Curso-->
+<div class="flex justify-center items-center m-3">
+  <div class="bg-white max-w-2xl shadow overflow-hidden sm:rounded-lg ">
+    <div class="px-4 py-5 sm:px-6">
+      <h3 class="text-lg leading-6 font-medium text-gray-900">
+        Información General de Curso
+      </h3>
+      <p class="mt-1 max-w-2xl text-sm text-gray-500">
+        Esta sección presenta los datos principales del curso
+      </p>
+    </div>
+    <div class="border-t border-gray-200">
+      <dl>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            ID de Curso
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            Mickael Poulaz
+          </dd>
+        </div>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Nombre del Curso
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            React JS
+          </dd>
+        </div>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Año Lectivo
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            m.poul@example.com
+          </dd>
+        </div>
+        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+          <dt class="text-sm font-medium text-gray-500">
+            Profesor Designado
+          </dt>
+          <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
+            $10,000
+          </dd>
+        </div>
+        <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-1 sm:px-6">
+          <div class="flex justify-center">
+            <button type="button" class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2">Editar</button>
+          </div>
+        </div>
+      </dl>
+    </div>
+  </div>
+</div>
+<!-- Footer -->
+<footer class="bg-gray-800">
+  <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+    <div class="md:flex md:justify-between">
+      <!-- Logo y contacto -->
+      <div class="mb-6 md:mb-0">
+        <a href="/" class="flex items-center">
+          <img src="/imagenes/img001-logo.png" class="h-8 me-3" alt="TaskFlow Logo"/>
+          <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
+        </a>
+        <p class="mt-4 text-gray-400 text-sm">
+          Av. Innovación 123, Ciudad Creativa, CA 94000<br/>
+          Teléfono: +1 (800) 123-4567<br/>
+          Email: soporte@taskflow.com
+        </p>
+      </div>
+
+      <!-- Navegación -->
+      <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+        <!-- Menú -->
+        <div>
+          <h2 class="mb-6 text-sm font-semibold text-white uppercase">Menú</h2>
+          <ul class="text-gray-400 font-medium space-y-2">
+            <li><a href="/" class="hover:text-blue-400 transition-colors">Inicio</a></li>
+          </ul>
+        </div>
+
+        <!-- Redes Sociales -->
+        <div>
+          <h2 class="mb-6 text-sm font-semibold text-white uppercase">Síguenos</h2>
+          <ul class="text-gray-400 font-medium space-y-2">
+            <li><a href="https://www.facebook.com" target="_blank" class="hover:underline">Facebook</a></li>
+            <li><a href="https://twitter.com" target="_blank" class="hover:underline">Twitter</a></li>
+            <li><a href="https://www.instagram.com" target="_blank" class="hover:underline">Instagram</a>
+            </li>
+            <li><a href="https://www.linkedin.com" target="_blank" class="hover:underline">LinkedIn</a></li>
+          </ul>
+        </div>
+
+        <!-- Legal -->
+        <div>
+          <h2 class="mb-6 text-sm font-semibold text-white uppercase">Legal</h2>
+          <ul class="text-gray-400 font-medium space-y-2">
+            <li><a href="#" class="hover:underline">Política de privacidad</a></li>
+            <li><a href="#" class="hover:underline">Términos de servicio</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-6 border-gray-600 sm:mx-auto lg:my-8"/>
+
+    <!-- Pie -->
+    <div class="sm:flex sm:items-center sm:justify-between">
+      <span class="text-sm text-gray-400 sm:text-center">
+        © 2025 <a href="/" class="hover:underline">TaskFlow™</a>. Todos los derechos reservados.
+      </span>
+    </div>
+  </div>
+</footer>
+<!-- drawer component -->
+<div id="drawer-navigation" class="fixed top-0 left-0 z-40 w-64 h-screen p-4 overflow-y-auto transition-transform -translate-x-full  bg-gray-800" tabindex="-1" aria-labelledby="drawer-navigation-label">
+  <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase dark:text-gray-400">Menu</h5>
+  <button type="button" data-drawer-hide="drawer-navigation" aria-controls="drawer-navigation" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 end-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white" >
+    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+    <span class="sr-only">Close menu</span>
+  </button>
+  <div class="py-4 overflow-y-auto">
+    <ul class="space-y-2 font-medium">
+      <li>
+        <button type="button"
+                data-drawer-hide="drawer-navigation"
+                aria-controls="drawer-navigation"
+                class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group w-full">
+          <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
+            <path d="M16.975 11H10V4.025a1 1 0 0 0-1.066-.998 8.5 8.5 0 1 0 9.039 9.039.999.999 0 0 0-1-1.066h.002Z"/>
+            <path d="M12.5 0c-.157 0-.311.01-.565.027A1 1 0 0 0 11 1.02V10h8.975a1 1 0 0 0 1-.935c.013-.188.028-.374.028-.565A8.51 8.51 0 0 0 12.5 0Z"/>
+          </svg>
+          <span class="ms-3">Dashboard</span>
+        </button>
+      </li>
+      <li>
+        <a th:href="@{/estudiantes}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+          <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
+            <path d="M10 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-6 14a6 6 0 1 1 12 0H4Z"/>
+          </svg>
+          <span class="flex-1 ms-3 whitespace-nowrap">Estudiantes</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/docentes}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+          <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 2L1 6l9 4 7-3.11V14h2V6L10 2Zm0 6.3L3.15 6 10 3.7 16.85 6 10 8.3Zm-5 1.32v2.42c0 2.21 3.33 4 5 4s5-1.79 5-4V9.62l-5 2.22-5-2.22Z"/>
+          </svg>
+          <span class="flex-1 ms-3 whitespace-nowrap">Docentes</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+          <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
+            <path d="M3 2a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8l-6-6H3Zm7 1.5L15.5 9H10V3.5ZM5 11h10v2H5v-2Zm0 4h10v2H5v-2Z"/>
+          </svg>
+          <span class="flex-1 ms-3 whitespace-nowrap">Cursos</span>
+        </a>
+      </li>
+      <li>
+        <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+          <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
+            <path d="M2 3.5A1.5 1.5 0 0 1 3.5 2H9a.5.5 0 0 1 .5.5V16a.5.5 0 0 1-.5.5H3.5A1.5 1.5 0 0 1 2 15V3.5ZM10.5 2H16a1.5 1.5 0 0 1 1.5 1.5V15a1.5 1.5 0 0 1-1.5 1.5H10.5a.5.5 0 0 1-.5-.5V2.5a.5.5 0 0 1 .5-.5Z"/>
+          </svg>
+          <span class="flex-1 ms-3 whitespace-nowrap">Materias</span>
+        </a>
+      </li>
+      <li>
+        <a th:href="@{/}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+          <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 16">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 8h11m0 0L8 4m4 4-4 4m4-11h3a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-3"/>
+          </svg>
+          <span class="flex-1 ms-3 whitespace-nowrap">Cerrar Sesión</span>
+        </a>
+      </li>
+
+    </ul>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+</body>
+</html>
