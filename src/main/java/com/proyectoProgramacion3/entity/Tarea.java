@@ -16,7 +16,7 @@ public class Tarea {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //relacion de tarea con registro de tareas
-    @OneToMany(mappedBy = "tarea")
+    @OneToMany(mappedBy = "tarea",fetch = FetchType.LAZY)
     private List<RegistroTareas> registroTareas;
 
     private String titulo;

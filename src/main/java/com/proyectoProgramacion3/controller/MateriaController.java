@@ -57,7 +57,9 @@ public class MateriaController {
         Optional<Materia> optionalMateria= materiaService.buscarMateriaPorId(id);
         if (optionalMateria.isPresent()) {
             model.addAttribute("materia", optionalMateria.get());
-            return "pages/Materia/registroActualizarMateria";
+            List<Docente> docentes=docenteServices.mostrarLibros();
+            model.addAttribute("docentes",docentes);
+            return "pages/Materia/registroMateria";
         } else {
             return "redirect:/docentes";
         }

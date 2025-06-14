@@ -52,10 +52,13 @@ private UsuarioService usuarioService;
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
             return "pages/registroEstudiante";
-        } else {
+        }
+        // Validar si el curso está vacío o tiene ID nulo
+        if (estudiante.getCurso() != null && estudiante.getCurso().getId() == null) {
+            estudiante.setCurso(null);
+        }
             estudianteServicio.guardarEstudiante(estudiante);
             return "redirect:/estudiantes";
-        }
     }
     //Actualizar Estudiante
     @GetMapping("/editar-estudiante/{id}")

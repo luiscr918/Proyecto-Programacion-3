@@ -39,8 +39,7 @@ public class CursoController {
     @PostMapping("/guardarCurso")
     public String guardarCurso(Curso curso,
                                @RequestParam(value = "idsEstudiantes", required = false) List<Long> idsEstudiantes,
-                               @RequestParam(value = "idsMaterias", required = false) List<Long> idsMaterias,
-                               Model model) {
+                               @RequestParam(value = "idsMaterias", required = false) List<Long> idsMaterias) {
         Curso cursoGuardado = cursoService.guardarCurso(curso);
         // Asocia estudiantes
         if (idsEstudiantes != null) {
@@ -61,8 +60,7 @@ public class CursoController {
                 materiaService.guardarMateria(materia);
             }
         }
-        model.addAttribute("curso", cursoGuardado);
-        return "pages/AdminPag/homeAdmin";
+        return "index";
     }
 
     //actualizar
@@ -70,6 +68,10 @@ public class CursoController {
     public String actualizarCurso(@PathVariable Long id, Model model){
         Optional<Curso> optionalCurso= cursoService.buscarCursoPorId(id);
         if (optionalCurso.isPresent()) {
+            List<Estudiante> estudiantesSinCurso= estudianteServicio.mostrarEstudiantesSinCurso();
+            List<Materia> materiasSinCurso=materiaService.mostrarMateriasSinCurso();
+            model.addAttribute("materiasSinCurso",materiasSinCurso);
+            model.addAttribute("estudiantesSinCurso",estudiantesSinCurso);
             model.addAttribute("curso", optionalCurso.get());
             return "pages/cursoPage/registroCurso";
         } else {
@@ -82,5 +84,23 @@ public class CursoController {
     public String eliminarCurso(@PathVariable Long id) {
         cursoService.eliminarCurso(id);
         return "pages/AdminPag/homeAdmin";
+    }
+    //Obtener estudiantes por  curso
+    @GetMapping("/estudiantePorCurso/{id}")
+    public String estudiantesPorCurso(@PathVariable Long id,Model model){
+        Curso curso=cursoService.obtenerCursoConEstudiantes(id);
+        List<Estudiante> estudiantesCurso=curso.getEstudiantes();
+        model.addAttribute("estudiantesCurso", estudiantesCurso);
+        model.addAttribute("curso",curso);
+        return "pages/cursoPage/listaEstudiantesCurso";
+    }
+    //Obtener materias por  curso
+    @GetMapping("/materiasPorCurso/{id}")
+    public String materiasPorCurso(@PathVariable Long id,Model model){
+        Curso curso=cursoService.ObtenerCursoConMaterias(id);
+        List<Materia> materiasCurso=curso.getMaterias();
+        model.addAttribute("materiasCurso", materiasCurso);
+        model.addAttribute("curso",curso);
+        return "pages/cursoPage/listaMateriasCurso";
     }
 }

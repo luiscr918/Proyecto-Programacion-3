@@ -3,6 +3,7 @@ package com.proyectoProgramacion3.service;
 import com.proyectoProgramacion3.entity.Curso;
 import com.proyectoProgramacion3.entity.Docente;
 import com.proyectoProgramacion3.repository.CursoRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,6 +48,18 @@ public class CursoService {
         }else{
             return cursoRepository.findByAnioLectivoContainingIgnoreCase(buscarCurso);
         }
+    }
+    //Obtener curso con sus estudiantes
+    @Transactional
+    public Curso obtenerCursoConEstudiantes(Long id){
+        Curso curso=cursoRepository.findById(id).orElseThrow();
+        return curso;
+    }
+    //Obtener curso con sus materias
+    @Transactional
+    public Curso ObtenerCursoConMaterias(Long id){
+        Curso curso=cursoRepository.findById(id).orElseThrow();
+        return curso;
     }
 
 }

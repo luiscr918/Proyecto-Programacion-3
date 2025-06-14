@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Docente extends Usuario{
     //relacion de docente con materia
-    @OneToMany(mappedBy = "docente")
+    @OneToMany(mappedBy = "docente",fetch = FetchType.LAZY)
     private List<Materia> materias;
 
     @NotBlank(message = "El teléfono es obligatorio")

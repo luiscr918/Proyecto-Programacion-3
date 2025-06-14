@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class Estudiante extends Usuario{
     //relacion de estudiante con registro de tareas
-    @OneToMany(mappedBy = "estudiante")
+    @OneToMany(mappedBy = "estudiante",fetch = FetchType.LAZY)
     private List<RegistroTareas> resgistroTareas;
     //relacion de estudiante con curso
     @ManyToOne

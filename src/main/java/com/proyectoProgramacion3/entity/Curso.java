@@ -19,10 +19,10 @@ public class Curso {
     @JoinColumn(name = "admin_id")
     private Admin admin;
     //relacion de curso con matera
-    @OneToMany(mappedBy = "curso")
+    @OneToMany(mappedBy = "curso",fetch = FetchType.LAZY)
     private List<Materia> materias;
     //relacion de curso con estudiante
-    @OneToMany(mappedBy = "curso")
+    @OneToMany(mappedBy = "curso",fetch = FetchType.LAZY)
     private List<Estudiante> estudiantes;
 
     private String nombre;
