@@ -26,22 +26,22 @@
             <div class="grid grid-cols-6 gap-6">
                 <div class="col-span-6 sm:col-span-3">
                     <label for="nombre" class="text-sm font-medium text-gray-900 block mb-2">Nombre de Curso</label>
-                    <input type="text" name="nombre" id="nombre" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="1ro A" required>
+                    <input th:field="*{nombre}" type="text" name="nombre" id="nombre" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="1ro A" required>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
                     <label for="nivel" class="text-sm font-medium text-gray-900 block mb-2">Nivel</label>
-                    <input type="text" name="nivel" id="nivel" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Primero" required>
+                    <input th:field="*{nivel}" type="text" name="nivel" id="nivel" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="Primero" required>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
                     <label for="paralelo" class="text-sm font-medium text-gray-900 block mb-2">Paralelo</label>
-                    <input type="text" name="paralelo" id="paralelo" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="A" required>
+                    <input th:field="*{paralelo}" type="text" name="paralelo" id="paralelo" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="A" required>
                 </div>
 
                 <div class="col-span-6 sm:col-span-3">
                     <label for="anioLectivo" class="text-sm font-medium text-gray-900 block mb-2">Año Lectivo</label>
-                    <input type="text" name="anioLectivo" id="anioLectivo" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="2025" required>
+                    <input th:field="*{anioLectivo}" type="text" name="anioLectivo" id="anioLectivo" class="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-cyan-600 focus:border-cyan-600 block w-full p-2.5" placeholder="2025" required>
                 </div>
 
                 <!-- Select multiple estudiantes -->

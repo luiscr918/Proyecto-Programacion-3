@@ -44,7 +44,8 @@ private UsuarioService usuarioService;
     // Mostrar formulario de registro
     @GetMapping("/formularioDocente")
     public String formularioDocente(Model model) {
-        model.addAttribute("docente", new Docente());
+        Docente docente=new Docente();
+        model.addAttribute("docente", docente);
         return "pages/formularioDocente";
     }
 
@@ -65,16 +66,11 @@ private UsuarioService usuarioService;
         if (result.hasErrors()) {
             return "pages/registroDocente";
         }
-
-        Docente docenteGuardado = docenteServicio.guardarDocente(docente);
-        model.addAttribute("docente", docenteGuardado);
+        docente.setRol("DOCENTE");
+        docenteServicio.guardarDocente(docente);
+        model.addAttribute("docente", docente);
         return "redirect:/docentes";
     }
-
-
-
-
-
 
     //actualizar
     @GetMapping("editarDocente/{id}")

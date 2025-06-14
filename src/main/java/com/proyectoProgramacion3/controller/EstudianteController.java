@@ -57,6 +57,7 @@ private UsuarioService usuarioService;
         if (estudiante.getCurso() != null && estudiante.getCurso().getId() == null) {
             estudiante.setCurso(null);
         }
+            estudiante.setRol("ESTUDIANTE");
             estudianteServicio.guardarEstudiante(estudiante);
             return "redirect:/estudiantes";
     }
