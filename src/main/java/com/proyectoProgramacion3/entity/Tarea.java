@@ -1,6 +1,9 @@
 package com.proyectoProgramacion3.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Size;
 
 @Entity
 public class Tarea {
@@ -10,9 +13,22 @@ public class Tarea {
     private Long id_tarea;
 
     private double nota;
+
+    @NotNull(message = "La tarea entregada no puede estar vacía")
     private String tareaEntregada;
+
+    @NotBlank(message = "El estado es obligatorio")
+    private String estadoTarea;
+
+    @NotBlank(message = "La pauta no puede estar vacía")
+    @Size(max = 255, message = "La pauta no debe exceder los 255 caracteres")
     private String pauta;
+
+    @NotBlank(message = "El tipo de tarea no puede estar vacío")
     private String tipoTarea;
+
+    @NotBlank(message = "La descripción de la tarea no puede estar vacía")
+    @Size(max = 255, message = "La descripción no debe exceder los 255 caracteres")
     private String comentario;
 
 
@@ -90,4 +106,14 @@ public class Tarea {
     public void setEstudiante(Estudiante estudiante) {
         this.estudiante = estudiante;
     }
+
+    public String getEstadoTarea() {
+        return estadoTarea;
+    }
+
+    public void setEstadoTarea(String estadoTarea) {
+        this.estadoTarea = estadoTarea;
+    }
+
+
 }

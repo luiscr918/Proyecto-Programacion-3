@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Registrar Tarea</title>
+    <title>Calificar Tarea</title>
 
     <!-- Tailwind y Flowbite -->
     <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
@@ -27,7 +27,7 @@
 
 <div class="pt-24 flex justify-center">
     <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-xl border border-gray-300">
-        <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Registrar Nueva Tarea</h2>
+        <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Calificar tarea</h2>
 
         <form th:action="@{/guardarTarea}" method="post" th:object="${tarea}">
             <input type="hidden" th:field="*{id_tarea}" />
@@ -41,7 +41,7 @@
             </div>
 
             <!-- Tarea Entregada -->
-            <div hidden class="mb-4">
+            <div class="mb-4">
                 <label for="tareaEntregada" class="block text-sm font-medium text-gray-700 mb-1">Tarea Entregada</label>
                 <input type="text" id="tareaEntregada" th:field="*{tareaEntregada}" placeholder="Nombre del archivo o URL"
                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring focus:ring-blue-500"/>
@@ -95,7 +95,7 @@
             </div>
 
             <!-- Estado de la Tarea -->
-            <div hidden class="mb-4">
+            <div class="mb-4">
                 <label for="estadoTarea" class="block text-sm font-medium text-gray-700 mb-1">Estado de la Tarea</label>
                 <select id="estadoTarea" th:field="*{estadoTarea}"
                         class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring focus:ring-blue-500">
@@ -109,7 +109,7 @@
             </div>
 
             <!-- Nota -->
-            <div hidden class="mb-4">
+            <div class="mb-4">
                 <label for="nota" class="block text-sm font-medium text-gray-700 mb-1">Nota</label>
                 <input type="number" step="0.01" id="nota" th:field="*{nota}" placeholder="Ingrese la nota"
                        class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring focus:ring-blue-500"/>

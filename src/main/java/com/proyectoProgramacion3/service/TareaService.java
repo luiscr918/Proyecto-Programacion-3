@@ -35,9 +35,15 @@ public class TareaService {
     }
 
 
-    //Busqueda doble
+    //*****Busqueda doble asociado con estudiante
     public List<Tarea> buscarPorEstudianteYMateria(Long estudianteId, Long materiaId) {
         return tareaRepository.findByEstudianteIdAndMateriaId(estudianteId, materiaId);
+    }
+
+
+    //*****Asociado con docente - materia
+    public List<Tarea> obtenerTareasPorMateriaId(Long materiaId) {
+        return tareaRepository.findByMateriaId(materiaId);
     }
 
 

@@ -3,6 +3,7 @@ package com.proyectoProgramacion3.controller;
 import com.proyectoProgramacion3.entity.Estudiante;
 import com.proyectoProgramacion3.entity.Tarea;
 import com.proyectoProgramacion3.service.EstudianteServicio;
+import com.proyectoProgramacion3.service.MateriaServices;
 import com.proyectoProgramacion3.service.TareaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,9 @@ public class EstudianteController {
     @Autowired
     private TareaService tareaService;
 
+    @Autowired
+    private MateriaServices materiaServices;
+
     //Mostrar todos los estudiantes y filtro doble
     @GetMapping("/estudiantes")
     public String listarTareasPorEstudianteYMateria(
@@ -31,7 +35,8 @@ public class EstudianteController {
             @RequestParam(name = "buscarEstudiante", required = false) String buscarEstudiante,
             Model model) {
 
-        List<Estudiante> estudiantes = estudianteServicio.mostrarEdudiantes();
+        // Aplica el filtro por cédula si se proporciona
+        List<Estudiante> estudiantes = estudianteServicio.buscarPorCedula(buscarEstudiante);
         List<Tarea> tareasFiltradas = tareaService.buscarPorEstudianteYMateria(estudianteId, materiaId);
 
         model.addAttribute("estudiantes", estudiantes);
@@ -85,6 +90,34 @@ public class EstudianteController {
         estudianteServicio.eliminarEstudiante(id);
         return "redirect:/estudiantes";
     }
+
+
+
+    //***********ASOCIADO CON ESTUDIANTE PARA LA ENTREGA DE TAREAS
+
+    @GetMapping("/formularioEstudianteEntrega/{id}")
+    public String mostrarFormularioEditarEntrega(@PathVariable Long id, Model model) {
+        Optional<Tarea> tarea = tareaService.bucarTareaPorId(id);
+        model.addAttribute("tarea", tarea.orElse(new Tarea()));
+        model.addAttribute("materias", materiaServices.mostrarMaterias());
+        model.addAttribute("estudiantes", estudianteServicio.mostrarEdudiantes());
+        return "pages/formularioEstudianteTarea";
+    }
+
+    @PostMapping("/guardarTareaEstudiante")
+    public String guardarTareaEstudiante(@Valid @ModelAttribute Tarea tarea, BindingResult result, Model model) {
+        if (result.hasErrors()) {
+            model.addAttribute("materias", materiaServices.mostrarMaterias());
+            model.addAttribute("estudiantes", estudianteServicio.mostrarEdudiantes());
+            return "pages/formularioEstudianteTarea";
+        }
+        tarea.setEstadoTarea("Entregado");
+        tareaService.guardarTarea(tarea);
+        return "redirect:/estudiantes";
+    }
+
+
+
 
 
 }

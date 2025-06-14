@@ -18,13 +18,15 @@ public class EstudianteServicio {
         return estudianteRepository.findAll();
     }
     //Mostrar por cedula
-    public List<Estudiante> buscarPorCedula(String buscarEstudiante){
-        if (buscarEstudiante==null||buscarEstudiante.isEmpty()){
+
+
+    public List<Estudiante> buscarPorCedula(String cedula) {
+        if (cedula == null || cedula.isBlank()) {
             return estudianteRepository.findAll();
-        }else{
-            return estudianteRepository.findByCedulaContainingIgnoreCase(buscarEstudiante);
         }
+        return estudianteRepository.findByCedulaContainingIgnoreCase(cedula);
     }
+
     //Buscar por id
     public Optional<Estudiante> buscarEstudianteId(Long id){
         return estudianteRepository.findById(id);

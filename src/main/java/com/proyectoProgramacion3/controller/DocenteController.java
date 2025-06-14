@@ -2,7 +2,9 @@ package com.proyectoProgramacion3.controller;
 
 
 import com.proyectoProgramacion3.entity.Docente;
+import com.proyectoProgramacion3.entity.Tarea;
 import com.proyectoProgramacion3.service.DocenteServices;
+import com.proyectoProgramacion3.service.TareaService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -18,6 +20,9 @@ public class DocenteController {
 
     @Autowired
     private DocenteServices docenteServicio;
+
+    @Autowired
+    private TareaService tareaService;
 
     // Listar docentes
     @GetMapping("/docentes")
@@ -89,5 +94,9 @@ public class DocenteController {
         docenteServicio.eliminarDocente(id);
         return "redirect:/docentes";
     }
+
+
+//*******ASOCIDAO CON LA BUSQEUDA PARA TAREA
+
 
 }

@@ -7,4 +7,8 @@ import java.util.List;
 
 public interface TareaRepository extends JpaRepository<Tarea, Long> {
     List<Tarea> findByEstudianteIdAndMateriaId(Long estudianteId, Long materiaId);
+
+
+    //*****Asociado con doecnete
+    List<Tarea> findByMateriaId(Long materiaId);
 }

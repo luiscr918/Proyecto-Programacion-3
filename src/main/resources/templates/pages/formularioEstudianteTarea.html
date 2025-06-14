@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Calificar Tarea</title>
+
+    <!-- Tailwind y Flowbite -->
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+</head>
+<body class="bg-gray-100">
+
+<nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a th:href="@{/}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="/imagenes/img001-logo.png" class="h-8" alt="Logo">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
+        </a>
+        <a th:href="@{/estudiantes}">
+            <button type="button"
+                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
+                Regresar
+            </button>
+        </a>
+    </div>
+</nav>
+
+<div class="pt-24 flex justify-center">
+    <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-xl border border-gray-300">
+        <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Tarea Por realizar</h2>
+
+        <form th:action="@{/guardarTareaEstudiante}" method="post" th:object="${tarea}">
+            <input type="hidden" th:field="*{id_tarea}" />
+            <input type="hidden" th:field="*{tipoTarea}" />
+            <input type="hidden" th:field="*{materia.idMateria}" />
+            <input type="hidden" th:field="*{estudiante.id}" />
+            <input type="hidden" th:field="*{estadoTarea}" />
+            <input type="hidden" th:field="*{nota}" />
+
+            <!-- Pauta (solo lectura) -->
+            <div class="mb-4">
+                <label for="pauta" class="block text-sm font-medium text-gray-700 mb-1">Tarea Asignada</label>
+                <input type="text" id="pauta" th:field="*{pauta}" readonly
+                       class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-100 text-gray-700"/>
+            </div>
+
+            <div class="mb-4">
+                <label for="comentario" class="block text-sm font-medium text-gray-700 mb-1">Comentario del Docente</label>
+                <textarea id="comentario" th:field="*{comentario}" rows="3"
+                          class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-100 text-gray-700"
+                          readonly></textarea>
+            </div>
+
+            <!-- Tarea Entregada (editable) -->
+            <div class="mb-4">
+                <label for="tareaEntregada" class="block text-sm font-medium text-gray-700 mb-1">Tarea Entregada</label>
+                <input type="text" id="tareaEntregada" th:field="*{tareaEntregada}" placeholder="Enlace o descripción de entrega"
+                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring focus:ring-blue-500"/>
+            </div>
+
+            <button type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-4 rounded-lg transition duration-200">
+                Enviar Tarea
+            </button>
+        </form>
+
+    </div>
+</div>
+
+</body>
+</html>
