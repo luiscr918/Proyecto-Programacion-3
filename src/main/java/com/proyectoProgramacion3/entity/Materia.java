@@ -24,7 +24,7 @@ public class Materia {
     @JoinColumn(name = "docente_id")
     private Docente docente;
     //relacion de materia con tarea
-    @OneToMany(mappedBy = "matera",fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "materia",fetch = FetchType.LAZY)
     private List<Tarea> tareas;
 
     private String nombre;

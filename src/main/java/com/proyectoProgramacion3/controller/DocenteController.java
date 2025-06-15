@@ -1,9 +1,7 @@
 package com.proyectoProgramacion3.controller;
 
 
-import com.proyectoProgramacion3.entity.Docente;
-import com.proyectoProgramacion3.entity.Estudiante;
-import com.proyectoProgramacion3.entity.Usuario;
+import com.proyectoProgramacion3.entity.*;
 import com.proyectoProgramacion3.service.DocenteServices;
 import com.proyectoProgramacion3.service.UsuarioService;
 import jakarta.validation.Valid;
@@ -89,6 +87,20 @@ private UsuarioService usuarioService;
     public String eliminarDocente(@PathVariable Long id) {
         docenteServicio.eliminarDocente(id);
         return "redirect:/docentes";
+    }
+    // mostrar tabla que simula inicio de sesion hasta ver como es spring security
+    @GetMapping("/inicioDocente")
+    public String mostrarInicDocente(Model model){
+        model.addAttribute("docentes", docenteServicio.mostrarLibros());
+        return "pages/DocentePag/simSesionDocente";
+    }
+    //Obtener materias por  docente
+    @GetMapping("/materiasPorDocente/{id}")
+    public String materiasPorDocente(@PathVariable Long id,Model model){
+        Docente docente=docenteServicio.ObtenerDocenteConMaterias(id);
+        List<Materia> materiasDocente=docente.getMaterias();
+        model.addAttribute("materiasDocente", materiasDocente);
+        return "pages/DocentePag/listaMateriasDocente";
     }
 
 }

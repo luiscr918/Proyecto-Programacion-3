@@ -1,8 +1,10 @@
 package com.proyectoProgramacion3.service;
 
+import com.proyectoProgramacion3.entity.Curso;
 import com.proyectoProgramacion3.entity.Docente;
 import com.proyectoProgramacion3.entity.Docente;
 import com.proyectoProgramacion3.repository.DocenteRepositorio;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +50,12 @@ public class DocenteServices {
     //obtener numero total de docentes
     public int obtenerNumeroDocentes(){
         return docenteRepositorio.findAll().size();
+    }
+    //Obtener docente con sus materias
+    @Transactional
+    public Docente ObtenerDocenteConMaterias(Long id){
+        Docente docente=docenteRepositorio.findById(id).orElseThrow();
+        return docente;
     }
 
 }

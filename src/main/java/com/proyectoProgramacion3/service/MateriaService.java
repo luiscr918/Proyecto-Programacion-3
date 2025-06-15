@@ -1,7 +1,9 @@
 package com.proyectoProgramacion3.service;
 
+import com.proyectoProgramacion3.entity.Curso;
 import com.proyectoProgramacion3.entity.Materia;
 import com.proyectoProgramacion3.repository.MateriaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,12 @@ public class MateriaService {
     //Listar materias que no estan asignadas a un curso
     public List<Materia> mostrarMateriasSinCurso(){
         return materiaRepository.findByCursoIsNull();
+    }
+    //Obtener materia con sus tareas
+    @Transactional
+    public Materia ObtenerMateriaConTareas(Long id){
+        Materia materia=materiaRepository.findById(id).orElseThrow();
+        return materia;
     }
 }
 

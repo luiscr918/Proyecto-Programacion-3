@@ -3,7 +3,9 @@ package com.proyectoProgramacion3.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.format.annotation.DateTimeFormat;
 
+import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,6 +25,10 @@ public class Tarea {
     @JoinColumn(name = "materia_id")
     private Materia materia;
 
-    private String titulo;
+    private String nombre;
     private String descripcion;
+    private String tipo;
+    @DateTimeFormat(pattern = "yyyy-mm-dd")
+    private Date fechaEntrega;
+
 }

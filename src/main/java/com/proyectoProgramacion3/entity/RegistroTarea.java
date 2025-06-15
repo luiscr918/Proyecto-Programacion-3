@@ -24,8 +24,6 @@ public class RegistroTarea {
     @JoinColumn(name = "tarea_id")
     private Tarea tarea;
 
-    @DateTimeFormat(pattern = "yyyy-mm-dd")
-    private Date fechaEntrega;
 
     private String estado;
 
