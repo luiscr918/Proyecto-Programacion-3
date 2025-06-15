@@ -2,6 +2,7 @@ package com.proyectoProgramacion3.controller;
 
 import com.proyectoProgramacion3.entity.*;
 import com.proyectoProgramacion3.service.DocenteServices;
+import com.proyectoProgramacion3.service.EstudianteServicio;
 import com.proyectoProgramacion3.service.MateriaService;
 import com.proyectoProgramacion3.service.TareaService;
 import jakarta.validation.Valid;
@@ -23,8 +24,10 @@ private TareaService tareaService;
 private MateriaService materiaService;
 @Autowired
 private DocenteServices docenteServices;
+@Autowired
+private EstudianteServicio estudianteServicio;
 
-    // Mostrar todas las tareas por materia
+    // Mostrar todas las tareas por materia docente
     @GetMapping("/tareasPorMateria/{materiaId}")
     public String listarTareasPorMateria(@PathVariable Long materiaId, Model model) {
             Materia materia=materiaService.ObtenerMateriaConTareas(materiaId);
@@ -32,6 +35,19 @@ private DocenteServices docenteServices;
             model.addAttribute("tareasCurso", tareasCurso);
             model.addAttribute("materia", materia);
             return "pages/DocentePag/listaTareasMateria";
+    }
+    // Mostrar todas las tareas por materia estudiante
+    @GetMapping("/tareasPorMateriaEstudiante/{materiaId}/{estudianteId}")
+    public String listarTareasPorMateriaEstudiante(@PathVariable Long materiaId,@PathVariable Long estudianteId,
+                                                   Model model) {
+        Materia materia=materiaService.ObtenerMateriaConTareas(materiaId);
+        List<Tarea> tareasCurso=materia.getTareas();
+        Optional<Estudiante> estudianteOp=estudianteServicio.buscarEstudianteId(estudianteId);
+        Estudiante estudiante=estudianteOp.get();
+        model.addAttribute("estudiante",estudiante);
+        model.addAttribute("tareasCurso", tareasCurso);
+        model.addAttribute("materia", materia);
+        return "pages/EstudiantePag/listaTareasMateria";
     }
 
     // Mostrar formulario para nueva tarea

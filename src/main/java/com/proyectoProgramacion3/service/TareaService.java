@@ -1,7 +1,9 @@
 package com.proyectoProgramacion3.service;
 
+import com.proyectoProgramacion3.entity.Materia;
 import com.proyectoProgramacion3.entity.Tarea;
 import com.proyectoProgramacion3.repository.TareaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +34,11 @@ public class TareaService {
     public void eliminarTarea(Long id){
         tareaRepository.deleteById(id);
     }
-
+    //Obtener tarea con sus registros
+    @Transactional
+    public Tarea ObtenerTareaConRegistros(Long id){
+        Tarea tarea=tareaRepository.findById(id).orElseThrow();
+        return tarea;
+    }
 
 }

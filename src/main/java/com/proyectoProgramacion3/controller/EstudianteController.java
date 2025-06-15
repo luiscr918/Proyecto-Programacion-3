@@ -2,6 +2,7 @@ package com.proyectoProgramacion3.controller;
 
 import com.proyectoProgramacion3.entity.Docente;
 import com.proyectoProgramacion3.entity.Estudiante;
+import com.proyectoProgramacion3.entity.Materia;
 import com.proyectoProgramacion3.entity.Usuario;
 import com.proyectoProgramacion3.service.EstudianteServicio;
 import com.proyectoProgramacion3.service.UsuarioService;
@@ -73,6 +74,27 @@ private UsuarioService usuarioService;
     public String eliminarEstudiante(@PathVariable long id){
         estudianteServicio.eliminarEstudiante(id);
         return "redirect:/estudiantes";
+    }
+    //simulador de inicio sesion estudiante
+    @GetMapping("/inicioEstudiante")
+    public String simuladorIcEstudiante(Model model) {
+        model.addAttribute("estudiantes",estudianteServicio.mostrarEstudiantes());
+        return "pages/EstudiantePag/simSesionEstudiante";
+    }
+
+    // Obtener materias por estudiante
+    @GetMapping("/materiasPorEstudiante/{id}")
+    public String materiasPorEstudiante(@PathVariable Long id, Model model) {
+        Estudiante estudiante = estudianteServicio.ObtenerEstudianteConMaterias(id);
+
+        // Validar si el estudiante tiene curso asignado
+        if (estudiante.getCurso() == null) {
+            return "index"; // Redirige al index
+        }
+        List<Materia> materiasEstudiante = estudiante.getCurso().getMaterias();
+        model.addAttribute("materiasEstudiante", materiasEstudiante);
+        model.addAttribute("estudiante",estudiante);
+        return "pages/EstudiantePag/listaMateriasEstudiante";
     }
 
 }

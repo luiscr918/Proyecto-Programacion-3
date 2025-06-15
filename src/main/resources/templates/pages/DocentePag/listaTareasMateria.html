@@ -68,6 +68,7 @@
                     <td class="px-4 py-2" th:text="${tarea.fechaEntrega}"></td>
                     <td class="px-4 py-2" th:text="${tarea.tipo}"></td>
                     <td class="px-4 py-2 flex space-x-2">
+                        <a th:href="@{/registrosTareas/}+${tarea.id}"  class="bg-green-600 text-white px-3 py-1 rounded hover:bg-green-700">Ver Registros</a>
                         <a th:href="@{/editarTarea/}+${tarea.id}"  class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Editar</a>
                         <a th:href="@{/eliminarTarea/}+${tarea.id}"
                                 class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
