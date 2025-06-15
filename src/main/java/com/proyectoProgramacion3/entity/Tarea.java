@@ -17,7 +17,11 @@ public class Tarea {
     private Long id;
     //relacion de tarea con registro de tareas
     @OneToMany(mappedBy = "tarea",fetch = FetchType.LAZY)
-    private List<RegistroTareas> registroTareas;
+    private List<RegistroTarea> registroTareas;
+    //relacion de tarea con materia
+    @ManyToOne
+    @JoinColumn(name = "materia_id")
+    private Materia materia;
 
     private String titulo;
     private String descripcion;

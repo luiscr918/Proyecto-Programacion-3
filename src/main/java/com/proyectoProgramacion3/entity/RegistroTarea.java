@@ -6,12 +6,11 @@ import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Data
 @NoArgsConstructor
-public class RegistroTareas {
+public class RegistroTarea {
     //id
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

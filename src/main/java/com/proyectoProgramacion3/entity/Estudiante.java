@@ -1,7 +1,6 @@
 package com.proyectoProgramacion3.entity;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
@@ -16,7 +15,7 @@ import java.util.List;
 public class Estudiante extends Usuario{
     //relacion de estudiante con registro de tareas
     @OneToMany(mappedBy = "estudiante",fetch = FetchType.LAZY)
-    private List<RegistroTareas> resgistroTareas;
+    private List<RegistroTarea> resgistroTareas;
     //relacion de estudiante con curso
     @ManyToOne
     @JoinColumn(name = "curso_id")

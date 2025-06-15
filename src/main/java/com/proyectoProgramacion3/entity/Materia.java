@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -21,6 +23,9 @@ public class Materia {
     @ManyToOne
     @JoinColumn(name = "docente_id")
     private Docente docente;
+    //relacion de materia con tarea
+    @OneToMany(mappedBy = "matera",fetch = FetchType.LAZY)
+    private List<Tarea> tareas;
 
     private String nombre;
 }
