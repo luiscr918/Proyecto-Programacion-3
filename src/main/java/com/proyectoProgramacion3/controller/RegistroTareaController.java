@@ -50,7 +50,11 @@ public class RegistroTareaController {
 //guardar Entrega
     @PostMapping("/guardarRegistroTarea")
     public String guardarRegistroTarea(RegistroTarea registroTarea, Model model) {
-        registroTarea.setEstado("Entregado");
+        if (registroTarea.getEstado()==null || registroTarea.getEstado().isEmpty()) {
+            registroTarea.setEstado("ENTREGADO");
+        }else{
+            registroTarea.setEstado("CALIFICADO");
+        }
         registroTareaService.guardarRegistroTarea(registroTarea);
         model.addAttribute("estudiantes", estudianteServicio.mostrarEstudiantes());
         return "pages/EstudiantePag/simSesionEstudiante";
@@ -68,6 +72,23 @@ public class RegistroTareaController {
         model.addAttribute("registroTarea",registroTarea);
         return "pages/EstudiantePag/formRegistroTarea";
     }
+    // Editar registro existente DOCENTE
+    @GetMapping("/editarRegistroDocente/{id}")
+    public String editarRegistroDocente(@PathVariable Long id, Model model) {
+        Optional<RegistroTarea> registroTareaOp = registroTareaService.bucarRegistroTareaPorId(id);
+        RegistroTarea registroTarea= registroTareaOp.get();
+        Estudiante estudiante=registroTarea.getEstudiante();
+        Tarea tarea=registroTarea.getTarea();
+        registroTarea.setEstudiante(estudiante);
+        registroTarea.setTarea(tarea);
+        model.addAttribute("tarea",tarea);
+        model.addAttribute("registroTarea",registroTarea);
+        return "pages/DocentePag/paginaCalificarEntregable";
+    }
+
+
+
+
     //mostrar todos los registros por estudiante
     @GetMapping("/registrosTareasEstudiante/{idEstudiante}")
     public String mostrarRegistrosPorEstudiante(@PathVariable Long idEstudiante, Model model){
