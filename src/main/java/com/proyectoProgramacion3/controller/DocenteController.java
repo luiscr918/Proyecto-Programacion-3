@@ -39,13 +39,6 @@ private UsuarioService usuarioService;
         return "pages/registroDocente";
     }
 
-    // Mostrar formulario de registro
-    @GetMapping("/formularioDocente")
-    public String formularioDocente(Model model) {
-        Docente docente=new Docente();
-        model.addAttribute("docente", docente);
-        return "pages/formularioDocente";
-    }
 
     //Guardar Docente datos
     @PostMapping("/guardarDocente")
