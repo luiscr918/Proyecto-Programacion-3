@@ -25,7 +25,7 @@
             <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <a th:href="@{/}">
+            <a th:href="@{/docentes}">
                 <button type="button"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
                     Regresar
@@ -62,7 +62,7 @@
                 <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
                     <div class="text-center mb-10">
                         <h1 class="font-bold text-3xl text-gray-900">Registrar Docente por Administrador</h1>
-                        <p>Ingresa tu información</p>
+                        <p>Ingrese la informacioón del docente</p>
                     </div>
                     <div>
                         <form th:action="@{/guardarDocente}" method="post" th:object="${docente}">
