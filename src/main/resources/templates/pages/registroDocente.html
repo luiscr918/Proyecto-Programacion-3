@@ -2,21 +2,23 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
 
-
-    <!--Tailwind-->
-    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet" />
-    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
-
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css')
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}"/>
     <link rel="stylesheet" th:href="@{/css/stylesA.css}">
 
-    <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}" />
     <title>Registro de docente</title>
 </head>
 <body class="color10">
 <!--Seccion1: Barra de naveagacion-->
 
-<nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
+<nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 ">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <a th:href="@{/}" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="/imagenes/img001-logo.png" class="h-8" alt="Flowbite Logo">
@@ -43,118 +45,162 @@
     </div>
 </nav>
 
-<!-- Sección principal: Formulario + Imagen -->
-<div class="flex min-h-screen pt-10 bg-gray-100">
 
-    <!-- Contenedor del formulario -->
-    <div class="w-1/2 flex items-center justify-center pt-10 pb-8 color10">
-        <form class="w-full max-w-md border-2 border-blue-500 p-2 rounded-xl shadow-md bg-gray-700"
-              th:action="@{/guardarDocente}"
-              method="post"
-              th:object="${docente}">
+<!--Form para Registro de Estudiante-->
 
-            <h1 class="text-2xl font-bold text-center text-white 0 mb-6">
-                Registro de Docente
-            </h1>
+<div class="seccionReDocente ">
 
-            <input type="hidden" th:field="*{id}" />
+    <div class="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5 ">
 
-            <!-- Nombre Completo -->
-            <div class="mb-5">
-                <label for="nombreCompleto" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Ingrese su nombre completo:
-                </label>
-                <input type="text" id="nombreCompleto"
-                       th:field="*{nombre}"
-                       oninput="this.value = this.value.replace(/[^a-zA-ZñÑáéíóúÁÉÍÓÚ\s]/g, '')"
-                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
-                       placeholder="Ej: Juan Pérez" />
-                <span class="error-text" th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+        <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
+            <div class="md:flex w-full">
+                <div class="hidden md:block w-1/2 bg-indigo-500 py-10 px-10">
+                    <img src="https://images.pexels.com/photos/3184644/pexels-photo-3184644.jpeg"
+                         alt="Imagen form estudiante" class="w-full h-auto rounded-lg"/>
+                </div>
+                <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
+                    <div class="text-center mb-10">
+                        <h1 class="font-bold text-3xl text-gray-900">Registrar docente</h1>
+                        <p>Ingresa tu información</p>
+                    </div>
+                    <div>
+                        <form th:action="@{/guardarDocente}" method="post" th:object="${docente}">
+                            <div hidden>
+                                <input type="number" id="codigo" th:field="*{id}">
+                            </div>
+                            <div class="flex -mx-3">
+                                <div class="w-1/2 px-3 mb-5">
+                                    <label for="nombre" class="text-xs font-semibold px-1">Nombre Completo</label>
+                                    <div class="flex">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                            <i class="mdi mdi-account-outline text-gray-400 text-lg"></i></div>
+                                        <input
+                                                type="text"
+                                                id="nombre"
+                                                class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                                                placeholder="Ingrese su Nombre"
+                                                th:field="*{nombre}"
+                                        >
+                                    </div>
+                                    <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block"
+                                          th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}"></span>
+                                </div>
+                                <div class="w-1/2 px-3 mb-5">
+                                    <label for="cedula" class="text-xs font-semibold px-1">Cedula</label>
+                                    <div class="flex">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                            <i class="mdi mdi-card-account-details-outline text-gray-400 text-lg"></i></div>
+                                        <input type="text"
+                                               id="cedula"
+                                               oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="10"
+
+                                               class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                                               placeholder="Ingrese su Cédula"
+                                               th:field="*{cedula}"
+                                        >
+                                    </div>
+                                    <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block"
+                                          th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}"></span>
+                                </div>
+                            </div>
+                            <div class="flex -mx-3">
+                                <div class="w-full px-3 mb-5">
+                                    <label for="email" class="text-xs font-semibold px-1">Email</label>
+                                    <div class="flex">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                            <i class="mdi mdi-email-outline text-gray-400 text-lg"></i></div>
+                                        <input type="email"
+                                               id="email"
+                                               class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                                               placeholder="Ingrese su Correo"
+                                               th:field="*{email}"
+                                        >
+                                    </div>
+                                    <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block"
+                                          th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
+                                </div>
+                            </div>
+                            <div class="flex -mx-3">
+                                <div class="w-full px-3 mb-12">
+                                    <label for="password" class="text-xs font-semibold px-1">Password</label>
+                                    <div class="flex">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                            <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i></div>
+                                        <input type="text"
+                                               id="password"
+                                               class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                                               placeholder="Ingrese una Contraseña"
+                                               th:field="*{password}"
+                                        >
+                                    </div>
+                                    <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block"
+                                          th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
+                                </div>
+                            </div>
+                            <div class="flex -mx-3">
+                                <div class="w-full px-3 mb-5">
+                                    <label for="telefono" class="text-xs font-semibold px-1">Telefono</label>
+                                    <div class="flex">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                            <i class="mdi mdi-phone-outline text-gray-400 text-lg"></i></div>
+                                        <input type="text"
+                                               id="telefono"
+                                               oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="10"
+                                               class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                                               placeholder="Ingrese su Teléfono"
+                                               th:field="*{telefono}"
+                                        >
+                                    </div>
+                                    <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block"
+                                          th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></span>
+                                </div>
+                            </div>
+                            <div class="flex -mx-3">
+                                <div class="w-1/2 px-3 mb-5">
+                                    <label for="direccion" class="text-xs font-semibold px-1">Direccion</label>
+                                    <div class="flex">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                            <i class="mdi mdi-map-marker-outline text-gray-400 text-lg"></i></div>
+                                        <input type="text"
+                                               id="direccion"
+                                               class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                                               placeholder="Ingrese su Direccion"
+                                               th:field="*{direccion}">
+                                    </div>
+                                    <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block"
+                                          th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></span>
+                                </div>
+
+                                <div class="w-1/2 px-3 mb-5">
+                                    <label for="titulo" class="text-xs font-semibold px-1">Titulo</label>
+                                    <div class="flex">
+                                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                                            <i class="mdi mdi-account-tie-outline text-gray-400 text-lg"></i></div>
+                                        <input type="text"
+                                               id="titulo"
+                                               class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                                               placeholder="Ingrese su titulo"
+                                               th:field="*{titulo}">
+                                    </div>
+                                    <span class="min-h-[1.25rem] text-xs text-red-600 mt-1 block"
+                                          th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
+                                </div>
+                            </div>
+
+                            <!-- Este botón ahora sí estará bien posicionado -->
+                            <div class="flex -mx-3">
+                                <div class="w-full px-3 mb-5">
+                                    <button type="submit"
+                                            class="block w-full max-w-xs mx-auto bg-indigo-500 hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold">
+                                        Registrar Docente
+                                    </button>
+                                </div>
+                            </div>
+                    </div>
+                    </form>
+                </div>
             </div>
-
-            <!-- Cédula -->
-            <div class="mb-5">
-                <label for="cedula" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Ingrese su número de cédula:
-                </label>
-                <input type="text" id="cedula"
-                       th:field="*{cedula}"
-                       oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="10"
-                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
-                       placeholder="Ej: 0102030405" />
-                <span class="error-text" th:if="${#fields.hasErrors('cedula')}" th:errors="*{cedula}"></span>
-            </div>
-
-            <!-- Teléfono -->
-            <div class="mb-5">
-                <label for="telefono" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Ingrese su número de teléfono:
-                </label>
-                <input type="text" id="telefono"
-                       th:field="*{telefono}"
-                       oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength="10"
-                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
-                       placeholder="Ej: 0991234567" />
-                <span class="error-text" th:if="${#fields.hasErrors('telefono')}" th:errors="*{telefono}"></span>
-            </div>
-
-            <!-- Email -->
-            <div class="mb-5">
-                <label for="email" class="block mb-1 text-sm font-medium text-gray-900 dark:text-white">
-                    Ingrese su correo electrónico:
-                </label>
-                <input type="email" id="email"
-                       th:field="*{email}"
-                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
-                       placeholder="ejemplo@correo.com" />
-                <span class="error-text" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></span>
-            </div>
-            <!-- Contraseña -->
-            <!--sepues toca cambiar a passowr-->
-            <div class="mb-5">
-                <label for="password" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Ingrese su contraseña:
-                </label>
-                <input type="text" id="password"
-                       th:field="*{password}"
-                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
-                       placeholder="Ingrese una contraseña segura" />
-                <span class="error-text" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></span>
-            </div>
-
-            <!-- Dirección -->
-            <div class="mb-5">
-                <label for="direccion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Ingrese su dirección:
-                </label>
-                <input type="text" id="direccion" th:field="*{direccion}"
-                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
-                       placeholder="Ej: Av. Siempre Viva 123" />
-                <span class="error-text" th:if="${#fields.hasErrors('direccion')}" th:errors="*{direccion}"></span>
-            </div>
-
-            <!-- Título -->
-            <div class="mb-5">
-                <label for="titulo" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Ingrese su título:
-                </label>
-                <input type="text" id="titulo"
-                       th:field="*{titulo}"
-                       class="campo-hover shadow-xs bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2"
-                       placeholder="Ej: Licenciado en Matemáticas" />
-                <span class="error-text" th:if="${#fields.hasErrors('titulo')}" th:errors="*{titulo}"></span>
-            </div>
-            <!-- Botón -->
-            <button type="submit"
-                    class="campo-hover w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 font-semibold rounded-lg text-sm px-5 py-2.5 text-center">
-                Registrar Docente
-            </button>
-        </form>
-    </div>
-
-    <!-- Contenedor de la imagen -->
-    <div class="w-1/2 hidden md:flex items-center justify-center bg-blue-100">
-        <img src="/imagenes/img016-reDoce.png" alt="Imagen decorativa" class="object-contain max-h-[100%] max-w-[80%]">
+        </div>
     </div>
 
 </div>
@@ -167,12 +213,12 @@
             <!-- Logo y contacto -->
             <div class="mb-6 md:mb-0">
                 <a href="/" class="flex items-center">
-                    <img src="/imagenes/img001-logo.png" class="h-8 me-3" alt="TaskFlow Logo" />
+                    <img src="/imagenes/img001-logo.png" class="h-8 me-3" alt="TaskFlow Logo"/>
                     <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
                 </a>
                 <p class="mt-4 text-gray-400 text-sm">
-                    Av. Innovación 123, Ciudad Creativa, CA 94000<br />
-                    Teléfono: +1 (800) 123-4567<br />
+                    Av. Innovación 123, Ciudad Creativa, CA 94000<br/>
+                    Teléfono: +1 (800) 123-4567<br/>
                     Email: soporte@taskflow.com
                 </p>
             </div>
@@ -191,10 +237,13 @@
                 <div>
                     <h2 class="mb-6 text-sm font-semibold text-white uppercase">Síguenos</h2>
                     <ul class="text-gray-400 font-medium space-y-2">
-                        <li><a href="https://www.facebook.com" target="_blank" class="hover:underline">Facebook</a></li>
+                        <li><a href="https://www.facebook.com" target="_blank" class="hover:underline">Facebook</a>
+                        </li>
                         <li><a href="https://twitter.com" target="_blank" class="hover:underline">Twitter</a></li>
-                        <li><a href="https://www.instagram.com" target="_blank" class="hover:underline">Instagram</a></li>
-                        <li><a href="https://www.linkedin.com" target="_blank" class="hover:underline">LinkedIn</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank"
+                               class="hover:underline">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com" target="_blank" class="hover:underline">LinkedIn</a>
+                        </li>
                     </ul>
                 </div>
 
@@ -209,7 +258,7 @@
             </div>
         </div>
 
-        <hr class="my-6 border-gray-600 sm:mx-auto lg:my-8" />
+        <hr class="my-6 border-gray-600 sm:mx-auto lg:my-8"/>
 
         <!-- Pie -->
         <div class="sm:flex sm:items-center sm:justify-between">
@@ -219,7 +268,6 @@
         </div>
     </div>
 </footer>
-
 
 
 </body>

@@ -32,7 +32,7 @@ private UsuarioService usuarioService;
         model.addAttribute("buscarEstudiante",buscarEstudiante);
         return "pages/listaEstudiantes";
     }
-    //Insertar Estudiantes
+    //Insertar Estudiantes admin
     @GetMapping("/formulario-estudiante")
     public String formularioEstudiante(Model model){
         model.addAttribute("estudiante",new Estudiante());
@@ -69,6 +69,10 @@ private UsuarioService usuarioService;
         model.addAttribute("estudiante",estudiante);
         return "pages/registroEstudiante";
     }
+
+
+
+
     //eliminar estudiante
     @GetMapping("/eliminar-estudiante/{id}")
     public String eliminarEstudiante(@PathVariable long id){
