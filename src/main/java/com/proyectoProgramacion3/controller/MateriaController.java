@@ -61,7 +61,7 @@ public class MateriaController {
             model.addAttribute("docentes",docentes);
             return "pages/Materia/registroMateria";
         } else {
-            return "redirect:/docentes";
+            return "redirect:/materias";
         }
     }
 
@@ -69,6 +69,6 @@ public class MateriaController {
     @GetMapping("/eliminarMateria/{id}")
     public String eliminarMateria(@PathVariable Long id) {
         materiaService.eliminarMateria(id);
-        return "redirect:/docentes";
+        return "redirect:/materias";
     }
 }
