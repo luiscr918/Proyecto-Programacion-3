@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+
+    <style>
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css')
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}"/>
+    <link rel="stylesheet" th:href="@{/css/stylesA.css}">
+
+    <title>Iniciar sesión</title>
+</head>
+<body>
+
+
+<nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 ">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+        <a th:href="@{/}" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="/imagenes/img001-logo.png" class="h-8" alt="Flowbite Logo">
+            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
+        </a>
+        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+            <a th:href="@{/}">
+                <button type="button"
+                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
+                    Regresar
+                </button>
+            </a>
+            <button data-collapse-toggle="navbar-sticky" type="button"
+                    class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200"
+                    aria-controls="navbar-sticky" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
+                     viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                          d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+<div class="seccionLogin">
+
+    <div class="bg-gradient-to-br  from-blue-950 to-blue-700 min-h-screen flex items-center justify-center px-6 py-6">
+        <div class="bg-white rounded-3xl shadow-2xl w-full max-w-md overflow-hidden">
+
+            <!-- Mitad superior - Imagen -->
+            <!-- Mitad superior - Imagen rectangular adaptada -->
+            <div class="h-70 bg-purple-100 flex items-center justify-center w-full">
+                <img src="https://images.nrc.nl/BNZvSL9qsB_MNStwT4z1emFNVyI=/1280x/filters:no_upscale()/s3/static.nrc.nl/images/gn4/stripped/data56516200-68144b.jpg"
+                     alt="Logo"
+                     class="h-full w-full object-cover rounded-t-3xl"/>
+            </div>
+
+            <!-- Mitad inferior - Formulario -->
+            <div class="p-8">
+                <div class="text-center mb-6">
+                    <h1 class="text-3xl font-bold text-blue-700">Iniciar Sesión</h1>
+                    <p class="text-gray-600 pt-4">Ingrese su correo electrónico y contraseña</p>
+                </div>
+                <form th:action="@{/login}" method="post" class="space-y-6">
+                    <div>
+                        <label for="email" class="block text-sm font-semibold text-gray-700 mb-1">Email</label>
+                        <div class="relative card-hover ">
+                            <i class="mdi mdi-email-outline absolute left-3 top-2.5 text-gray-400 text-lg"></i>
+                            <input type="email" id="email" name="username"
+                                   class=" w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-purple-600"
+                                   placeholder="Ingrese su correo electrónico">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label for="password" class="block text-sm font-semibold text-gray-700 mb-1">Contraseña</label>
+                        <div class="relative card-hover ">
+                            <i class="mdi mdi-lock-outline absolute left-3 top-2.5 text-gray-400 text-lg"></i>
+                            <input type="password" id="password" name="password"
+                                   class="w-full pl-10 pr-3 py-2 rounded-lg border border-gray-300 focus:outline-none focus:border-purple-600"
+                                   placeholder="Ingrese su contraseña">
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit"
+                                class="w-full bg-blue-700 hover:bg-blue-900 text-white font-bold py-2 px-4 rounded-lg">
+                            Iniciar Sesión
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<!--Footer-->
+
+<footer class="bg-gray-800">
+    <div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+        <div class="md:flex md:justify-between">
+            <!-- Logo y contacto -->
+            <div class="mb-6 md:mb-0">
+                <a href="/" class="flex items-center">
+                    <img src="/imagenes/img001-logo.png" class="h-8 me-3" alt="TaskFlow Logo"/>
+                    <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
+                </a>
+                <p class="mt-4 text-gray-400 text-sm">
+                    Av. Innovación 123, Ciudad Creativa, CA 94000<br/>
+                    Teléfono: +1 (800) 123-4567<br/>
+                    Email: soporte@taskflow.com
+                </p>
+            </div>
+
+            <!-- Navegación -->
+            <div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+                <!-- Menú -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold text-white uppercase">Menú</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="/" class="hover:text-blue-400 transition-colors">Inicio</a></li>
+                    </ul>
+                </div>
+
+                <!-- Redes Sociales -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold text-white uppercase">Síguenos</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="https://www.facebook.com" target="_blank" class="hover:underline">Facebook</a>
+                        </li>
+                        <li><a href="https://twitter.com" target="_blank" class="hover:underline">Twitter</a></li>
+                        <li><a href="https://www.instagram.com" target="_blank"
+                               class="hover:underline">Instagram</a></li>
+                        <li><a href="https://www.linkedin.com" target="_blank" class="hover:underline">LinkedIn</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- Legal -->
+                <div>
+                    <h2 class="mb-6 text-sm font-semibold text-white uppercase">Legal</h2>
+                    <ul class="text-gray-400 font-medium space-y-2">
+                        <li><a href="#" class="hover:underline">Política de privacidad</a></li>
+                        <li><a href="#" class="hover:underline">Términos de servicio</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <hr class="my-6 border-gray-600 sm:mx-auto lg:my-8"/>
+
+        <!-- Pie -->
+        <div class="sm:flex sm:items-center sm:justify-between">
+      <span class="text-sm text-gray-400 sm:text-center">
+        © 2025 <a href="/" class="hover:underline">TaskFlow™</a>. Todos los derechos reservados.
+      </span>
+        </div>
+    </div>
+</footer>
+
+
+</body>
+</html>

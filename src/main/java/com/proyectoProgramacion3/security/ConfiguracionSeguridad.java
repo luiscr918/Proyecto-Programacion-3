@@ -17,13 +17,15 @@ public class ConfiguracionSeguridad {
         http
                 .authorizeHttpRequests(auth ->auth
                         .requestMatchers("/index","/","/login", "/formularioDocentePropio","/guardarDocentePropio","/guardarUsuario",
+                                "/admin","/guardarDocente","/registroDocente","/docentes","editarDocente/{id}","/eliminarDocente/{id}",
+                                "/inicioDocente","/materiasPorDocente/{id}",
                                 "/css/**", "/js/**" , "/imagenes/**").permitAll()
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
-                        .loginPage("/mostrarLogin")
+                        .loginPage("/login")
                         .permitAll()
-                        .defaultSuccessUrl("/usuarios", true)
+                        .defaultSuccessUrl("/index", true)
                 )
                 .logout(logout ->logout
                         .logoutUrl("/logout")

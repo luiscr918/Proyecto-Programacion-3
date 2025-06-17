@@ -13,9 +13,9 @@
     <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}"/>
     <link rel="stylesheet" th:href="@{/css/stylesA.css}">
 
-    <title>Registro de docente</title>
+    <title>Registro de docente - administrador</title>
 </head>
-<body class="color10">
+<body class="bg-gradient-to-br  from-blue-950 to-blue-700">
 <!--Seccion1: Barra de naveagacion-->
 
 <nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 ">
@@ -49,20 +49,21 @@
 
 <!--Form para Registro de Estudiante-->
 
-<div class="seccionReDocente ">
+<div class="seccionDocente">
 
-    <div class="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5 ">
+    <div class="min-w-screen min-h-screen flex items-center justify-center px-5 ">
 
-        <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
-            <div class="md:flex w-full">
-                <div class="hidden md:block w-1/2 bg-indigo-500 py-10 px-10">
-                    <img src="https://images.pexels.com/photos/3184644/pexels-photo-3184644.jpeg"
-                         alt="Imagen form estudiante" class="w-full h-auto rounded-lg"/>
+        <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1200px; height: 1000px;">
+            <div class="md:flex w-full h-full"> <!-- ← aseguramos altura para la imagen -->
+                <div class="hidden md:block w-1/2 h-full bg-indigo-500">
+                    <img src="https://images.pexels.com/photos/4778667/pexels-photo-4778667.jpeg"
+                         alt="Imagen form estudiante"
+                         class="w-full h-full object-cover"/>
                 </div>
                 <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
                     <div class="text-center mb-10">
                         <h1 class="font-bold text-3xl text-gray-900">Registrar Docente por Administrador</h1>
-                        <p>Ingrese la informacioón del docente</p>
+                        <p class="pt-5">Ingrese la información del docente</p>
                     </div>
                     <div>
                         <form th:action="@{/guardarDocente}" method="post" th:object="${docente}">
@@ -197,8 +198,9 @@
                                     </button>
                                 </div>
                             </div>
+                        </form>
                     </div>
-                    </form>
+
                 </div>
             </div>
         </div>

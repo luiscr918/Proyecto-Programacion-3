@@ -15,7 +15,7 @@
 
     <title>Registro de docente</title>
 </head>
-<body class="color10">
+<body class="bg-gradient-to-br  from-blue-950 to-blue-700">
 <!--Seccion1: Barra de naveagacion-->
 
 <nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 ">
@@ -53,27 +53,28 @@
     <span class="block sm:inline">El docente ha sido registrado correctamente.</span>
 </div>
 
-<div class="seccionReDocente ">
+<div class="seccionDocente">
 
-    <div class="min-w-screen min-h-screen bg-gray-900 flex items-center justify-center px-5 py-5 ">
+    <div class="min-w-screen min-h-screen flex items-center justify-center px-5 ">
 
-        <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1000px">
-            <div class="md:flex w-full">
-                <div class="hidden md:block w-1/2 bg-indigo-500 py-10 px-10">
+        <div class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden" style="max-width:1200px; height: 900px;">
+            <div class="md:flex w-full h-full"> <!-- ← aseguramos altura para la imagen -->
+                <div class="hidden md:block w-1/2 h-full bg-indigo-500">
                     <img src="https://images.pexels.com/photos/3184644/pexels-photo-3184644.jpeg"
-                         alt="Imagen form estudiante" class="w-full h-auto rounded-lg"/>
+                         alt="Imagen form estudiante"
+                         class="w-full h-full object-cover"/>
                 </div>
                 <div class="w-full md:w-1/2 py-10 px-5 md:px-10">
                     <div class="text-center mb-10">
                         <h1 class="font-bold text-3xl text-gray-900">Registrar docente</h1>
-                        <p>Ingresa tu información</p>
+                        <p class="pt-5">Ingresa tu información</p>
                     </div>
                     <div>
                         <form th:action="@{/guardarDocentePropio}" method="post" th:object="${docente}">
                             <div hidden>
                                 <input type="number" id="codigo" th:field="*{id}">
                             </div>
-                            <div class="flex -mx-3">
+                            <div class="flex -mx-3 items-center justify-center">
                                 <div class="w-1/2 px-3 mb-5">
                                     <label for="nombre" class="text-xs font-semibold px-1">Nombre Completo</label>
                                     <div class="flex">
@@ -201,8 +202,8 @@
                                     </button>
                                 </div>
                             </div>
+                        </form>
                     </div>
-                    </form>
                 </div>
             </div>
         </div>
