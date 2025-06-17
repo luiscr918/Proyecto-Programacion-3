@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}" />
+    <title>Lista Materias</title>
+</head>
+<body class="bg-white text-gray-900">
+<!--Seccion1: Barra de naveagacion-->
+<div class="m-14">
+    <nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 ">
+        <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a th:href="@{/}" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="/imagenes/img001-logo.png" class="h-8" alt="Flowbite Logo">
+                <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
+            </a>
+            <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+                <a th:href="@{/admin}">
+                    <button type="button"
+                            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
+                        Regresar
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+<div class="relative overflow-x-auto p-4">
+    <table class="w-full text-sm text-left text-gray-700 border border-gray-300">
+        <caption><h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-center  md:text-5xl lg:text-6xl text-black">Lista de Materias</h1></caption>
+        <thead class="text-xs uppercase bg-gray-100">
+        <tr>
+            <th scope="col" class="px-6 py-3 border-b">Id</th>
+            <th scope="col" class="px-6 py-3 border-b">Nombre</th>
+            <th scope="col" class="px-6 py-3 border-b">Profesor Asignado</th>
+            <th scope="col" class="px-6 py-3 border-b">Opciones</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="materia : ${materias}" class="bg-white border-b hover:bg-gray-50">
+            <th th:text="${materia.id}" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"></th>
+            <td th:text="${materia.nombre}" class="px-6 py-4"></td>
+            <td th:text="${materia.docente.nombre}" class="px-6 py-4"></td>
+            <td class="px-6 py-4">
+                <!-- Puedes reemplazar esto con tus botones o acciones -->
+                <a th:href="@{/editarMateria/}+${materia.id}" class="text-blue-600 hover:underline">Editar</a>
+                |
+                <a th:href="@{/eliminarMateria/}+${materia.id}" class="text-red-600 hover:underline">Eliminar</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <!-- Botón para añadir nueva materia -->
+    <div class="mt-4">
+        <a th:href="@{/formularioMateria}"
+           class="inline-block text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+            Añadir Nueva Materia
+        </a>
+    </div>
+</div>
+</body>
+</html>
