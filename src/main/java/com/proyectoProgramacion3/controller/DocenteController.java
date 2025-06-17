@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,8 +20,10 @@ public class DocenteController {
 
     @Autowired
     private DocenteServices docenteServicio;
-@Autowired
-private UsuarioService usuarioService;
+    @Autowired
+    private UsuarioService usuarioService;
+
+
 
     // Listar docentes
     @GetMapping("/docentes")
@@ -63,6 +66,7 @@ private UsuarioService usuarioService;
         return "redirect:/docentes";
     }
 
+
     //actualizar
     @GetMapping("editarDocente/{id}")
     public String actualizarDocente(@PathVariable Long id, Model model){
@@ -95,5 +99,50 @@ private UsuarioService usuarioService;
         model.addAttribute("materiasDocente", materiasDocente);
         return "pages/DocentePag/listaMateriasDocente";
     }
+
+
+    //Propio de docente
+
+    //Guardar Docente datos
+    @PostMapping("/guardarDocentePropio")
+    public String guardarDocentePropio(@Valid @ModelAttribute("docente") Docente docente,
+                                       BindingResult result,
+                                       Model model,
+                                       RedirectAttributes redirectAttributes) {
+
+        Optional<Usuario> existentePorCedula = usuarioService.obtenerPorCedulaExacta(docente.getCedula());
+        if (existentePorCedula.isPresent() && !existentePorCedula.get().getId().equals(docente.getId())) {
+            result.rejectValue("cedula", "error.cedula", "Ya existe un docente con esta cédula");
+        }
+
+        Optional<Usuario> existentePorCorreo = usuarioService.obtenerPorEmailExacto(docente.getEmail());
+        if (existentePorCorreo.isPresent() && !existentePorCorreo.get().getId().equals(docente.getId())) {
+            result.rejectValue("email", "error.email", "Ya existe un docente con este email");
+        }
+
+        if (result.hasErrors()) {
+            return "pages/docenteRegistroPropio";
+        }
+
+        docente.setRol("DOCENTE");
+        docenteServicio.guardarDocente(docente);
+
+        redirectAttributes.addFlashAttribute("registroExitoso", true);
+        return "redirect:/index";
+    }
+
+
+    //RegistroDocentePropcio
+    @GetMapping("/formularioDocentePropio")
+    public String mostrarFormularioDocentePropio(Model model) {
+        model.addAttribute("docente", new Docente());
+        return "pages/docenteRegistroPropio";
+    }
+
+
+
+
+
+
 
 }
