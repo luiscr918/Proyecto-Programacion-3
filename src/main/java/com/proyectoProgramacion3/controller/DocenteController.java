@@ -50,12 +50,12 @@ public class DocenteController {
                                  Model model) {
         Optional<Usuario> existentePorCedula = usuarioService.obtenerPorCedulaExacta(docente.getCedula());
         if (existentePorCedula.isPresent() && !existentePorCedula.get().getId().equals(docente.getId())) {
-            result.rejectValue("cedula", "error.cedula", "Ya existe un docente con esta cédula");
+            result.rejectValue("cedula", "error.cedula", "Ya existe un usuario con esta cédula");
         }
 
         Optional<Usuario> existentePorCorreo = usuarioService.obtenerPorEmailExacto(docente.getEmail());
         if (existentePorCorreo.isPresent() && !existentePorCorreo.get().getId().equals(docente.getId())) {
-            result.rejectValue("email", "error.email", "Ya existe un docente con este email");
+            result.rejectValue("email", "error.email", "Ya existe un usuario con este email");
         }
         if (result.hasErrors()) {
             return "pages/registroDocente";
@@ -112,12 +112,12 @@ public class DocenteController {
 
         Optional<Usuario> existentePorCedula = usuarioService.obtenerPorCedulaExacta(docente.getCedula());
         if (existentePorCedula.isPresent() && !existentePorCedula.get().getId().equals(docente.getId())) {
-            result.rejectValue("cedula", "error.cedula", "Ya existe un docente con esta cédula");
+            result.rejectValue("cedula", "error.cedula", "Ya existe un usuario con esta cédula");
         }
 
         Optional<Usuario> existentePorCorreo = usuarioService.obtenerPorEmailExacto(docente.getEmail());
         if (existentePorCorreo.isPresent() && !existentePorCorreo.get().getId().equals(docente.getId())) {
-            result.rejectValue("email", "error.email", "Ya existe un docente con este email");
+            result.rejectValue("email", "error.email", "Ya existe un usuario con este email");
         }
 
         if (result.hasErrors()) {

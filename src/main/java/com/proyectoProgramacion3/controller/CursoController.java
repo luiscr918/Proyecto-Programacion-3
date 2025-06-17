@@ -2,6 +2,7 @@ package com.proyectoProgramacion3.controller;
 
 import com.proyectoProgramacion3.entity.*;
 import com.proyectoProgramacion3.service.CursoService;
+import com.proyectoProgramacion3.service.DocenteServices;
 import com.proyectoProgramacion3.service.EstudianteServicio;
 import com.proyectoProgramacion3.service.MateriaService;
 import jakarta.validation.Valid;
@@ -22,6 +23,8 @@ public class CursoController {
     private EstudianteServicio estudianteServicio;
     @Autowired
     private MateriaService materiaService;
+    @Autowired
+    private DocenteServices docenteServices;
 
 
     // Mostrar formulario de registro
@@ -39,7 +42,7 @@ public class CursoController {
     @PostMapping("/guardarCurso")
     public String guardarCurso(Curso curso,
                                @RequestParam(value = "idsEstudiantes", required = false) List<Long> idsEstudiantes,
-                               @RequestParam(value = "idsMaterias", required = false) List<Long> idsMaterias) {
+                               @RequestParam(value = "idsMaterias", required = false) List<Long> idsMaterias,Model model) {
         Curso cursoGuardado = cursoService.guardarCurso(curso);
         // Asocia estudiantes
         if (idsEstudiantes != null) {
@@ -60,7 +63,7 @@ public class CursoController {
                 materiaService.guardarMateria(materia);
             }
         }
-        return "index";
+        return "redirect:/admin";
     }
 
     //actualizar

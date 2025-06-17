@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css" />
     <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}" />
     <title>Lista Materias</title>
 </head>
 <body class="bg-white text-gray-900">
-<!--Seccion1: Barra de naveagacion-->
+<!-- Sección 1: Barra de navegación -->
 <div class="m-14">
     <nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 ">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
@@ -27,9 +28,11 @@
         </div>
     </nav>
 </div>
-<div class="relative overflow-x-auto p-4">
+
+<div class="relative overflow-x-auto p-4 mt-16">
+    <h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-center text-black">Lista de Materias</h1>
     <table class="w-full text-sm text-left text-gray-700 border border-gray-300">
-        <caption><h1 class="mb-4 text-4xl font-extrabold leading-none tracking-tight text-center  md:text-5xl lg:text-6xl text-black">Lista de Materias</h1></caption>
+        <caption></caption>
         <thead class="text-xs uppercase bg-gray-100">
         <tr>
             <th scope="col" class="px-6 py-3 border-b">Id</th>
@@ -43,17 +46,19 @@
             <th th:text="${materia.id}" scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap"></th>
             <td th:text="${materia.nombre}" class="px-6 py-4"></td>
             <td th:text="${materia.docente.nombre}" class="px-6 py-4"></td>
-            <td class="px-6 py-4">
-                <!-- Puedes reemplazar esto con tus botones o acciones -->
-                <a th:href="@{/editarMateria/}+${materia.id}" class="text-blue-600 hover:underline">Editar</a>
-                |
-                <a th:href="@{/eliminarMateria/}+${materia.id}" class="text-red-600 hover:underline">Eliminar</a>
+            <td class="px-6 py-4 flex space-x-2">
+                <a th:href="@{/editarMateria/}+${materia.id}" class="text-blue-600 hover:text-blue-800">
+                    <i class="mdi mdi-pencil"></i>
+                </a>
+                <a th:href="@{/eliminarMateria/}+${materia.id}" class="text-red-600 hover:text-red-800">
+                    <i class="mdi mdi-delete"></i>
+                </a>
             </td>
         </tr>
         </tbody>
     </table>
     <!-- Botón para añadir nueva materia -->
-    <div class="mt-4">
+    <div class="mt-4 text-center">
         <a th:href="@{/formularioMateria}"
            class="inline-block text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
             Añadir Nueva Materia

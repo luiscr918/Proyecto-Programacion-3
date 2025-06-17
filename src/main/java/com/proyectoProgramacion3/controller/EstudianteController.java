@@ -45,12 +45,12 @@ public class EstudianteController {
                                     BindingResult bindingResult, Model model) {
         Optional<Usuario> existentePorCedula = usuarioService.obtenerPorCedulaExacta(estudiante.getCedula());
         if (existentePorCedula.isPresent() && !existentePorCedula.get().getId().equals(estudiante.getId())) {
-            bindingResult.rejectValue("cedula", "error.cedula", "Ya existe un docente con esta cédula");
+            bindingResult.rejectValue("cedula", "error.cedula", "Ya existe un usuario con esta cédula");
         }
 
         Optional<Usuario> existentePorCorreo = usuarioService.obtenerPorEmailExacto(estudiante.getEmail());
         if (existentePorCorreo.isPresent() && !existentePorCorreo.get().getId().equals(estudiante.getId())) {
-            bindingResult.rejectValue("email", "error.email", "Ya existe un docente con este email");
+            bindingResult.rejectValue("email", "error.email", "Ya existe un usuario con este email");
         }
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
@@ -78,12 +78,12 @@ public class EstudianteController {
                                            Model model) {
         Optional<Usuario> existentePorCedula = usuarioService.obtenerPorCedulaExacta(estudiante.getCedula());
         if (existentePorCedula.isPresent() && !existentePorCedula.get().getId().equals(estudiante.getId())) {
-            bindingResult.rejectValue("cedula", "error.cedula", "Ya existe un docente con esta cédula");
+            bindingResult.rejectValue("cedula", "error.cedula", "Ya existe un usuario con esta cédula");
         }
 
         Optional<Usuario> existentePorCorreo = usuarioService.obtenerPorEmailExacto(estudiante.getEmail());
         if (existentePorCorreo.isPresent() && !existentePorCorreo.get().getId().equals(estudiante.getId())) {
-            bindingResult.rejectValue("email", "error.email", "Ya existe un docente con este email");
+            bindingResult.rejectValue("email", "error.email", "Ya existe un usuario con este email");
         }
         if (bindingResult.hasErrors()) {
             model.addAttribute("errors", bindingResult.getAllErrors());
