@@ -18,7 +18,7 @@ public class ConfiguracionSeguridad {
                 .authorizeHttpRequests(auth ->auth
                         .requestMatchers("/","/login","/guardarDocentePropio","/formularioDocentePropio",
                                 "/css/**", "/js/**" , "/imagenes/**").permitAll()
-                        .requestMatchers("docente").hasRole("DOCENTE")
+                        .requestMatchers("/docente").hasRole("DOCENTE")
                         .requestMatchers("docente").hasRole("ESTUDIANTE")
                         .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated()
