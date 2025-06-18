@@ -6,6 +6,7 @@ import com.proyectoProgramacion3.entity.Estudiante;
 import com.proyectoProgramacion3.repository.EstudianteRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +16,8 @@ import java.util.Optional;
 public class EstudianteServicio {
     @Autowired
     private EstudianteRepository estudianteRepository; //instancio mi repositorio
+    @Autowired
+    private PasswordEncoder passwordEncoder;
 
     //Listar los estudiantes
     public List<Estudiante> mostrarEstudiantes(){
@@ -32,8 +35,12 @@ public class EstudianteServicio {
     public Optional<Estudiante> buscarEstudianteId(Long id){
         return estudianteRepository.findById(id);
     }
-    //Guardar Libro
+    //Guardar estudiante
     public Estudiante guardarEstudiante(Estudiante estudiante){
+        //encripto
+        String passwordEncriptado=passwordEncoder.encode(estudiante.getPassword());
+        //añado el encriptado al objeto
+        estudiante.setPassword(passwordEncriptado);
         return estudianteRepository.save(estudiante);
     }
     //Eliminar Libro
