@@ -12,11 +12,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("materia")
 public class MateriaController {
     @Autowired
     private MateriaService materiaService;
@@ -48,7 +50,7 @@ public class MateriaController {
         }
 
         materiaService.guardarMateria(materia);
-        return "redirect:/materias";
+        return "redirect:/materia/materias";
     }
 
     //actualizar
@@ -61,7 +63,7 @@ public class MateriaController {
             model.addAttribute("docentes",docentes);
             return "pages/Materia/registroMateria";
         } else {
-            return "redirect:/materias";
+            return "redirect:/materia/materias";
         }
     }
 
@@ -69,6 +71,6 @@ public class MateriaController {
     @GetMapping("/eliminarMateria/{id}")
     public String eliminarMateria(@PathVariable Long id) {
         materiaService.eliminarMateria(id);
-        return "redirect:/materias";
+        return "redirect:/materia/materias";
     }
 }

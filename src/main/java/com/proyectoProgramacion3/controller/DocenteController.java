@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/docente")
 public class DocenteController {
 
     @Autowired
@@ -63,7 +64,7 @@ public class DocenteController {
         docente.setRol("DOCENTE");
         docenteServicio.guardarDocente(docente);
         model.addAttribute("docente", docente);
-        return "redirect:/docentes";
+        return "redirect:/docente/docentes";
     }
 
 
@@ -75,7 +76,7 @@ public class DocenteController {
             model.addAttribute("docente", optionalDocente.get());
             return "pages/registroDocente";
         } else {
-            return "redirect:/docentes";
+            return "redirect:/docente/docentes";
         }
     }
 
@@ -83,7 +84,7 @@ public class DocenteController {
     @GetMapping("/eliminarDocente/{id}")
     public String eliminarDocente(@PathVariable Long id) {
         docenteServicio.eliminarDocente(id);
-        return "redirect:/docentes";
+        return "redirect:/docente/docentes";
     }
     // mostrar tabla que simula inicio de sesion hasta ver como es spring security
     @GetMapping("/inicioDocente")
@@ -99,50 +100,4 @@ public class DocenteController {
         model.addAttribute("materiasDocente", materiasDocente);
         return "pages/DocentePag/listaMateriasDocente";
     }
-
-
-    //Propio de docente
-
-    //Guardar Docente datos
-    @PostMapping("/guardarDocentePropio")
-    public String guardarDocentePropio(@Valid @ModelAttribute("docente") Docente docente,
-                                       BindingResult result,
-                                       Model model,
-                                       RedirectAttributes redirectAttributes) {
-
-        Optional<Usuario> existentePorCedula = usuarioService.obtenerPorCedulaExacta(docente.getCedula());
-        if (existentePorCedula.isPresent() && !existentePorCedula.get().getId().equals(docente.getId())) {
-            result.rejectValue("cedula", "error.cedula", "Ya existe un usuario con esta cédula");
-        }
-
-        Optional<Usuario> existentePorCorreo = usuarioService.obtenerPorEmailExacto(docente.getEmail());
-        if (existentePorCorreo.isPresent() && !existentePorCorreo.get().getId().equals(docente.getId())) {
-            result.rejectValue("email", "error.email", "Ya existe un usuario con este email");
-        }
-
-        if (result.hasErrors()) {
-            return "pages/docenteRegistroPropio";
-        }
-
-        docente.setRol("DOCENTE");
-        docenteServicio.guardarDocente(docente);
-
-        redirectAttributes.addFlashAttribute("registroExitoso", true);
-        return "redirect:/index";
-    }
-
-
-    //RegistroDocentePropcio
-    @GetMapping("/formularioDocentePropio")
-    public String mostrarFormularioDocentePropio(Model model) {
-        model.addAttribute("docente", new Docente());
-        return "pages/docenteRegistroPropio";
-    }
-
-
-
-
-
-
-
 }

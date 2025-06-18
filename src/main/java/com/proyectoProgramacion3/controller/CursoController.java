@@ -22,6 +22,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/curso")
 public class CursoController {
     @Autowired
     private CursoService cursoService;
@@ -71,7 +72,7 @@ public class CursoController {
                 materiaService.guardarMateria(materia);
             }
         }
-        return "redirect:/admin";
+        return "redirect:/admin/home";
     }
 
     //actualizar

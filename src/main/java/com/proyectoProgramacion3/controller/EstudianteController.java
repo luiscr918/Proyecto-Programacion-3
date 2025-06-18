@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/estudiante")
 public class EstudianteController {
     //Instancio mi servicio
     @Autowired
@@ -62,44 +63,8 @@ public class EstudianteController {
         }
         estudiante.setRol("ESTUDIANTE");
         estudianteServicio.guardarEstudiante(estudiante);
-        return "redirect:/estudiantes";
+        return "redirect:/estudiante/estudiantes";
     }
-    //Insertar Estudiantes usuario
-    @GetMapping("/formulario-estudiante-usuario")
-    public String formularioEstudianteUsuario(Model model){
-        model.addAttribute("estudiante",new Estudiante());
-        return "pages/EstudiantePag/registroEstudiantesUsuario";
-    }
-    //guardar estudiantes como usuario
-    @PostMapping("/guardar-estudiante-usuario")
-    public String guardarEstudianteUsuario(@Valid @ModelAttribute Estudiante estudiante,
-                                           BindingResult bindingResult,
-                                           RedirectAttributes redirectAttributes,
-                                           Model model) {
-        Optional<Usuario> existentePorCedula = usuarioService.obtenerPorCedulaExacta(estudiante.getCedula());
-        if (existentePorCedula.isPresent() && !existentePorCedula.get().getId().equals(estudiante.getId())) {
-            bindingResult.rejectValue("cedula", "error.cedula", "Ya existe un usuario con esta cédula");
-        }
-
-        Optional<Usuario> existentePorCorreo = usuarioService.obtenerPorEmailExacto(estudiante.getEmail());
-        if (existentePorCorreo.isPresent() && !existentePorCorreo.get().getId().equals(estudiante.getId())) {
-            bindingResult.rejectValue("email", "error.email", "Ya existe un usuario con este email");
-        }
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("errors", bindingResult.getAllErrors());
-            return "pages/registroEstudiante";
-        }
-        // Validar si el curso está vacío o tiene ID nulo
-        if (estudiante.getCurso() != null && estudiante.getCurso().getId() == null) {
-            estudiante.setCurso(null);
-        }
-        estudiante.setRol("ESTUDIANTE");
-        estudianteServicio.guardarEstudiante(estudiante);
-        redirectAttributes.addFlashAttribute("mensajeExito", true);
-        return "redirect:/index"; // Redirigir para que no se vuelva a enviar el formulario al recargar
-    }
-
-
 
     //Actualizar Estudiante
     @GetMapping("/editar-estudiante/{id}")
@@ -116,7 +81,7 @@ public class EstudianteController {
     @GetMapping("/eliminar-estudiante/{id}")
     public String eliminarEstudiante(@PathVariable long id){
         estudianteServicio.eliminarEstudiante(id);
-        return "redirect:/estudiantes";
+        return "redirect:/estudiante/estudiantes";
     }
     //simulador de inicio sesion estudiante
     @GetMapping("/inicioEstudiante")

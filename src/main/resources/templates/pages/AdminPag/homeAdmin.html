@@ -128,7 +128,7 @@
               Materias
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <a th:href="@{/materiasPorCurso/}+${curso.id}"
+              <a th:href="@{/curso/materiasPorCurso/}+${curso.id}"
                  class="w-full sm:w-auto text-white bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                 Lista Materias
               </a>
@@ -141,7 +141,7 @@
               Estudiantes
             </dt>
             <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <a th:href="@{/estudiantePorCurso/}+${curso.id}"
+              <a th:href="@{/curso/estudiantePorCurso/}+${curso.id}"
                  class="w-full sm:w-auto text-white bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                 Lista Estudiantes
               </a>
@@ -150,11 +150,11 @@
 
           <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-1 sm:gap-1 sm:px-6">
             <div class="flex justify-center space-x-2">
-              <a th:href="@{/editarCurso/}+${curso.id}"
+              <a th:href="@{/curso/editarCurso/}+${curso.id}"
                  class="text-white bg-gradient-to-r from-teal-400 via-teal-500 to-teal-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-teal-300 dark:focus:ring-teal-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                 Editar
               </a>
-              <a th:href="@{/eliminarCurso/}+${curso.id}"
+              <a th:href="@{/curso/eliminarCurso/}+${curso.id}"
                  onclick="return confirm('¿Estás seguro de eliminar este curso?');"
                  class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
                 Eliminar
@@ -249,7 +249,7 @@
         </button>
       </li>
       <li>
-        <a th:href="@{/estudiantes}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+        <a th:href="@{/estudiante/estudiantes}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
           <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
             <path d="M10 2a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm-6 14a6 6 0 1 1 12 0H4Z"/>
           </svg>
@@ -257,7 +257,7 @@
         </a>
       </li>
       <li>
-        <a th:href="@{/docentes}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+        <a th:href="@{/docente/docentes}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
           <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
             <path d="M10 2L1 6l9 4 7-3.11V14h2V6L10 2Zm0 6.3L3.15 6 10 3.7 16.85 6 10 8.3Zm-5 1.32v2.42c0 2.21 3.33 4 5 4s5-1.79 5-4V9.62l-5 2.22-5-2.22Z"/>
           </svg>
@@ -265,7 +265,7 @@
         </a>
       </li>
       <li>
-        <a th:href="@{/formularioCurso}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+        <a th:href="@{/curso/formularioCurso}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
           <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
             <path d="M3 2a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1V8l-6-6H3Zm7 1.5L15.5 9H10V3.5ZM5 11h10v2H5v-2Zm0 4h10v2H5v-2Z"/>
           </svg>
@@ -273,7 +273,7 @@
         </a>
       </li>
       <li>
-        <a th:href="@{/materias}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
+        <a th:href="@{/materia/materias}" class="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
           <svg class="shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
             <path d="M2 3.5A1.5 1.5 0 0 1 3.5 2H9a.5.5 0 0 1 .5.5V16a.5.5 0 0 1-.5.5H3.5A1.5 1.5 0 0 1 2 15V3.5ZM10.5 2H16a1.5 1.5 0 0 1 1.5 1.5V15a1.5 1.5 0 0 1-1.5 1.5H10.5a.5.5 0 0 1-.5-.5V2.5a.5.5 0 0 1 .5-.5Z"/>
           </svg>

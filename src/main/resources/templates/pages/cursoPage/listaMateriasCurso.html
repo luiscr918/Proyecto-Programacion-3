@@ -17,7 +17,7 @@
         <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
       </a>
       <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-        <a th:href="@{/admin}">
+        <a th:href="@{/admin/home}">
           <button type="button"
                   class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
             Regresar
@@ -47,16 +47,16 @@
       <td th:text="${curso.nombre}" class="px-6 py-4"></td>
       <td class="px-6 py-4">
         <!-- Puedes reemplazar esto con tus botones o acciones -->
-        <a th:href="@{/editarMateria/}+${materia.id}" class="text-blue-600 hover:underline">Editar</a>
+        <a th:href="@{/materia/editarMateria/}+${materia.id}" class="text-blue-600 hover:underline">Editar</a>
         |
-        <a th:href="@{/eliminarMateria/}+${materia.id}" class="text-red-600 hover:underline">Eliminar</a>
+        <a th:href="@{/materia/eliminarMateria/}+${materia.id}" class="text-red-600 hover:underline">Eliminar</a>
       </td>
     </tr>
     </tbody>
   </table>
 </div>
 <div  class="mt-4">
-  <a th:href="@{/materiasCursoPdf/}+${curso.id}" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
+  <a th:href="@{/curso/materiasCursoPdf/}+${curso.id}" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
     Descargar Listado de Materias en PDF
   </a>
 </div>

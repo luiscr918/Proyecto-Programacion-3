@@ -39,7 +39,7 @@
       <div th:each="materia:${materiasDocente}" class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
         <div class="p-4 md:p-6">
           <h3 th:text="${materia.nombre}" class="text-xl font-semibold text-indigo-500 dark:text-indigo-300 mb-2"></h3>
-          <a th:href="@{/tareasPorMateria/}+${materia.id}"
+          <a th:href="@{/tarea/tareasPorMateria/}+${materia.id}"
              class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-full">Ver Tareas</a>
         </div>
       </div>

@@ -22,7 +22,7 @@
             ></span>
         </a>
         <div class="flex md:order-2 space-x-3 md:space-x-0">
-            <a th:href="@{/admin}">
+            <a th:href="@{/admin/home}">
                 <button type="button"
                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
                     Regresar
@@ -40,7 +40,7 @@
     </h2>
 
     <!-- Formulario de búsqueda -->
-    <form th:action="@{/estudiantes}" method="get" class="mb-6 w-full max-w-xl flex flex-col gap-6">
+    <form th:action="@{/estudiante/estudiantes}" method="get" class="mb-6 w-full max-w-xl flex flex-col gap-6">
 
         <!-- Buscar estudianteente por cédula -->
         <div>
@@ -83,8 +83,8 @@
                     <td class="px-4 py-2" th:text="${estudiante.email}"></td>
                     <td class="px-4 py-2" th:text="${estudiante.direccion}"></td>
                     <td class="px-4 py-2 flex space-x-2">
-                        <a th:href="@{/editar-estudiante/{id}(id=${estudiante.id})}" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Actualizar</a>
-                        <a th:href="@{/eliminar-estudiante/{id}(id=${estudiante.id})}" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Eliminar</a>
+                        <a th:href="@{/estudiante/editar-estudiante/{id}(id=${estudiante.id})}" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Actualizar</a>
+                        <a th:href="@{/estudiante/eliminar-estudiante/{id}(id=${estudiante.id})}" class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Eliminar</a>
                     </td>
                 </tr>
                 </tbody>
@@ -92,7 +92,7 @@
         </div>
 
         <div class="flex justify-end gap-4 mt-6 bg-gray-300 p-4 rounded-lg shadow-inner">
-            <a th:href="@{/formulario-estudiante}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+            <a th:href="@{/estudiante/formulario-estudiante}" class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
                 <i class="fas fa-plus-circle mr-1"></i>Nuevo Estudiante
             </a>
         </div>

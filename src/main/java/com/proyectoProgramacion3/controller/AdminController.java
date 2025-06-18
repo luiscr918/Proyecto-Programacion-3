@@ -8,12 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Optional;
 
 @Controller
+@RequestMapping("/admin")
 public class AdminController {
     @Autowired
     private EstudianteServicio estudianteServicio;
@@ -26,7 +28,7 @@ public class AdminController {
     private CursoService cursoService;
 
 
-    @GetMapping("/admin")
+    @GetMapping("/home")
     public String mostrarVentanaAdmin(@RequestParam(name = "buscarCurso", required = false,defaultValue = "")
                                           String buscarCurso, Model model){
         model.addAttribute("totalEstudiantes",estudianteServicio.obtenerNumeroEstudiantes());

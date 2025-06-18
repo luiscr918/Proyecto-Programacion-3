@@ -16,11 +16,14 @@ public class ConfiguracionSeguridad {
             Exception{
         http
                 .authorizeHttpRequests(auth ->auth
-                        .requestMatchers("/","/index","/login","/guardarDocentePropio","/formularioDocentePropio","/formulario-estudiante-usuario","/guardar-estudiante-usuario",
+                        .requestMatchers("/","/index","/login","/guardarDocentePropio","/formulario-estudiante-usuario",
+                                "/guardar-estudiante-usuario","/formularioDocentePropio","/guardarDocentePropio",
                                 "/css/**", "/js/**" , "/imagenes/**").permitAll()
+                        .requestMatchers("/admin/**","/estudiante/**","/docente/**","/materia/**","/curso/**").hasRole("ADMIN")
                         .requestMatchers("/docentes").hasRole("DOCENTE")
                         .requestMatchers("/estudiantes").hasRole("ESTUDIANTE")
-                        .requestMatchers("/admin").hasRole("ADMIN")
+                        //las que comparten roles
+                        .requestMatchers("/materia/**").hasAnyRole("ESTUDIANTE","DOCENTE")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form

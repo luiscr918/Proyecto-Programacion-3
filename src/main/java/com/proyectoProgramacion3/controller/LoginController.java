@@ -24,7 +24,7 @@
                         .orElse("");
 
                 if (role.equals("ROLE_ADMIN")) {
-                    return "redirect:/admin";
+                    return "redirect:/admin/home";
                 } else if (role.equals("ROLE_ESTUDIANTE")) {
                     return "redirect:/estudiantes";
                 } else if (role.equals("ROLE_DOCENTE")) {
