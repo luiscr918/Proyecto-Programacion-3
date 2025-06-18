@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Listado de Estudiantes</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0 40px 40px 40px; /* sin margen arriba */
+            color: #1f2937;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 2px solid #3b82f6;
+            margin-bottom: 20px;
+        }
+
+        .seal {
+            width: 80px;
+            height: 80px;
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+
+        .seal img {
+            width: 100%;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .company-name {
+            font-size: 32px;
+            font-weight: 700;
+            color: #2563eb;
+            user-select: none;
+        }
+
+        .title-section {
+            margin-bottom: 20px;
+        }
+
+        .course-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #374151;
+            margin-bottom: 4px;
+        }
+
+        p.description {
+            font-size: 13px;
+            color: #4b5563;
+            margin: 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 12px;
+            margin-top: 0;
+        }
+
+        th {
+            background-color: #3b82f6;
+            color: white;
+            text-align: left;
+            padding: 8px;
+        }
+
+        td {
+            background-color: #e0f2fe;
+            color: #1e3a8a;
+            border: 1px solid #93c5fd;
+            padding: 8px;
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) td {
+            background-color: #bae6fd;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Encabezado: Imagen + TaskFlow en línea -->
+<div class="header">
+    <div class="seal">
+        <img src="file:///C:/Users/User/Documents/chill/programacion3/proyecto-programacion3/src/main/resources/static/imagenes/img001-logo.png" alt="Sello" />
+    </div>
+    <div class="company-name">TaskFlow</div>
+</div>
+
+<!-- Título del curso y descripción, debajo del encabezado -->
+<div class="title-section">
+    <div class="course-name" th:text="'Listado de: ' + ${estudiantesCurso[0].curso.nombre}"></div>
+    <p class="description">A continuación se presenta la lista de estudiantes que han sido matriculados en este curso.</p>
+</div>
+
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Cédula</th>
+        <th>Nombre</th>
+        <th>Correo</th>
+        <th>Teléfono</th>
+        <th>Dirección</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="estudiante : ${estudiantesCurso}">
+        <td th:text="${estudiante.id}"></td>
+        <td th:text="${estudiante.cedula}"></td>
+        <td th:text="${estudiante.nombre}"></td>
+        <td th:text="${estudiante.email}"></td>
+        <td th:text="${estudiante.telefono}"></td>
+        <td th:text="${estudiante.direccion}"></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

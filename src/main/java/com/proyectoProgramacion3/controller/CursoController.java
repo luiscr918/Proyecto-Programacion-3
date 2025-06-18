@@ -1,17 +1,23 @@
 package com.proyectoProgramacion3.controller;
 
+import com.openhtmltopdf.pdfboxout.PdfRendererBuilder;
 import com.proyectoProgramacion3.entity.*;
 import com.proyectoProgramacion3.service.CursoService;
 import com.proyectoProgramacion3.service.DocenteServices;
 import com.proyectoProgramacion3.service.EstudianteServicio;
 import com.proyectoProgramacion3.service.MateriaService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.thymeleaf.context.Context;
+import org.thymeleaf.spring6.SpringTemplateEngine;
 
+import java.io.IOException;
+import java.io.OutputStream;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +31,9 @@ public class CursoController {
     private MateriaService materiaService;
     @Autowired
     private DocenteServices docenteServices;
-
+    //anotacion para instanciar mi pdf
+    @Autowired
+    private SpringTemplateEngine templateEngine;
 
     // Mostrar formulario de registro
     @GetMapping("/formularioCurso")
@@ -105,5 +113,58 @@ public class CursoController {
         model.addAttribute("materiasCurso", materiasCurso);
         model.addAttribute("curso",curso);
         return "pages/cursoPage/listaMateriasCurso";
+    }
+
+    //impirmir estudiantes por curso
+    @GetMapping("/estudiantesCursoPdf/{id}")
+    public void exportarPDF(@PathVariable Long id, HttpServletResponse response) throws IOException {
+        // 1. Obtener los datos
+        Curso curso=cursoService.obtenerCursoConEstudiantes(id);
+        List<Estudiante> estudiantesCurso=curso.getEstudiantes();
+
+        // 2. Configurar Thymeleaf
+        Context context = new Context();
+        context.setVariable("estudiantesCurso", estudiantesCurso);
+        String html = templateEngine.process("listaEstudiantesCursoPDF", context); // nombre del archivo .html
+
+        // 3. Configurar PDF
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=estudiantes_curso.pdf");
+
+        try (OutputStream os = response.getOutputStream()) {
+            PdfRendererBuilder builder = new PdfRendererBuilder();
+            builder.withHtmlContent(html, "");
+            builder.toStream(os);
+            builder.run();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    //impirmir materias por curso
+    @GetMapping("/materiasCursoPdf/{id}")
+    public void exportarPDFMaterias(@PathVariable Long id, HttpServletResponse response) throws IOException {
+        // 1. Obtener los datos
+        Curso curso=cursoService.ObtenerCursoConMaterias(id);
+        List<Materia> materiasCurso=curso.getMaterias();
+
+        // 2. Configurar Thymeleaf
+        Context context = new Context();
+        context.setVariable("materiasCurso", materiasCurso);
+        String html = templateEngine.process("listaMateriasCursoPDF", context); // nombre del archivo .html
+
+        // 3. Configurar PDF
+        response.setContentType("application/pdf");
+        response.setHeader("Content-Disposition", "attachment; filename=materias_curso.pdf");
+
+        try (OutputStream os = response.getOutputStream()) {
+            PdfRendererBuilder builder = new PdfRendererBuilder();
+            builder.withHtmlContent(html, "");
+            builder.toStream(os);
+            builder.run();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
