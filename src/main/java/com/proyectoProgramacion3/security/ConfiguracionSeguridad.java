@@ -16,16 +16,17 @@ public class ConfiguracionSeguridad {
             Exception{
         http
                 .authorizeHttpRequests(auth ->auth
-                        .requestMatchers("/index","/","/login", "/formularioDocentePropio","/guardarDocentePropio","/guardarUsuario",
-                                "/admin","/guardarDocente","/registroDocente","/docentes","editarDocente/{id}","/eliminarDocente/{id}",
-                                "/inicioDocente","/materiasPorDocente/{id}",
+                        .requestMatchers("/","/login","/guardarDocentePropio","/formularioDocentePropio",
                                 "/css/**", "/js/**" , "/imagenes/**").permitAll()
+                        .requestMatchers("docente").hasRole("DOCENTE")
+                        .requestMatchers("docente").hasRole("ESTUDIANTE")
+                        .requestMatchers("/admin").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
                         .loginPage("/login")
                         .permitAll()
-                        .defaultSuccessUrl("/index", true)
+                        .defaultSuccessUrl("/postLogin", true)
                 )
                 .logout(logout ->logout
                         .logoutUrl("/logout")
