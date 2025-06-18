@@ -27,6 +27,10 @@ public class DocenteServices {
         return docenteRepositorio.findAll();
     }
 
+    public Optional<Docente> obtenerDocentePorEmail(String email) {
+        return docenteRepositorio.findByEmail(email);
+    }
+
 
     // Mostrar todos los docentes o buscar por cédula
     public List<Docente> buscarDocentePorCedula(String cedula) {
