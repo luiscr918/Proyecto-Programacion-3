@@ -67,6 +67,11 @@ public class EstudianteServicio {
         return estudiante;
     }
 
+    //OBTNER ID DEL EMIAL
+    public Optional<Estudiante> obtenerEstudaintePorEmail(String email) {
+        return estudianteRepository.findByEmail(email);
+    }
+
 
 
 }

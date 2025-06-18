@@ -8,6 +8,7 @@ import com.proyectoProgramacion3.service.EstudianteServicio;
 import com.proyectoProgramacion3.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -81,9 +82,20 @@ private UsuarioService usuarioService;
     }
     //simulador de inicio sesion estudiante
     @GetMapping("/inicioEstudiante")
-    public String simuladorIcEstudiante(Model model) {
-        model.addAttribute("estudiantes",estudianteServicio.mostrarEstudiantes());
-        return "pages/EstudiantePag/simSesionEstudiante";
+    public String inicioEstudiante(Authentication authentication, Model model) {
+        // Obtener el email del estudiante autenticado
+        String email = authentication.getName();
+
+        // Buscar el estudiante por su email
+        Optional<Estudiante> estudianteOptional = estudianteServicio.obtenerEstudaintePorEmail(email);
+
+        if (estudianteOptional.isPresent()) {
+            Estudiante estudiante = estudianteOptional.get();
+            model.addAttribute("estudiante", estudiante);
+            return "pages/EstudiantePag/simSesionEstudiante";
+        } else {
+            return "redirect:/login?error";
+        }
     }
 
     // Obtener materias por estudiante

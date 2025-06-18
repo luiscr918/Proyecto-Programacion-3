@@ -10,130 +10,137 @@
 <body>
 <!--Seccion1: Barra de naveagacion-->
 
-<nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 ">
+<nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
     <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a th:href="@{/}" class="flex items-center space-x-3 rtl:space-x-reverse">
-            <img src="/imagenes/img001-logo.png" class="h-8" alt="Flowbite Logo">
-            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
+
+        <!-- Logo y saludo -->
+        <a href="#" class="flex items-center space-x-3">
+            <img src="/imagenes/img001-logo.png" alt="Logo" class="h-8"/>
+            <span class="self-center text-3xl font-semibold whitespace-nowrap text-white">Bienvenido:</span>
         </a>
-        <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-            <a th:href="@{/admin}">
-                <button type="button"
-                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
-                    Regresar
+
+        <!-- Botón de cierre de sesión -->
+        <div class="flex md:order-2">
+            <form th:action="@{/logout}" method="post">
+                <button type="submit"
+                        class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2">
+                    Cerrar sesión
                 </button>
-            </a>
+            </form>
         </div>
     </div>
 </nav>
-
 <!--lista-->
-<div class="w-full flex justify-between items-center mb-3 mt-24 pl-3">
-    <div>
-        <h3 class="text-lg font-bold text-slate-800">Lista de Estudiantes Matriculados</h3>
-        <p class="text-slate-500">A continuación se presenta la lista de estudiantes que han sido matriculados en el sistema, con su información correspondiente.</p>
+<!-- Tabla para mostrar los datos del estudiante -->
+<div class="flex flex-col items-center justify-center mt-8 pt-15 pb-10">
+
+    <!-- Título general -->
+    <h2 class="text-2xl font-bold text-blue-700 mb-4">
+        <i class="fas fa-user-graduate text-blue-500 mr-2"></i>Ventana del Estudiante
+    </h2>
+
+    <!-- Tarjeta contenedora -->
+    <div class="bg-white shadow-2xl rounded-xl p-6 w-full max-w-xl">
+
+        <h3 class="text-xl font-semibold text-gray-800 mb-4 text-center">
+            Bienvenido, <span th:text="${estudiante.nombre}">Nombre del estudiante</span>
+        </h3>
+
+        <!-- Tabla con encabezado y estilo -->
+        <table class="w-full border-collapse text-xs shadow-md">
+            <thead>
+            <tr class="bg-blue-700 text-white text-left">
+                <th class="px-3 py-2 text-base font-semibold rounded-tl-md">Campo</th>
+                <th class="px-3 py-2 text-base font-semibold rounded-tr-md">Información del Estudiante</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="border-b">
+                <td class="bg-gray-100 font-semibold px-3 py-2 w-1/3">Cédula</td>
+                <td class="bg-white px-3 py-2" th:text="${estudiante.cedula}">0000000000</td>
+            </tr>
+            <tr class="border-b">
+                <td class="bg-gray-100 font-semibold px-3 py-2">Email</td>
+                <td class="bg-white px-3 py-2" th:text="${estudiante.email}">correo@ejemplo.com</td>
+            </tr>
+            <tr class="border-b">
+                <td class="bg-gray-100 font-semibold px-3 py-2">Dirección</td>
+                <td class="bg-white px-3 py-2" th:text="${estudiante.direccion}">Av. Siempre Viva 123</td>
+            </tr>
+            <tr>
+                <td class="bg-gray-100 font-semibold px-3 py-2">Teléfono</td>
+                <td class="bg-white px-3 py-2" th:text="${estudiante.telefono}">0999999999</td>
+            </tr>
+            </tbody>
+        </table>
     </div>
-    <div class="ml-3">
-        <!--Buscar estudiante por cedula-->
-        <div class="w-full max-w-sm min-w-[200px] relative">
-            <div class="relative">
-                <form th:action="@{/estudiantes}" method="get">
-                    <input
-                            th:value="${buscarEstudiante}"
-                            name="buscarEstudiante"
-                            class="bg-white w-full pr-11 h-10 pl-3 py-2 bg-transparent placeholder:text-slate-400 text-slate-700 text-sm border border-slate-200 rounded transition duration-300 ease focus:outline-none focus:border-slate-400 hover:border-slate-400 shadow-sm focus:shadow-md"
-                            placeholder="Buscar estudiante por CI"
-                    />
-                    <button
-                            class="absolute h-8 w-8 right-1 top-1 my-auto px-2 flex items-center bg-white rounded "
-                            type="submit"
-                    >
-                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="3" stroke="currentColor" class="w-8 h-8 text-slate-600">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-                        </svg>
-                    </button>
-                </form>
+</div>
+
+
+
+
+<div class="min-h-screen flex flex-col items-center justify-start bg-gradient-to-br from-blue-900 to-blue-700 px-4 py-12 space-y-10">
+
+    <!-- Título -->
+    <h2 class="text-3xl font-bold text-white text-center">
+        Funciones del Estudiante
+    </h2>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl w-full">
+
+        <!-- Card: Ver Entregas -->
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden card-hover">
+            <!-- Imagen -->
+            <div class="h-64 w-full bg-blue-100 flex items-center justify-center">
+                <img src="https://media.istockphoto.com/id/1347832838/es/foto/aqu%C3%AD-est%C3%A1-mi-maestro-de-prueba.jpg?s=612x612&w=0&k=20&c=iTnjztZ7a3FqNp-2MG2iSFEX9eZ7j-FoohfKFl6ZwYs="
+                     alt="Ver entregas"
+                     class="h-full w-full object-cover rounded-t-3xl">
+            </div>
+
+            <!-- Contenido -->
+            <div class="p-8 text-center">
+                <h2 class="text-2xl font-bold text-blue-800 mb-4">Mis Entregas</h2>
+                <p class="text-gray-700 mb-6">
+                    Revisa todas las tareas que has entregado y el estado de cada una. Mantente al tanto de tus actividades académicas.
+                </p>
+                <a th:href="@{'/registrosTareasEstudiante/' + ${estudiante.id}}"
+                   class="inline-block bg-cyan-600 hover:bg-cyan-700 text-white px-6 py-3 rounded-lg font-semibold">
+                    Ver mis entregas
+                </a>
             </div>
         </div>
+
+        <!-- Card: Ver Materias y Tareas -->
+        <div class="bg-white rounded-3xl shadow-2xl overflow-hidden card-hover">
+            <!-- Imagen -->
+            <div class="h-64 w-full bg-green-100 flex items-center justify-center">
+                <img src="https://img.freepik.com/vector-premium/materias-escolares-iconos-educativos-etiquetas-vectoriales-dibujadas-mano-materias-escuela-primaria_207606-181.jpg"
+                     alt="Ver materias"
+                     class="h-full w-full object-cover rounded-t-3xl">
+            </div>
+
+            <!-- Contenido -->
+            <div class="p-8 text-center">
+                <h2 class="text-2xl font-bold text-blue-800 mb-4">Mis Materias y Tareas</h2>
+                <p class="text-gray-700 mb-6">
+                    Consulta las materias en las que estás inscrito y revisa las tareas asignadas por cada docente.
+                </p>
+                <a th:href="@{/materiasPorEstudiante/}+${estudiante.id}"
+                   class="inline-block bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-semibold">
+                    Ver materias y tareas
+                </a>
+            </div>
+        </div>
+
     </div>
 </div>
 
-<div class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
-    <table class="w-full text-left table-auto min-w-max">
-        <thead>
-        <tr>
-            <th class="p-4 border-b border-slate-300 bg-gray-200">
-                <p class="block text-sm font-normal leading-none text-slate-500">
-                    Id
-                </p>
-            </th>
-            <th class="p-4 border-b border-slate-300 bg-slate-50">
-                <p class="block text-sm font-normal leading-none text-slate-500">
-                    Cédula
-                </p>
-            </th>
-            <th class="p-4 border-b border-slate-300 bg-gray-200">
-                <p class="block text-sm font-normal leading-none text-slate-500">
-                    Nombre
-                </p>
-            </th>
-            <th class="p-4 border-b border-slate-300 bg-slate-50">
-                <p class="block text-sm font-normal leading-none text-slate-500">
-                    Correo
-                </p>
-            </th>
-            <th class="p-4 border-b border-slate-300 bg-gray-200">
-                <p class="block text-sm font-normal leading-none text-slate-500">
-                    Teléfono
-                </p>
-            </th>
-            <th class="p-4 border-b border-slate-300 bg-slate-50">
-                <p class="block text-sm font-normal leading-none text-slate-500">
-                    Dirección
-                </p>
-            </th>
-            <th class="p-4 border-b border-slate-300 bg-slate-50">
-                <p class="block text-sm font-normal leading-none text-slate-500">
-                    Opciones
-                </p>
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="estudiante:${estudiantes}" class="hover:bg-slate-50 border-b border-slate-200">
-            <td class="p-4 py-5 bg-gray-200">
-                <p th:text="${estudiante.id}" class="block font-semibold text-sm text-slate-800"></p>
-            </td>
-            <td class="p-4 py-5">
-                <p th:text="${estudiante.cedula}" class="block font-semibold text-sm text-slate-800"></p>
-            </td>
-            <td class="p-4 py-5 bg-gray-200">
-                <p th:text="${estudiante.nombre}" class="block text-sm text-slate-800"></p>
-            </td>
-            <td class="p-4 py-5">
-                <p th:text="${estudiante.email}" class="block text-sm text-slate-800"></p>
-            </td>
-            <td class="p-4 py-5 bg-gray-200">
-                <p th:text="${estudiante.telefono}" class="block text-sm text-slate-800"></p>
-            </td>
-            <td class="p-4 py-5">
-                <p th:text="${estudiante.direccion}" class="block text-sm text-slate-800"></p>
-            </td>
-            <td class="p-4 py-5">
-                <div class="block text-center">
-                    <a th:href="@{/registrosTareasEstudiante/}+${estudiante.id}" class="bg-cyan-600 text-white px-3 py-1 rounded hover:bg-cyan-700">Ver mis entregas</a>
-                </div>
-                <div class="block text-center mt-2">
-                    <a th:href="@{/materiasPorEstudiante/}+${estudiante.id}" class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">Ver mis materias y tareas</a>
-                </div>
-            </td>
-        </tr>
-        </tbody>
-    </table>
-</div>
-<div class="m-5">
-    <a th:href="@{/formulario-estudiante}" class="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 ">Agregar Nuevo Estudiante</a>
-</div>
+
+
+
+
+
+
 <!--Footer-->
 
 <footer class="bg-gray-800">
