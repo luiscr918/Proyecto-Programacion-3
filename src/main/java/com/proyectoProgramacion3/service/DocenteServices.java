@@ -65,4 +65,7 @@ public class DocenteServices {
         return docente;
     }
 
+    public Optional<Docente> obtenerDocentePorEmail(String email) {
+        return docenteRepositorio.findByEmail(email);
+    }
 }

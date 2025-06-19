@@ -22,13 +22,12 @@
                         .map(grantedAuthority -> grantedAuthority.getAuthority())
                         .findFirst()
                         .orElse("");
-
                 if (role.equals("ROLE_ADMIN")) {
                     return "redirect:/admin/home";
                 } else if (role.equals("ROLE_ESTUDIANTE")) {
-                    return "redirect:/estudiantes";
+                    return "redirect:/estudiante/inicioEstudiante";
                 } else if (role.equals("ROLE_DOCENTE")) {
-                    return "redirect:/docentes";
+                    return "redirect:/docente/inicioDocente";
                 }
 
                 return "redirect:/login?error";

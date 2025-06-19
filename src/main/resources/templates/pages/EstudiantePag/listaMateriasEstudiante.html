@@ -17,7 +17,7 @@
         <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
       </a>
       <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-        <a th:href="@{/}">
+        <a th:href="@{/estudiante/inicioEstudiante}">
           <button type="button"
                   class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
             Regresar
@@ -39,7 +39,7 @@
       <div th:each="materia:${materiasEstudiante}" class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
         <div class="p-4 md:p-6">
           <h3 th:text="${materia.nombre}" class="text-xl font-semibold text-indigo-500 dark:text-indigo-300 mb-2"></h3>
-          <a th:href="@{/tareasPorMateriaEstudiante/{materiaId}/{estudianteId}(materiaId=${materia.id}, estudianteId=${estudiante.id})}"
+          <a th:href="@{/tarea/tareasPorMateriaEstudiante/{materiaId}/{estudianteId}(materiaId=${materia.id}, estudianteId=${estudiante.id})}"
              class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-full">Ver Tareas</a>
         </div>
       </div>

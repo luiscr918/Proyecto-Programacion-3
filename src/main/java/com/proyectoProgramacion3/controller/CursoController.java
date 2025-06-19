@@ -36,6 +36,7 @@ public class CursoController {
     @Autowired
     private SpringTemplateEngine templateEngine;
 
+
     // Mostrar formulario de registro
     @GetMapping("/formularioCurso")
     public String formularioCurso(Model model) {

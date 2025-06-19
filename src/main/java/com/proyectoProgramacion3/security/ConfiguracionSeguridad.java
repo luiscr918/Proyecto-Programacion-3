@@ -13,17 +13,22 @@ import org.springframework.security.web.SecurityFilterChain;
 public class ConfiguracionSeguridad {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws
-            Exception{
+            Exception {
         http
-                .authorizeHttpRequests(auth ->auth
-                        .requestMatchers("/","/index","/login","/guardarDocentePropio","/formulario-estudiante-usuario",
-                                "/guardar-estudiante-usuario","/formularioDocentePropio","/guardarDocentePropio",
-                                "/css/**", "/js/**" , "/imagenes/**").permitAll()
-                        .requestMatchers("/admin/**","/estudiante/**","/docente/**","/materia/**","/curso/**").hasRole("ADMIN")
-                        .requestMatchers("/docentes").hasRole("DOCENTE")
-                        .requestMatchers("/estudiantes").hasRole("ESTUDIANTE")
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/", "/index", "/login", "/guardarDocentePropio", "/formulario-estudiante-usuario",
+                                "/guardar-estudiante-usuario", "/formularioDocentePropio", "/guardarDocentePropio",
+                                "/css/**", "/js/**", "/imagenes/**").permitAll()
+
+                        .requestMatchers("/estudiante/inicioEstudiante", "/estudiante/materiasPorEstudiante/*",
+                                "/registroTarea/formularioRegistroTarea/*/*", "/registroTarea/guardarRegistroTarea",
+                                "/registroTarea/editarRegistro/*", "/tarea/tareasPorMateriaEstudiante/*/*","/registroTarea/registrosTareasEstudiante/*"
+                        ).hasRole("ESTUDIANTE")
+
+                        .requestMatchers("/registroTarea/**", "/tarea/**").hasRole("DOCENTE")
+                        .requestMatchers("/admin/**", "/estudiante/**", "/curso/**").hasRole("ADMIN")
                         //las que comparten roles
-                        .requestMatchers("/materia/**").hasAnyRole("ESTUDIANTE","DOCENTE")
+                        .requestMatchers("/materia/**", "/docente/**").hasAnyRole("DOCENTE", "ADMIN")
                         .anyRequest().authenticated()
                 )
                 .formLogin(form -> form
@@ -31,7 +36,7 @@ public class ConfiguracionSeguridad {
                         .permitAll()
                         .defaultSuccessUrl("/postLogin", true)
                 )
-                .logout(logout ->logout
+                .logout(logout -> logout
                         .logoutUrl("/logout")
                         .logoutSuccessUrl("/login?logout")
                         .permitAll()
@@ -39,8 +44,9 @@ public class ConfiguracionSeguridad {
         return http.build();
 
     }
+
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 }

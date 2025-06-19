@@ -19,6 +19,7 @@ public class EstudianteServicio {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
+
     //Listar los estudiantes
     public List<Estudiante> mostrarEstudiantes(){
         return estudianteRepository.findAll();
@@ -67,7 +68,10 @@ public class EstudianteServicio {
         Estudiante estudiante=estudianteRepository.findById(id).orElseThrow();
         return estudiante;
     }
-
+    //OBTNER ID DEL EMIAL
+    public Optional<Estudiante> obtenerEstudaintePorEmail(String email) {
+        return estudianteRepository.findByEmail(email);
+    }
 
 
 }

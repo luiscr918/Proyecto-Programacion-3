@@ -6,6 +6,7 @@ import com.proyectoProgramacion3.service.DocenteServices;
 import com.proyectoProgramacion3.service.UsuarioService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -88,9 +89,20 @@ public class DocenteController {
     }
     // mostrar tabla que simula inicio de sesion hasta ver como es spring security
     @GetMapping("/inicioDocente")
-    public String mostrarInicDocente(Model model){
-        model.addAttribute("docentes", docenteServicio.mostrarLibros());
-        return "pages/DocentePag/simSesionDocente";
+    public String mostrarInicioDocente(Authentication authentication, Model model) {
+        // Obtener el username (correo) del usuario autenticado
+        String email = authentication.getName();
+
+        // Buscar el docente por correo
+        Optional<Docente> docenteOptional = docenteServicio.obtenerDocentePorEmail(email);
+
+        if (docenteOptional.isPresent()) {
+            Docente docente = docenteOptional.get();
+            model.addAttribute("docente", docente);
+            return "pages/DocentePag/simSesionDocente"; // Tu vista con los links
+        } else {
+            return "redirect:/login?error";
+        }
     }
     //Obtener materias por  docente
     @GetMapping("/materiasPorDocente/{id}")
