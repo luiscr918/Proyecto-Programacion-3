@@ -67,8 +67,7 @@ private EstudianteServicio estudianteServicio;
             return "pages/DocentePag/asignacionTareas"; //mencionar error a abne
         }
         tareaService.guardarTarea(tarea);
-        model.addAttribute("docentes", docenteServices.mostrarLibros());
-        return "pages/DocentePag/simSesionDocente";
+        return "redirect:/docente/inicioDocente";
     }
 
     // Editar tarea existente
@@ -89,6 +88,6 @@ private EstudianteServicio estudianteServicio;
         tareaService.eliminarTarea(id);
 
         model.addAttribute("docentes", docenteServices.mostrarLibros());
-        return "pages/DocentePag/simSesionDocente";
+        return "redirect:/docente/inicioDocente";
     }
 }
