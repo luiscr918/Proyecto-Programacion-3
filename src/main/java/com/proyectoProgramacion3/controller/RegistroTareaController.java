@@ -45,7 +45,7 @@ public class RegistroTareaController {
         model.addAttribute("tarea",tarea );
         return "pages/EstudiantePag/formRegistroTarea";
     }
-//guardar Entrega
+//guardar Entrega ESTUDIANTE
     @PostMapping("/guardarRegistroTarea")
     public String guardarRegistroTarea(RegistroTarea registroTarea, Model model) {
         if (registroTarea.getEstado()==null || registroTarea.getEstado().isEmpty()) {
@@ -55,7 +55,19 @@ public class RegistroTareaController {
         }
         registroTareaService.guardarRegistroTarea(registroTarea);
         model.addAttribute("estudiantes", estudianteServicio.mostrarEstudiantes());
-        return "pages/EstudiantePag/simSesionEstudiante";
+        return "redirect:/estudiante/inicioEstudiante";
+    }
+
+    //guardar Entrega DOCENTE
+    @PostMapping("/guardarRegistroTareaDocente")
+    public String guardarRegistroTareadocente(RegistroTarea registroTarea, Model model) {
+        if (registroTarea.getEstado()==null || registroTarea.getEstado().isEmpty()) {
+            registroTarea.setEstado("ENTREGADO");
+        }else{
+            registroTarea.setEstado("CALIFICADO");
+        }
+        registroTareaService.guardarRegistroTarea(registroTarea);
+        return "redirect:/docente/inicioDocente";
     }
     // Editar registro existente estudiante
     @GetMapping("/editarRegistro/{id}")

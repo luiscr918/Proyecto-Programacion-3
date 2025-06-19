@@ -54,7 +54,7 @@
                    class="w-full border border-gray-300 rounded-lg px-3 py-2 bg-gray-100 text-gray-700"/>
         </div>
 
-        <form th:action="@{/guardarRegistroTarea}" method="post" th:object="${registroTarea}">
+        <form th:action="@{/registroTarea/guardarRegistroTareaDocente}" method="post" th:object="${registroTarea}">
             <input type="hidden" th:field="*{id}" />
             <input type="hidden" th:field="*{tarea.id}" />
             <input type="hidden" th:field="*{estudiante.id}" />

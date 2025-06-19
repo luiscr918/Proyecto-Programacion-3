@@ -72,6 +72,11 @@ public class EstudianteServicio {
     public Optional<Estudiante> obtenerEstudaintePorEmail(String email) {
         return estudianteRepository.findByEmail(email);
     }
+    public void actualizarCursoEstudiante(Estudiante estudiante, Curso curso) {
+        // Asegurar que la contraseña y otros datos importantes no se toquen
+        estudiante.setCurso(curso);
+        estudianteRepository.save(estudiante);
+}
 
 
 }

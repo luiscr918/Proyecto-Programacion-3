@@ -49,18 +49,24 @@ public class CursoController {
     }
 
     //Guardar Curso datos
+    // Mostrar formulario de registro
     @PostMapping("/guardarCurso")
     public String guardarCurso(Curso curso,
                                @RequestParam(value = "idsEstudiantes", required = false) List<Long> idsEstudiantes,
-                               @RequestParam(value = "idsMaterias", required = false) List<Long> idsMaterias,Model model) {
+                               @RequestParam(value = "idsMaterias", required = false) List<Long> idsMaterias,
+                               Model model) {
         Curso cursoGuardado = cursoService.guardarCurso(curso);
+
         // Asocia estudiantes
         if (idsEstudiantes != null) {
             for (Long idEstudiante : idsEstudiantes) {
                 Optional<Estudiante> estudianteOptional = estudianteServicio.buscarEstudianteId(idEstudiante);
-                Estudiante est=estudianteOptional.get();
-                est.setCurso(cursoGuardado);
-                estudianteServicio.guardarEstudiante(est);
+                if (estudianteOptional.isPresent()) {
+                    Estudiante estudianteExistente = estudianteOptional.get();
+
+                    // Creamos una nueva instancia para modificar SOLO el curso
+                    estudianteServicio.actualizarCursoEstudiante(estudianteExistente, cursoGuardado);
+                }
             }
         }
 
@@ -68,13 +74,17 @@ public class CursoController {
         if (idsMaterias != null) {
             for (Long idMateria : idsMaterias) {
                 Optional<Materia> materiaOptional = materiaService.buscarMateriaPorId(idMateria);
-                Materia materia=materiaOptional.get();
-                materia.setCurso(cursoGuardado);
-                materiaService.guardarMateria(materia);
+                if (materiaOptional.isPresent()) {
+                    Materia materia = materiaOptional.get();
+                    materia.setCurso(cursoGuardado);
+                    materiaService.guardarMateria(materia);
+                }
             }
         }
+
         return "redirect:/admin/home";
     }
+
 
     //actualizar
     @GetMapping("/editarCurso/{id}")
