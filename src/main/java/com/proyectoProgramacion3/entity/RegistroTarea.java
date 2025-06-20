@@ -31,6 +31,8 @@ public class RegistroTarea {
 
     private String comentario;
 
-    private String archivoTarea;
+    @Lob
+    @Column(name = "archivo_tarea", columnDefinition = "MEDIUMBLOB")
+    private byte[] archivoTarea;
 
 }

@@ -58,6 +58,7 @@
             <input type="hidden" th:field="*{id}" />
             <input type="hidden" th:field="*{tarea.id}" />
             <input type="hidden" th:field="*{estudiante.id}" />
+            <input type="hidden" th:field="*{archivoTarea}" />
             <!--Estado de la tarea-->
             <!-- Nota de docente-->
             <div  class="mb-4">
@@ -80,11 +81,14 @@
                           ></textarea>
             </div>
 
-            <!-- Tarea Entregada (editable) -->
-            <div class="mb-4">
-                <label for="archivoTarea" class="block text-sm font-medium text-gray-700 mb-1">Tarea Entregada</label>
-                <input readonly type="text" id="archivoTarea" th:field="*{archivoTarea}" placeholder="Enlace o descripción de entrega"
-                       class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring focus:ring-blue-500"/>
+            <!-- Tarea Entregada (Visualización PDF) -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-700 mb-2">Archivo Entregado</label>
+                <a th:href="@{'/registroTarea/verArchivo/' + ${registroTarea.id}}" target="_blank"
+                   class="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 transition">
+                    📄 Ver PDF Entregado
+                </a>
+                <p class="mt-2 text-sm text-gray-500">Haz clic para ver el archivo PDF entregado por el estudiante.</p>
             </div>
 
             <button type="submit"

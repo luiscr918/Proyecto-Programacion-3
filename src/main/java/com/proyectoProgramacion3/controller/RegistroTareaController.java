@@ -4,13 +4,16 @@ import com.proyectoProgramacion3.entity.*;
 import com.proyectoProgramacion3.service.EstudianteServicio;
 import com.proyectoProgramacion3.service.RegistroTareaService;
 import com.proyectoProgramacion3.service.TareaService;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,11 +50,16 @@ public class RegistroTareaController {
     }
 //guardar Entrega ESTUDIANTE
     @PostMapping("/guardarRegistroTarea")
-    public String guardarRegistroTarea(RegistroTarea registroTarea, Model model) {
+    public String guardarRegistroTarea(RegistroTarea registroTarea, Model model,
+                                       @RequestParam("archivo") MultipartFile archivo) throws IOException {
+
         if (registroTarea.getEstado()==null || registroTarea.getEstado().isEmpty()) {
             registroTarea.setEstado("ENTREGADO");
         }else{
             registroTarea.setEstado("CALIFICADO");
+        }
+        if (!archivo.isEmpty()) {
+            registroTarea.setArchivoTarea(archivo.getBytes()); // guarda el contenido binario
         }
         registroTareaService.guardarRegistroTarea(registroTarea);
         model.addAttribute("estudiantes", estudianteServicio.mostrarEstudiantes());
@@ -60,7 +68,8 @@ public class RegistroTareaController {
 
     //guardar Entrega DOCENTE
     @PostMapping("/guardarRegistroTareaDocente")
-    public String guardarRegistroTareadocente(RegistroTarea registroTarea, Model model) {
+    public String guardarRegistroTareadocente(RegistroTarea registroTarea, Model model)  {
+
         if (registroTarea.getEstado()==null || registroTarea.getEstado().isEmpty()) {
             registroTarea.setEstado("ENTREGADO");
         }else{
@@ -106,6 +115,15 @@ public class RegistroTareaController {
         List<RegistroTarea> registroTareas=estudiante.getResgistroTareas();
         model.addAttribute("registroTareas",registroTareas);
         return "pages/EstudiantePag/entregasEstudiante";
+    }
+    @GetMapping("/verArchivo/{id}")
+    public void verArchivo(@PathVariable Long id, HttpServletResponse response) throws IOException {
+        RegistroTarea registro = registroTareaService.bucarRegistroTareaPorId(id)
+                .orElseThrow(() -> new RuntimeException("Registro no encontrado"));
+
+        response.setContentType("application/pdf");
+        response.getOutputStream().write(registro.getArchivoTarea());
+        response.getOutputStream().flush();
     }
 
 }
