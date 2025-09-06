@@ -6,6 +6,9 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css" />
     <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}" />
+
+    <link rel="stylesheet" th:href="@{/css/stylesAditional.css}">
+
     <title>Lista Materias</title>
 </head>
 <body class="bg-white text-gray-900">
@@ -29,41 +32,55 @@
     </nav>
 </div>
 
-<div class="relative overflow-x-auto p-4 mt-16">
-    <h1 class="mb-4 text-3xl md:text-4xl font-extrabold leading-none tracking-tight text-center text-black">Lista de Materias</h1>
-    <table class="min-w-full text-sm text-left text-gray-700 border border-gray-300">
-        <caption></caption>
-        <thead class="text-xs uppercase bg-gray-100">
-        <tr>
-            <th scope="col" class="px-4 py-3 border-b">Id</th>
-            <th scope="col" class="px-4 py-3 border-b">Nombre</th>
-            <th scope="col" class="px-4 py-3 border-b">Profesor Asignado</th>
-            <th scope="col" class="px-4 py-3 border-b">Opciones</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr th:each="materia : ${materias}" class="bg-white border-b hover:bg-gray-50">
-            <th th:text="${materia.id}" scope="row" class="px-4 py-4 font-medium text-gray-900 whitespace-nowrap"></th>
-            <td th:text="${materia.nombre}" class="px-4 py-4"></td>
-            <td th:text="${materia.docente.nombre}" class="px-4 py-4"></td>
-            <td class="px-4 py-4 flex space-x-2">
-                <a th:href="@{/materia/editarMateria/}+${materia.id}" class="text-blue-600 hover:text-blue-800">
-                    <i class="mdi mdi-pencil"></i>
-                </a>
-                <a th:href="@{/materia/eliminarMateria/}+${materia.id}" class="text-red-600 hover:text-red-800">
-                    <i class="mdi mdi-delete"></i>
-                </a>
-            </td>
-        </tr>
-        </tbody>
-    </table>
+<div class="p-5">
+<div class="w-full max-w-6xl bg-gray-300 p-6 rounded-xl shadow-md mx-auto mt-5">
+
+    <!-- Título principal -->
+    <h1 class="mb-6 text-3xl md:text-4xl font-extrabold text-center text-black">
+        Lista de Materias
+    </h1>
+
+    <!-- Contenedor con altura máxima y scroll vertical -->
+    <div class="overflow-y-auto max-h-[400px] rounded-lg">
+        <table class="min-w-full divide-y divide-gray-300 shadow rounded-lg">
+            <thead class="bg-blue-500 text-white sticky top-0 z-10 text-center">
+            <tr>
+                <th class="px-4 py-2 ">ID</th>
+                <th class="px-4 py-2 ">Nombre</th>
+                <th class="px-4 py-2 ">Profesor Asignado</th>
+                <th class="px-4 py-2 ">Opciones</th>
+            </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200 text-center">
+            <tr th:each="materia : ${materias}" class="hover:bg-gray-50">
+                <td class="px-4 py-2" th:text="${materia.id}"></td>
+                <td class="px-4 py-2" th:text="${materia.nombre}"></td>
+                <td class="px-4 py-2" th:text="${materia.docente.nombre}"></td>
+                <td class="px-4 py-2 flex justify-center space-x-2">
+                    <a th:href="@{/materia/editarMateria/}+${materia.id}"
+                       class="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">
+                        Actualizar
+                    </a>
+                    <a th:href="@{/materia/eliminarMateria/}+${materia.id}"
+                       class="bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">
+                        Eliminar
+                    </a>
+                </td>
+
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
     <!-- Botón para añadir nueva materia -->
-    <div class="mt-4 text-center">
+    <div class="flex justify-end gap-4 mt-6 bg-gray-400 p-4 rounded-lg shadow-inner">
         <a th:href="@{/materia/formularioMateria}"
-           class="inline-block text-white bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-            Añadir Nueva Materia
+           class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">
+            <i class="fas fa-plus-circle mr-1"></i> Nueva Materia
         </a>
     </div>
 </div>
+</div>
+
 </body>
 </html>

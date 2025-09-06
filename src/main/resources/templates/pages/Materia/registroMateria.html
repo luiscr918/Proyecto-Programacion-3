@@ -4,10 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.css" rel="stylesheet"/>
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
+    <link rel="stylesheet" th:href="@{/css/stylesA.css}">
+
+    <link rel="stylesheet" th:href="@{/css/stylesAditional.css}">
     <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}" />
     <title>Registro de materia</title>
 </head>
-<body class="bg-gray-100">
+<body class="bg-gray-300">
 <!-- Sección 1: Barra de navegación -->
 <div class="m-14">
     <nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200">
@@ -17,7 +22,7 @@
                 <span class="self-center text-2xl font-semibold whitespace-nowrap text-white">TaskFlow</span>
             </a>
             <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-                <a th:href="@{/admin/home}">
+                <a th:href="@{/materia/materias}">
                     <button type="button"
                             class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center">
                         Regresar
@@ -39,7 +44,7 @@
 </div>
 
 <!-- Contenedor principal -->
-<div class="flex items-center justify-center min-h-screen pt-20">
+<div class="flex items-center justify-center min-h-screen pt-10 pb-10">
     <form th:action="@{/materia/guardarMateria}" method="post" th:object="${materia}" class="bg-white p-10 rounded-xl shadow-lg w-full max-w-md space-y-8">
         <div class="flex items-center justify-center mb-4">
             <img src="https://cdn-icons-png.flaticon.com/512/747/747062.png" alt="Logo de Materia" class="h-16 w-16" />
@@ -68,31 +73,20 @@
             />
         </div>
 
-        <div>
+        <!-- Nombre -->
+
             <label for="nombre" class="block mb-1 text-sm font-medium text-gray-700">Nombre</label>
-            <input
-                    th:field="*{nombre}"
-                    type="text"
-                    id="nombre"
-                    placeholder="Nombre de la materia"
-                    required
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-            />
+        <div class="input-card">
+                <input th:field="*{nombre}" type="text" id="nombre" placeholder="Nombre de la materia" required class="input-inner"/>
         </div>
 
-        <div>
+        <!-- Selección de docente -->
+
             <label for="profesor" class="block mb-1 text-sm font-medium text-gray-700">Asigne un Docente</label>
-            <select
-                    id="profesor"
-                    th:field="*{docente.id}"
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 appearance-none"
-            >
+        <div class="input-card">
+            <select id="profesor" th:field="*{docente.id}" class="input-inner appearance-none">
                 <option value="" disabled selected>Seleccione un docente</option>
-                <option
-                        th:each="docente : ${docentes}"
-                        th:value="${docente.id}"
-                        th:text="${docente.nombre}"
-                ></option>
+                <option th:each="docente : ${docentes}" th:value="${docente.id}" th:text="${docente.nombre}"></option>
             </select>
         </div>
 

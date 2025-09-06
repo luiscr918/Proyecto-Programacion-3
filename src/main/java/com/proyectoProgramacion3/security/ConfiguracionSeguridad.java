@@ -17,7 +17,9 @@ public class ConfiguracionSeguridad {
         http
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/", "/index", "/login", "/guardarDocentePropio", "/formulario-estudiante-usuario",
-                                "/guardar-estudiante-usuario", "/formularioDocentePropio", "/guardarDocentePropio",
+                                "/guardar-estudiante-usuario", "/formularioDocentePropio", "/guardarDocentePropio"
+                                ,"/docente/guardarDocente","/estudiante/guardar-estudiante",
+                                "/guardar-estudiante",
                                 "/css/**", "/js/**", "/imagenes/**").permitAll()
 
                         .requestMatchers("/estudiante/inicioEstudiante", "/estudiante/materiasPorEstudiante/*",

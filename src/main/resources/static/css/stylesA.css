@@ -88,3 +88,31 @@
     padding: 100px;
     background-color: #bb8fce;
  }
+
+
+ /* === Efecto hover general para todos los campos === */
+ input,
+ select,
+ textarea {
+     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+     font-size: 1rem;       /* tamaño base */
+     padding: 0.75rem 1rem; /* más espacioso */
+     border-radius: 8px;
+     outline: none;
+ }
+
+ /* Hover: aumenta un poco de tamaño y agrega sombra */
+ input:hover,
+ select:hover,
+ textarea:hover {
+     transform: scale(1.03);
+     box-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+ }
+
+ /* Opcional: foco también */
+ input:focus,
+ select:focus,
+ textarea:focus {
+     transform: scale(1.03);
+     box-shadow: 0 0 10px rgba(59, 130, 246, 0.7);
+ }

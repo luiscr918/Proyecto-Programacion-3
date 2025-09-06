@@ -1,0 +1,278 @@
+/* === EFECTOS GLOBALES CORREGIDOS === */
+
+/* Transiciones suaves para todos */
+.input-card-blue,
+.input-card-green,
+.input-card,
+.btn-blue,
+.btn-green,
+select {
+    transition: all 0.25s ease-in-out;
+}
+
+/* Input card azul */
+.input-card-blue:hover,
+.input-card-blue:focus-within {
+    transform: scale(1.03);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35); /* Azul sombra */
+}
+
+/* Input card*/
+.input-card:hover,
+.input-card:focus-within {
+    transform: scale(1.03);
+    box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35); /* Azul sombra */
+}
+
+/* Input card verde */
+.input-card-green:hover,
+.input-card-green:focus-within {
+    transform: scale(1.03);
+    box-shadow: 0 4px 14px rgba(22, 163, 74, 0.35); /* Verde sombra */
+}
+
+/* Selects sueltos
+select:hover,
+select:focus {
+    transform: scale(1.03);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+    border-color: #2563eb;
+    outline: none;
+}
+*/
+/* Botones */
+.btn-blue:hover,
+.btn-blue:focus,
+.btn-green:hover,
+.btn-green:focus {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.35);
+}
+
+/* === AZUL CONTRASTADO === */
+.input-card-blue {
+    position: relative;
+    border-radius: 12px;
+    padding: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    z-index: 0;
+    background: transparent;
+    background-color: #1e40af; /* Azul oscuro base */
+}
+
+.input-card-blue::before {
+    content: '';
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: -100%;
+    left: -100%;
+    background-image: linear-gradient(180deg, #60a5fa, #1e3a8a); /* Celeste → Azul marino */
+    animation: rotateInputBorder 4s linear infinite;
+    z-index: 0;
+    transition: all 0.1s ease;
+}
+
+.input-card-blue::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: #ffffff;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.input-card-blue>* {
+    position: relative;
+    z-index: 2;
+}
+
+.input-inner-blue {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background: transparent;
+    font-weight: 600;
+}
+
+.input-card-blue:hover::before {
+    filter: brightness(1.25);
+}
+
+/* Botón azul */
+.btn-blue {
+    transition: ease-in-out 0.3s;
+    cursor: pointer;
+    background-color: #2563eb; /* Azul fuerte */
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-blue:hover {
+    transform: scale(1.1) rotate(2deg);
+    background-color: #1e3a8a; /* Azul marino */
+    box-shadow: 0 6px 12px rgba(30, 58, 138, 0.4);
+}
+
+
+
+//Naranja
+/* Hover efecto */
+.input-card:hover {
+    transform: scale(1.03);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.6);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Contenedor con borde animado naranja */
+.input-card {
+    position: relative;
+    border-radius: 12px;
+    padding: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    z-index: 0;
+    background: transparent;
+    background-color: rgb(255, 102, 0);
+}
+
+.input-card::before {
+    content: '';
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: -100%;
+    left: -100%;
+    background-image: linear-gradient(180deg, #facc15, #d97706);
+    animation: rotateInputBorder 4s linear infinite;
+    z-index: 0;
+    transition: all 0.1s ease;
+}
+
+.input-card::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: #ffffff;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+/* Contenido (input o select) sobre el efecto */
+.input-card > * {
+    position: relative;
+    z-index: 2;
+}
+
+/* Input y select internos */
+.input-inner {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background: transparent;
+    color: #78350f;
+    font-weight: 500;
+}
+
+/* Animación del borde */
+@keyframes rotateInputBorder {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* === VERDE CONTRASTADO === */
+.input-card-green {
+    position: relative;
+    border-radius: 12px;
+    padding: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+    z-index: 0;
+    background: transparent;
+    background-color: #166534; /* Verde bosque base */
+}
+
+.input-card-green::before {
+    content: '';
+    position: absolute;
+    width: 300%;
+    height: 300%;
+    top: -100%;
+    left: -100%;
+    background-image: linear-gradient(180deg, #4ade80, #065f46); /* Verde lima → Verde oscuro */
+    animation: rotateInputBorder 4s linear infinite;
+    z-index: 0;
+    transition: all 0.1s ease;
+}
+
+.input-card-green::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    background: #ffffff;
+    border-radius: 10px;
+    z-index: 1;
+}
+
+.input-card-green>* {
+    position: relative;
+    z-index: 2;
+}
+
+.input-inner-green {
+    width: 100%;
+    border: none;
+    outline: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    background: transparent;
+    color: #065f46; /* Verde oscuro */
+    font-weight: 600;
+}
+
+.input-card-green:hover::before {
+    filter: brightness(1.25);
+}
+
+/* Botón verde */
+.btn-green {
+    transition: ease-in-out 0.3s;
+    cursor: pointer;
+    background-color: #22c55e; /* Verde brillante */
+    color: white;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.btn-green:hover {
+    transform: scale(1.1) rotate(2deg);
+    background-color: #166534; /* Verde bosque */
+    box-shadow: 0 6px 12px rgba(22, 101, 52, 0.4);
+}
