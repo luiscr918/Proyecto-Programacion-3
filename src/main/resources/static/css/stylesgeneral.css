@@ -1,0 +1,17 @@
+/* Transición suave para todos los elementos */
+input, select, textarea, button {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Efecto hover para inputs, selects y textareas */
+input:hover, select:hover, textarea:hover {
+  transform: scale(1.05); /* Crecen un 5% */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2); /* Sombra */
+}
+
+/* Efecto hover para botones */
+button:hover {
+  transform: scale(1.05) rotate(5deg); /* Crecen y rotan 5 grados */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
+}

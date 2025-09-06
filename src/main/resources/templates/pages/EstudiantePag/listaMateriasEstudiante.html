@@ -5,10 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" type="image/png" th:href="@{/imagenes/img001-logo.png}" />
+  <link rel="stylesheet" th:href="@{/css/stylesgeneral.css}">
   <link rel="stylesheet" th:href="@{/css/stylesAditional.css}">
   <title>Lista Materias Estudiante</title>
 </head>
-<body class="bg-white text-gray-900">
+<body class="bg-white text-gray-700">
 <!--Seccion1: Barra de naveagacion-->
 <div class="m-14">
   <nav class="bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 ">
@@ -28,24 +29,30 @@
     </div>
   </nav>
 </div>
-
-<!--Carga de cards con los cursos que le perteneces al docente-->
+<!--Carga de cards con los cursos que le pertenecen al docente-->
 <div class="h-screen bg-gray-100 dark:bg-gray-900 text-gray-800 dark:text-white">
   <div class="container mx-auto px-4 py-8">
     <h2 class="text-3xl font-semibold text-center text-gray-800 dark:text-gray-200 mb-8">
-      Mis Materias
+      Mis Materias de estudiante
     </h2>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
       <div th:each="materia:${materiasEstudiante}" class="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
-        <div class="p-4 md:p-6">
-          <h3 th:text="${materia.nombre}" class="text-xl font-semibold text-indigo-500 dark:text-indigo-300 mb-2"></h3>
+        <div class="p-4 md:p-6 flex flex-col items-center text-center">
+          <!-- Nombre centrado -->
+          <h3 th:text="${materia.nombre}" class="text-xl font-semibold text-indigo-500 dark:text-indigo-300 mb-4">
+          </h3>
+
+          <!-- Botón/a centrado con hover -->
           <a th:href="@{/tarea/tareasPorMateriaEstudiante/{materiaId}/{estudianteId}(materiaId=${materia.id}, estudianteId=${estudiante.id})}"
-             class="inline-block bg-indigo-500 hover:bg-indigo-600 text-white px-4 py-2 rounded-full">Ver Tareas</a>
+             class="inline-block bg-indigo-500 text-white px-4 py-2 rounded-full transition-transform transform hover:scale-105 hover:rotate-5 hover:shadow-lg">
+            Ver Tareas
+          </a>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 </body>
 </html>
