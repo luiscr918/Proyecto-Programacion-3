@@ -12,6 +12,6 @@ input:hover, select:hover, textarea:hover {
 
 /* Efecto hover para botones */
 button:hover {
-  transform: scale(1.05) rotate(5deg); /* Crecen y rotan 5 grados */
+  transform: scale(1.04) rotate(4deg); /* Crecen y rotan 5 grados */
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); /* Sombra más intensa */
 }

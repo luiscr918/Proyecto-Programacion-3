@@ -29,13 +29,13 @@
 
 <!--lista-->
 <div class="w-full flex justify-between items-center mb-3 mt-24 pl-3">
-    <div>
-        <h3 class="text-lg font-bold text-slate-800">Lista de Estudiantes Matriculados</h3>
-        <p class="text-slate-500">A continuación se presenta la lista de estudiantes que han sido matriculados en el sistema, con su información correspondiente.</p>
+    <div class="w-full text-center">
+        <h3 class="text-4xl font-bold text-slate-800">Lista de Estudiantes Matriculados</h3>
+        <p class="text-slate-500 pt-5">A continuación se presenta la lista de estudiantes que han sido matriculados en el sistema, con su información correspondiente.</p>
     </div>
 </div>
 
-<div class="relative flex flex-col w-full h-full overflow-scroll text-gray-700 bg-white shadow-md rounded-lg bg-clip-border">
+<div class="relative flex flex-col w-full h-full text-gray-700 bg-white shadow-md rounded-lg bg-clip-border p-10">
     <table class="w-full text-left table-auto min-w-max">
         <thead>
         <tr>
@@ -123,10 +123,14 @@
         </tbody>
     </table>
 </div>
-<div class="mt-4">
-    <a th:href="@{/curso/estudiantesCursoPdf/}+${curso.id}" class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded">
+
+<div class="mt-4 flex justify-center">
+    <a th:href="@{/curso/estudiantesCursoPdf/}+${curso.id}"
+       class="bg-blue-600 hover:bg-blue-700 text-white py-2 px-6 rounded-lg transition-transform transform hover:scale-105 hover:rotate-1 hover:shadow-lg">
         Descargar Listado de Estudiantes en PDF
     </a>
 </div>
+
+
 </body>
 </html>

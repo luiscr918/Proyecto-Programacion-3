@@ -26,7 +26,7 @@
     </div>
 </nav>
 
-<div class="pt-24 mb-20 flex justify-center">
+<div class="pt-24 pb-10 mb-20 flex justify-center">
     <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-xl border border-gray-300">
         <h2 class="text-2xl font-bold text-center mb-6 text-gray-800">Revisar la tarea</h2>
 
@@ -66,6 +66,7 @@
         </div>
 
         <form th:action="@{/registroTarea/guardarRegistroTareaDocente}" method="post" th:object="${registroTarea}">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}" />
             <input type="hidden" th:field="*{id}" />
             <input type="hidden" th:field="*{tarea.id}" />
             <input type="hidden" th:field="*{estudiante.id}" />
